@@ -1,0 +1,217 @@
+<aura:component controller="NewFlyerController" implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global">
+    
+    <aura:registerEvent name="CloseModal" type="c:CloseModal"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.accountName}" action="{!c.accountChange}"/>
+    <aura:handler name="change" value="{!v.suiteName}" action="{!c.suiteChange}"/>
+
+    <aura:attribute name="pageReference" type="Object"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg','.pdf','.doc','.docx','.xls','.xlsx','.ppt','.pptx']" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="flyerId" type="String" />
+    <aura:attribute name="documentId" type="String" />
+    <aura:attribute name="saveAndOpen" type="Boolean" default="false" />
+    <aura:attribute name="documentName" type="String" default=""/>
+    <aura:attribute name="buildingName" type="String" access="public"/>
+    <aura:attribute name="accountId" type="String" access="public"/>
+    <aura:attribute name="suiteId" type="String" access="public"/>
+    <aura:attribute name="accountName" type="String" access="public"/>
+    <aura:attribute name="suiteName" type="String" access="public"/>
+    <aura:attribute name="items" type="List"/>
+    <aura:attribute name="itemsSuites" type="List"/>
+    <aura:attribute name="excludeAccounts" type="List"/>
+    <aura:attribute name="selectedAccountIds" type="List"/>
+    <aura:attribute name="selectedSuitesIds" type="List"/>
+    <aura:attribute name="accountsToSearch" type="List" access="public"/>
+    <aura:attribute name="showAccountAndSuiteField" type="Boolean" default="false"/>
+    <aura:attribute name="fileAttached" type="Boolean" default="false"/>
+    <aura:attribute name="showFileAttachMessage" type="Boolean" default="false"/>
+    <aura:attribute name="showInValidDateMessage" type="Boolean" default="false"/>
+     <aura:attribute name="ValidDate" type="Boolean" default="false"/>
+     <aura:attribute name="openNewFlyerModal" type="Boolean" access="public"/>
+
+    <aura:attribute name="newFlyer" type="Flyers__c"
+    default="{ 'sobjectType': 'Flyers__c',
+                   'Active_or_Inactive__c': '',
+                   'Building__c': '',
+                   'Flyer_Date__c': '',
+                   'Flyer_Type__c':''}"/>
+
+                   
+      <div aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="leaseHeader" class="slds-modal slds-fade-in-open slds-p-around_medium">
+          <div class="slds-modal__container slds-p-around_medium">
+              <div class="slds-modal__header">
+                  <h2 class="slds-text-heading--medium">New Building Flyer</h2>
+              </div>
+              <div class="slds-scrollable backgroundWhite">
+
+                  <lightning:layout class="backgroundWhite">
+                      <lightning:layoutItem size="6" class="backgroundWhite">
+                          <div style="background-color:white" class="slds-p-horizontal_large slds-p-vertical_small">
+                            <c:Lookup
+                                  objectAPIName="Building__c" 
+                                  label="Building"
+                                  returnFields="['Name']" 
+                                  queryFields="['Name']"
+                                  selectedId="{!v.newFlyer.Building__c}"
+                                  selectedName="{!v.buildingName}"/>
+                          </div>
+                      </lightning:layoutItem> 
+  
+                      <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="overflow: visible;">
+
+                        
+                        <lightning:input 
+                        required="true"
+                        type="date" 
+                        name="input1" 
+                        label="Flyer Date" 
+                        aura:id="validFlyer"
+                        style="background-color:white" 
+                        class="slds-p-horizontal_large slds-p-vertical_small slds-scrollable_none"
+                        value="{!v.newFlyer.Flyer_Date__c}"
+                        onchange="{!c.handleDateChange}"/>
+                        
+                        <aura:if isTrue="{!v.showInValidDateMessage}">
+                    		<div style="color: red; margin-left:30px">Flyer date is beyond today's date</div>
+                  		</aura:if>
+                      </div>
+                      </lightning:layoutItem>
+                  </lightning:layout>
+              
+          
+              
+                  <lightning:layout>
+                      <lightning:layoutItem size="6">
+                        <div style="background-color:white" class="slds-p-horizontal_large slds-p-vertical_small">
+                          <lightning:select name="select1" label="Flyer Type" required="true" 
+                              value="{!v.newFlyer.Flyer_Type__c}"
+                              aura:id="validFlyer"
+                              onchange="{! c.onFlyerTypeChange }">
+                              <option value="">--None--</option>
+                              <option value="Direct">Direct</option>
+                              <option value="Sublease">Sublease</option>
+                              <option value="Coworking">Coworking</option>
+                              <option value="Sale">Sale</option>
+                              <option value="Direct and Sale">Direct and Sale</option>
+                          </lightning:select>
+                      </div>
+                      </lightning:layoutItem>
+                      <lightning:layoutItem size="6">
+                          <div style="background-color:white" class="slds-p-horizontal_large slds-p-vertical_small">
+                              <lightning:select 
+                                    required="true"
+                                    name="select1" 
+                                    label="Active or Inactive" 
+                                    value="{!v.newFlyer.Active_or_Inactive__c}"
+                                    aura:id="validFlyer">
+                                  <option value="">--None--</option>
+                                  <option value="Active">Active</option>
+                                  <option value="Inactive">Inactive</option>
+                              </lightning:select>
+                          </div>
+                      </lightning:layoutItem>
+                  </lightning:layout>
+                  <aura:if isTrue="{!v.showAccountAndSuiteField}">
+                <div>
+
+                  <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color:white">
+                    <c:BuildingAccountLookup
+                        aura:id="clearMethodAccount"
+                        relatedRecordId="{!v.recordId}"
+                        relatedRecordAPIName="Building_Lookup__c"
+                        objectAPIName="Account" 
+                        label="Account:"
+                        returnFields="['Name']" 
+                        queryFields="['Name']"
+                        selectedId="{!v.accountId}"
+                        selectedName="{!v.accountName}"
+                        excludeIds="{!v.excludeAccounts}"
+                        accountsToSearch="{!v.accountsToSearch}"/>
+
+                  </div>
+              
+                  <aura:if isTrue="{!not(empty(v.items))}">
+
+                  
+                    <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color: white;">
+                      Selected Accounts: 
+                      <p><lightning:pillContainer items="{!v.items}" onitemremove="{!c.handleItemRemove}">
+                      </lightning:pillContainer></p>
+                    </div>
+                  </aura:if>
+                </div>
+                <div>
+
+                    <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color:white">
+                      <c:BuildingSuiteLookup
+                          aura:id="clearMethodSuite"
+                          relatedAccountIds="{!v.excludeAccounts}"
+                          relatedRecordAPIName="Building_Lookup__c"
+                          objectAPIName="Suites__c" 
+                          label="Suites:"
+                          returnFields="['Name']" 
+                          queryFields="['Name']"
+                          selectedId="{!v.suiteId}"
+                          selectedName="{!v.suiteName}"
+                          excludeIds="{!v.selectedSuitesIds}"
+                          accountsToSearch="{!v.accountsToSearch}"/>
+  
+                    </div>
+                
+                    <aura:if isTrue="{!not(empty(v.itemsSuites))}">
+                      <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color: white;">
+                        Selected Suites: 
+                        <p><lightning:pillContainer items="{!v.itemsSuites}" onitemremove="{!c.handleItemRemoveSuites}">
+                        </lightning:pillContainer></p>
+                      </div>
+                    </aura:if>
+                  </div>
+                </aura:if>
+                
+              <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color:white">
+                <!-- <aura:if isTrue="{! v.LeaseDocument != '' }"> -->
+                <lightning:fileUpload label="Attach file"
+                                      aria-required="true"
+                                      name="fileUploader"
+                                      multiple="false"
+                                      accept="{!v.filetype}"
+                                      
+                                      onuploadfinished="{!c.handleUploadFinished}" />
+                  <!--recordId="{!v.recordId}" -->
+                  <aura:if isTrue="{!v.showFileAttachMessage}">
+                    <div style="color: red">Attachment is Required</div>
+                  </aura:if>
+                  
+            <!-- </aura:if> -->
+              </div>
+              <aura:if isTrue="{!v.documentName}">
+
+                <div style="background-color: white;" class="slds-p-horizontal_large slds-p-vertical_small">
+
+                
+                  <div >Attached File: </div>
+                  <div style="background-color: white;" class="flexImage slds-p-around_xx-small">
+                      <div class="slds-p-around_xx-small">
+                          <lightning:icon iconName="doctype:unknown" alternativeText="file" />
+                      </div>
+                      <div class="slds-p-around_xx-small" aria-required="true">
+                            {!v.documentName}
+                      </div>
+                  </div>  
+                </div>
+            </aura:if>
+            </div>
+              <div class="slds-modal__footer footerButtons">    
+                      <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+                   <!--   <lightning:button variant="neutral" label="Save &amp; New" onclick="{!c.saveAndNew}" /> -->
+                      <lightning:button variant="brand" label="Save" onclick="{!c.save}" />
+              </div>
+          </div>
+      </div>
+      <div aura:id="overlay" class="slds-backdrop slds-backdrop--open"></div>
+
+</aura:component>

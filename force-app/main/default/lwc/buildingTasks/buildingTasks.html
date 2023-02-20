@@ -1,0 +1,44 @@
+<template>
+
+    <div>
+        <div class="slds-p-top_small slds-border_bottom">
+            <h3 class="slds-section__title slds-theme--shade slds-p-left_small sectionClass">Open Tasks</h3>
+        </div>
+        <template if:true={showIncompleteTasks}>
+            <lightning-datatable
+                    key-field="id"
+                    data={IncompleteTaskdata}
+                    show-row-number-column
+                    hide-checkbox-column
+                    columns={columns}>
+            </lightning-datatable>
+        </template>
+        <template if:false={showIncompleteTasks}>
+            <span class="centerText">There are no open tasks</span>
+        </template>
+    </div>
+
+<div>
+    <div class="slds-p-top_small slds-border_bottom" >
+        <h3 class="slds-section__title slds-theme--shade slds-p-left_small sectionClass">Completed Tasks</h3>
+    </div>
+    <template if:true={showCompleteTasks}>
+        <lightning-datatable
+            key-field="id"
+            data={completedTaskdata}
+            show-row-number-column
+            hide-checkbox-column
+            columns={columns}>
+        </lightning-datatable>
+    </template>
+    <template if:false={showCompleteTasks}>
+        <span class="centerText">There are no completed tasks</span>
+    </template>
+    
+</div>
+
+    <!-- <template if:false={loaded}>
+        <lightning-spinner alternative-text="Loading">
+        </lightning-spinner>
+    </template> -->
+</template>

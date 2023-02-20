@@ -1,0 +1,261 @@
+<aura:component controller="NewRentSchedulesController" implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global" >
+	
+     
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="String"  access="public" />
+    <aura:attribute name="accountName" type="String"  access="public" />
+    <aura:attribute name="pageReference" type="Object"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="url" type="String"/>
+    <aura:attribute name="saveAndOpen" type="Boolean" default="false" />
+    <aura:attribute name="ShowPreviousValues" type="Boolean" default="false" />
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="OldValues" type="List" default=""/>
+    <aura:attribute name="RentAlreadyCreated" type="Boolean" default="false" />
+     <aura:attribute name="PreviousEndDate" type="Date"  access="public" />
+    <aura:attribute name="showInValidDateMessage" type="Boolean" default="false"/>
+    <aura:attribute name="showInValidDateMessage2" type="Boolean" default="false"/>
+    
+    <aura:attribute name="newRentSchedule" type="Rent_Schedule__c"
+    default="{ 'sobjectType': 'Rent_Schedule__c',
+                   'RS_Start_Date__c': '',
+                   'RS_End_Date__c': '',
+                   'Account__c': '',
+                   'RSF__c': '',
+                   'Rent_per_Month__c':'',
+             	   'Data_Summary__c':''
+             }"/>
+    
+     
+    
+     <div aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="leaseHeader" class="slds-modal slds-fade-in-open slds-p-around_medium">
+          <div class="slds-modal__container slds-p-around_medium">
+              
+            <aura:if isTrue="{!v.RentAlreadyCreated}">
+            <div class="flex backgroundWhite">
+                
+                <lightning:icon  size="large"  style="zoom: 200%" iconName="utility:error" alternativeText="error" title="error" />
+                <div style="font-size: 20px; color:red">
+                    Rent Schedule Object Already Exists
+                </div>
+            </div>
+                 <div class="slds-modal__footer footerButtons">    
+                      <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+              </div>
+        </aura:if>
+              
+              <aura:if isTrue="{!not(v.RentAlreadyCreated)}"> 
+              
+              <div class="slds-modal__header">
+                  <h2 class="slds-text-heading--medium">New Rent Schedule</h2>
+              </div>
+              <div class="slds-scrollable backgroundWhite">
+
+    <lightning:layout class="backgroundWhite">
+                    <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="background-color:white; pointer-events: none" class="slds-p-horizontal_x-large slds-p-vertical_x-small">
+                            <c:Lookup
+                                objectAPIName="Account" 
+                                label="Account"
+                                returnFields="['Name']" 
+                                queryFields="['Name']"
+                                selectedId="{!v.newRentSchedule.Account__c}"
+                                selectedName="{!v.accountName}"/>
+                        </div>
+                    </lightning:layoutItem>
+        
+
+                </lightning:layout>
+                  
+               <aura:if isTrue="{!v.ShowPreviousValues}">
+                 <!--
+                <div class="slds-box">       
+               <div style="height: 150px">
+                   
+        			<lightning:datatable
+                	keyField="id"
+                	data="{!v.data}"
+                	columns="{!v.columns}"
+                	hideCheckboxColumn="true"
+             />
+ 				  
+                    </div>  
+                   </div>
+-->
+                   <div class="slds-box">
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+	<thead>
+	<tr class="slds-line-height_reset">
+	<th scope="col">
+	<div class="slds-truncate" title="RS Start Date">RS Start Date</div>
+	</th>
+	<th scope="col">
+	<div class="slds-truncate" title="RS End Date">RS End Date</div>
+	</th>
+	<th scope="col">
+	<div class="slds-truncate" title="Rent per Month">Rent per Month</div>
+	</th>
+	<th scope="col">
+	<div class="slds-truncate" title="RSF">RSF</div>
+	</th>
+	</tr>
+	</thead>
+	<tbody>
+	<aura:iteration items="{!v.data}" var="ct">
+		<tr>
+		<th scope="row" data-label="RS Start Date">
+		<div class="slds-truncate" title="{! ct.RS_Start_Date__c }">
+             <aura:if isTrue="{!ct.RowBold}">
+             <span Style="font-weight:bold"><lightning:formattedDateTime value="{! ct.RS_Start_Date__c}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC"/></span>
+             </aura:if>
+             <aura:if isTrue="{!not(ct.RowBold)}">
+             <span ><lightning:formattedDateTime value="{! ct.RS_Start_Date__c}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC"/></span>
+             </aura:if>
+        </div>
+		</th>
+		<td data-label="RS End Date">
+		<div class="slds-truncate" title="{! ct.RS_End_Date__c }">
+              <aura:if isTrue="{!ct.RowBold}">
+            <span Style="font-weight:bold"><lightning:formattedDateTime value="{! ct.RS_End_Date__c}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC"/></span>
+            </aura:if>
+             <aura:if isTrue="{!not(ct.RowBold)}">
+            <span><lightning:formattedDateTime value="{! ct.RS_End_Date__c}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC"/></span>
+            </aura:if>
+            </div>
+		</td>
+		<td data-label="Rent per Month">
+		<div class="slds-truncate" title="{! ct.Rent_per_Month__c }">
+            <aura:if isTrue="{!ct.RowBold}">
+             <span Style="font-weight:bold"><p><lightning:formattedNumber value="{! ct.Rent_per_Month__c }" style="currency" currencyCode="USD"/></p></span>
+            </aura:if>
+            <aura:if isTrue="{!not(ct.RowBold)}">
+             <span><p><lightning:formattedNumber value="{! ct.Rent_per_Month__c }" style="currency" currencyCode="USD"/></p></span>
+            </aura:if>
+            </div>
+		</td>
+		<td data-label="RSF">
+		<div class="slds-truncate" title="{! ct.RSF__c }">
+            <aura:if isTrue="{!ct.RowBold}">
+             <p Style="font-weight:bold"><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
+            </aura:if>
+            <aura:if isTrue="{!not(ct.RowBold)}">
+             <p><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
+            </aura:if>
+            </div>
+		</td>
+		</tr>
+	</aura:iteration>
+	</tbody>
+	</table>
+   </div> 
+                  </aura:if>
+                  
+              <lightning:layout class="backgroundWhite">
+                    <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="background-color:white" class="slds-p-horizontal_x-large ">
+
+                        <lightning:input 
+						required="true"
+                        type="date" 
+                        name="input1"
+                        dateStyle="short"
+                        label="RS Start Date" 
+                        aura:id="validRS"
+                        style="background-color:white" 
+                        class="slds-scrollable_none"
+                        value="{!v.newRentSchedule.RS_Start_Date__c}"
+                         onchange="{!c.handleDateChange2}"/>
+                        
+                        <aura:if isTrue="{!v.showInValidDateMessage2}">
+                    		<div style="color: red; margin-left:9px">Gap between dates is not allowed.</div>
+                  		</aura:if>
+                        </div>
+                        
+                    </lightning:layoutItem>
+        
+        
+          <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="overflow: visible;">
+
+                        
+                        <lightning:input 
+                        required="true"
+                        type="number" 
+                        formatter="currency"
+                        name="input1" 
+                        label="Rent per Month" 
+                        aura:id="validRS"
+                        style="background-color:white" 
+                        class="slds-p-horizontal_large slds-scrollable_none"
+                        value="{!v.newRentSchedule.Rent_per_Month__c}"
+                       />
+
+                      </div>
+                      </lightning:layoutItem>         
+                  
+                  
+                </lightning:layout>
+                  
+     <lightning:layout class="backgroundWhite">
+                    <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="background-color:white; padding-bottom:10px;padding-top:7px;" class="slds-p-horizontal_x-large">
+
+                        <lightning:input 
+						required="true"
+                        type="date" 
+                        name="input1"
+                        dateStyle="short"
+                        label="RS End Date" 
+                        aura:id="validRS"
+                        style="background-color:white" 
+                        class="slds-scrollable_none"
+                        value="{!v.newRentSchedule.RS_End_Date__c}"
+                         onchange="{!c.handleDateChange}"/>
+                        
+                        
+                         <aura:if isTrue="{!v.showInValidDateMessage}">
+                    		<div style="color: red; margin-left:9px">End date is earlier than Start date.</div>
+                  		</aura:if>
+                        </div>
+                    </lightning:layoutItem>
+        
+      		 <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="overflow: visible; padding-bottom:10px;padding-top:7px;" >
+
+                        
+                        <lightning:input 
+                        required="true"
+                        type="number" 
+                        name="input1" 
+                        label="RSF" 
+                        aura:id="validRS"
+                        style="background-color:white" 
+                        class="slds-p-horizontal_large slds-scrollable_none"
+                        value="{!v.newRentSchedule.RSF__c}"
+                       />
+
+                      </div>
+                      </lightning:layoutItem>
+
+                  
+                </lightning:layout>
+                  
+                  
+        </div>
+              <div class="slds-modal__footer footerButtons">    
+                      <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+                      <lightning:button variant="neutral" label="Save &amp; New" onclick="{!c.saveAndNew}" />
+                      <lightning:button variant="brand" label="Save" onclick="{!c.save}" />
+              </div>
+       </aura:if>
+          </div>
+              
+      </div>
+      <div aura:id="overlay" class="slds-backdrop slds-backdrop--open"></div>
+    
+</aura:component>

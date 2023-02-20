@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Suite_Name_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>Name &amp; &quot;-#&quot; &amp;  Suite_Number__c &amp; &quot;-&quot; &amp;  CASE(LEN(TEXT(Suite_RSF__c)),
+1, TEXT(Suite_RSF__c),
+
+2, TEXT(Suite_RSF__c),
+
+3, TEXT(Suite_RSF__c),
+
+4, LEFT(TEXT(Suite_RSF__c), 1) &amp; &quot;,&quot; &amp; RIGHT(TEXT(Suite_RSF__c), 3),
+
+5, LEFT(TEXT(Suite_RSF__c), 2) &amp; &quot;,&quot; &amp; RIGHT(TEXT(Suite_RSF__c), 3),
+
+6, LEFT(TEXT(Suite_RSF__c), 3) &amp; &quot;,&quot; &amp; RIGHT(TEXT(Suite_RSF__c), 3),
+
+7, LEFT(TEXT(Suite_RSF__c), 1) &amp; &quot;,&quot; &amp; MID(TEXT(Suite_RSF__c), 2,3) &amp; &quot;,&quot; &amp; RIGHT(TEXT(Suite_RSF__c), 3),
+
+8, LEFT(TEXT(Suite_RSF__c), 2) &amp; &quot;,&quot; &amp; MID(TEXT(Suite_RSF__c), 3,3) &amp; &quot;,&quot; &amp; RIGHT(TEXT(Suite_RSF__c), 3),
+
+9, LEFT(TEXT(Suite_RSF__c), 3) &amp; &quot;,&quot; &amp; MID(TEXT(Suite_RSF__c), 4,3) &amp; &quot;,&quot; &amp; RIGHT(TEXT(Suite_RSF__c), 3),
+
+10, LEFT(TEXT(Suite_RSF__c), 1) &amp; &quot;,&quot; &amp; MID(TEXT(Suite_RSF__c), 2,3) &amp; &quot;,&quot; &amp; MID(TEXT(Suite_RSF__c), 5, 3) &amp; &quot;,&quot; &amp; RIGHT(TEXT(Suite_RSF__c), 3),
+
+11, LEFT(TEXT(Suite_RSF__c), 2) &amp; &quot;,&quot; &amp; MID(TEXT(Suite_RSF__c), 3,3) &amp; &quot;,&quot; &amp; MID(TEXT(Suite_RSF__c), 6, 3) &amp; &quot;,&quot; &amp; RIGHT(TEXT(Suite_RSF__c), 3),
+
+12, LEFT(TEXT(Suite_RSF__c), 3) &amp; &quot;,&quot; &amp; MID(TEXT(Suite_RSF__c), 4,3) &amp; &quot;,&quot; &amp; MID(TEXT(Suite_RSF__c), 7, 3) &amp; &quot;,&quot; &amp; RIGHT(TEXT(Suite_RSF__c), 3),
+
+null) 
+
+
+
+&amp; &quot; RSF&quot;</formula>
+    <label>Suite Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

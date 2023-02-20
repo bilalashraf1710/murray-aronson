@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submarket__c</fullName>
+    <externalId>false</externalId>
+    <label>Submarket (not used)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Market__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Burbank/Glendale/Pasadena</fullName>
+                <default>false</default>
+                <label>Burbank/Glendale/Pasadena</label>
+            </value>
+            <value>
+                <fullName>Downtown Los Angeles</fullName>
+                <default>false</default>
+                <label>Downtown Los Angeles</label>
+            </value>
+            <value>
+                <fullName>Mid-Cities</fullName>
+                <default>false</default>
+                <label>Mid-Cities</label>
+            </value>
+            <value>
+                <fullName>Mid-Wilshire</fullName>
+                <default>false</default>
+                <label>Mid-Wilshire</label>
+            </value>
+            <value>
+                <fullName>San Fernando Valley</fullName>
+                <default>false</default>
+                <label>San Fernando Valley</label>
+            </value>
+            <value>
+                <fullName>San Gabriel Valley</fullName>
+                <default>false</default>
+                <label>San Gabriel Valley</label>
+            </value>
+            <value>
+                <fullName>Santa Clarita Valley</fullName>
+                <default>false</default>
+                <label>Santa Clarita Valley</label>
+            </value>
+            <value>
+                <fullName>South Bay</fullName>
+                <default>false</default>
+                <label>South Bay</label>
+            </value>
+            <value>
+                <fullName>Southeast Los Angeles</fullName>
+                <default>false</default>
+                <label>Southeast Los Angeles</label>
+            </value>
+            <value>
+                <fullName>West Los Angeles</fullName>
+                <default>false</default>
+                <label>West Los Angeles</label>
+            </value>
+            <value>
+                <fullName>Airport Area</fullName>
+                <default>false</default>
+                <label>Airport Area</label>
+            </value>
+            <value>
+                <fullName>Central County</fullName>
+                <default>false</default>
+                <label>Central County</label>
+            </value>
+            <value>
+                <fullName>North County</fullName>
+                <default>false</default>
+                <label>North County</label>
+            </value>
+            <value>
+                <fullName>South County</fullName>
+                <default>false</default>
+                <label>South County</label>
+            </value>
+            <value>
+                <fullName>West County</fullName>
+                <default>false</default>
+                <label>West County</label>
+            </value>
+            <value>
+                <fullName>SF 1</fullName>
+                <default>false</default>
+                <label>SF 1</label>
+            </value>
+            <value>
+                <fullName>SF 2</fullName>
+                <default>false</default>
+                <label>SF 2</label>
+            </value>
+            <value>
+                <fullName>SF 3</fullName>
+                <default>false</default>
+                <label>SF 3</label>
+            </value>
+            <value>
+                <fullName>SJ 1</fullName>
+                <default>false</default>
+                <label>SJ 1</label>
+            </value>
+            <value>
+                <fullName>SJ 2</fullName>
+                <default>false</default>
+                <label>SJ 2</label>
+            </value>
+            <value>
+                <fullName>SJ 3</fullName>
+                <default>false</default>
+                <label>SJ 3</label>
+            </value>
+            <value>
+                <fullName>SD 1</fullName>
+                <default>false</default>
+                <label>SD 1</label>
+            </value>
+            <value>
+                <fullName>SD 2</fullName>
+                <default>false</default>
+                <label>SD 2</label>
+            </value>
+            <value>
+                <fullName>SD 3</fullName>
+                <default>false</default>
+                <label>SD 3</label>
+            </value>
+            <value>
+                <fullName>VC 1</fullName>
+                <default>false</default>
+                <label>VC 1</label>
+            </value>
+            <value>
+                <fullName>VC 2</fullName>
+                <default>false</default>
+                <label>VC 2</label>
+            </value>
+            <value>
+                <fullName>VC 3</fullName>
+                <default>false</default>
+                <label>VC 3</label>
+            </value>
+            <value>
+                <fullName>Hollywood/Wilshire Corridor</fullName>
+                <default>false</default>
+                <label>Hollywood/Wilshire Corridor</label>
+            </value>
+            <value>
+                <fullName>Tri-Cities</fullName>
+                <default>false</default>
+                <label>Tri-Cities</label>
+            </value>
+            <value>
+                <fullName>Mid Counties</fullName>
+                <default>false</default>
+                <label>Mid Counties</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>Burbank/Glendale/Pasadena</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>Downtown Los Angeles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>Mid-Cities</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>Mid-Wilshire</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>San Fernando Valley</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>San Gabriel Valley</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>Santa Clarita Valley</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>South Bay</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>Southeast Los Angeles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Los Angeles</controllingFieldValue>
+            <valueName>West Los Angeles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Orange County</controllingFieldValue>
+            <valueName>Airport Area</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Orange County</controllingFieldValue>
+            <valueName>Central County</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Orange County</controllingFieldValue>
+            <valueName>North County</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Orange County</controllingFieldValue>
+            <valueName>South County</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Orange County</controllingFieldValue>
+            <valueName>West County</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ventura County</controllingFieldValue>
+            <valueName>VC 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ventura County</controllingFieldValue>
+            <valueName>VC 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ventura County</controllingFieldValue>
+            <valueName>VC 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>San Francisco</controllingFieldValue>
+            <valueName>SF 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>San Francisco</controllingFieldValue>
+            <valueName>SF 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>San Francisco</controllingFieldValue>
+            <valueName>SF 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>San Jose</controllingFieldValue>
+            <valueName>SJ 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>San Jose</controllingFieldValue>
+            <valueName>SJ 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>San Jose</controllingFieldValue>
+            <valueName>SJ 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>San Diego</controllingFieldValue>
+            <valueName>SD 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>San Diego</controllingFieldValue>
+            <valueName>SD 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>San Diego</controllingFieldValue>
+            <valueName>SD 3</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

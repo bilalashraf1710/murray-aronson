@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>To_Do_Today</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>Property_Address__c</columns>
+    <columns>City__c</columns>
+    <columns>RSF__c</columns>
+    <columns>LEXP__c</columns>
+    <columns>Follow_Up__c</columns>
+    <columns>Next_Step__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Follow_Up__c</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>To Do Today</label>
+</ListView>

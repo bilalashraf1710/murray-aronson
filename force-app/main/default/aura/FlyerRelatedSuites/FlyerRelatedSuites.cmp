@@ -1,0 +1,60 @@
+<aura:component 
+        implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" 
+        access="global"
+        controller="FlyersRelatedListController">
+    <aura:attribute name="recordId" type="String" />
+    <!-- <aura:attribute name="buildingName" type="String" /> -->
+    <!-- <aura:attribute name="openNewFlyerModal" type="Boolean" default="false" /> -->
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="numberOfItems" type="String" default="0"/>
+    <!-- <aura:attribute name="viewAllFlyersURL" type="String" default="#"/> -->
+
+    <!-- handlers-->
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <aura:method name="refreshList" action="{!c.init}" access="PUBLIC"/> 
+
+    
+    <div class="parentList">
+        <div class="borderParent">
+            <div class="header">
+                <div class="iconAndTitle">
+                    <span>
+                        <lightning:icon class="leaseIcon" iconName="standard:shipment" size="small" alternativeText="Leases">
+                        </lightning:icon>
+                    </span>
+                    <span class="leaseTitle">
+                        &nbsp;Suites&nbsp;({!v.numberOfItems})
+                    </span>
+                </div>
+                <div class="newLeaseButton">
+                    <!-- <lightning:button variant="neutral" label="New Flyer" onclick="{!c.openModal}"></lightning:button> -->
+                </div>
+            </div>
+            <div class="table">
+                <div>
+                    <lightning:datatable
+                            keyField="id"
+                            data="{! v.data }"
+                            columns="{! v.columns }"
+                            hideCheckboxColumn="true"/>
+                </div>
+            </div>
+            <aura:if isTrue="{!empty(v.data)}">
+                <div class="viewAllButton">
+                    There are no related Suites
+                </div>
+            </aura:if>
+            <!-- <div class="viewAllButton">
+                <a href="{!v.viewAllFlyersURL}">
+                    View All
+                </a>
+            </div> -->
+        </div>
+        <!-- <div>
+            <aura:if isTrue="{!v.openNewFlyerModal}">
+                <c:NewFlyer recordId="{!v.recordId}" buildingName="{!v.buildingName}"/>
+            </aura:if>
+        </div> -->
+    </div>
+</aura:component>

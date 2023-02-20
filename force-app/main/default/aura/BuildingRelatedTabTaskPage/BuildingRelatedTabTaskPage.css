@@ -1,0 +1,23 @@
+.THIS .centerLookup{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+}
+
+
+.THIS .textPosition{
+    position: absolute;
+    /* width: 100%; */
+    /* left: 10px; */
+    top:1px;
+
+}
+
+.THIS .flexLookup{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}

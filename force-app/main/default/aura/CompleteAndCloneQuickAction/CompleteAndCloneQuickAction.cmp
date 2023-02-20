@@ -1,0 +1,44 @@
+<aura:component controller="CompleteAndCloneController" implements="force:hasRecordId,force:lightningQuickActionWithoutHeader">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="success" type="Boolean" default="false"/>
+    <aura:attribute name="fail" type="Boolean" default="false"/>
+    <aura:attribute name="alreadyCompleted" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div>
+        <aura:if isTrue="{!not(or(v.success, or(v.fail, v.alreadyCompleted)))}">
+            <div class="exampleHolder">
+                <lightning:spinner alternativeText="Loading" size="large" />
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.success}">
+            <div class="flex">
+                
+                <lightning:icon class="iconColor" size="large"  style="zoom: 200%" iconName="utility:success" alternativeText="success" title="success" />
+                <div style="font-size: 20px;">
+                    Task Completed And Cloned
+                </div>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.fail}">
+            <div class="flex">
+
+                <div style="font-size: 20px;">
+                    Complete + Clone Button couldn't be used
+                </div>
+                
+                <lightning:icon  size="large"  style="zoom: 200%" iconName="utility:error" alternativeText="error" title="error" />
+            </div>
+        </aura:if>
+
+        <aura:if isTrue="{!v.alreadyCompleted}">
+            <div class="flex">
+
+                <div style="font-size: 20px;">
+                    Task is already completed
+                </div>
+                
+                <lightning:icon  size="large"  style="zoom: 200%" iconName="utility:error" alternativeText="error" title="error" />
+            </div>
+        </aura:if>
+    </div>
+</aura:component>

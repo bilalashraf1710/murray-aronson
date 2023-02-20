@@ -1,0 +1,120 @@
+<aura:component controller="NewVideoController" implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global" >
+	
+    <aura:registerEvent name="CloseModal" type="c:CloseModal"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="pageReference" type="Object"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="filetype" type="List" default="['.mp4','.mov','.wmv','.avi','.avchd','.flv','.f4v','.swf','.mkv','.webm','.html5','.mpeg-2']" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="videoId" type="String" />
+    <aura:attribute name="documentId" type="String" />
+    <aura:attribute name="saveAndOpen" type="Boolean" default="false" />
+    <aura:attribute name="VideoName" type="String" default=""/>
+    <aura:attribute name="suitesName" type="String" access="public"/>
+    <aura:attribute name="suiteId" type="String" access="public"/>
+    <aura:attribute name="fileAttached" type="Boolean" default="false"/>
+    <aura:attribute name="showFileAttachMessage" type="Boolean" default="false"/>
+     <aura:attribute name="openNewFlyerModal" type="Boolean" access="public"/>
+    <aura:attribute name="newVideo" type="Video__c"
+    default="{ 'sobjectType': 'Video__c',
+                   'Suites__c': '',
+                   'Date__c': '',
+             		'Attachment_Name__c': '',
+             		'Attachment_Id__c': '',
+             		'Building__c': ''
+                   }"/>
+    
+    
+     <div aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="leaseHeader" class="slds-modal slds-fade-in-open slds-p-around_medium">
+          <div class="slds-modal__container slds-p-around_medium">
+              <div class="slds-modal__header">
+                  <h2 class="slds-text-heading--medium">New Video</h2>
+              </div>
+              <div class="slds-scrollable backgroundWhite">
+
+                  <lightning:layout class="backgroundWhite">
+                      <lightning:layoutItem size="6" class="backgroundWhite">
+                          <div style="background-color:white" class="slds-p-horizontal_large slds-p-vertical_small">
+                            <c:Lookup
+                                  objectAPIName="Suites__c" 
+                                  label="Suites"
+                                  returnFields="['Name']" 
+                                  queryFields="['Name']"
+                                  selectedId="{!v.newVideo.Suites__c}"
+                                  selectedName="{!v.suitesName}"/>
+                          </div>
+                      </lightning:layoutItem> 
+  
+                      <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="overflow: visible;">
+
+                        
+                        <lightning:input 
+                        required="true"
+                        type="date" 
+                        name="input1" 
+                        label="Video Date" 
+                        aura:id="validDate"
+                        dateStyle="short"
+                        style="background-color:white" 
+                        class="slds-p-horizontal_large slds-p-vertical_small slds-scrollable_none"
+                        value="{!v.newVideo.Date__c}"
+                        
+                                         />
+                        
+                       <!-- <aura:if isTrue="{!v.showInValidDateMessage}">
+                    		<div style="color: red; margin-left:30px">Flyer date is beyond today's date</div>
+                  		</aura:if> -->
+                      </div>
+                      </lightning:layoutItem>
+                  </lightning:layout>
+              
+          
+              
+                  
+                
+              <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color:white">
+                
+                <lightning:fileUpload label="Attach Video"
+                                      aria-required="true"
+                                      name="fileUploader"
+                                      multiple="false"
+                                      accept="{!v.filetype}"
+                                      
+                                      onuploadfinished="{!c.handleUploadFinished}" />
+                   <!--       recordId="{!v.recordId}" -->
+                  <aura:if isTrue="{!v.showFileAttachMessage}">
+                    <div style="color: red">Attachment is Required</div>
+                  </aura:if>
+                  
+            <!-- </aura:if> -->
+              </div>
+              <aura:if isTrue="{!v.VideoName}">
+
+                <div style="background-color: white;" class="slds-p-horizontal_large slds-p-vertical_small">
+
+                
+                  <div >Attached File: </div>
+                  <div style="background-color: white;" class="flexImage slds-p-around_xx-small">
+                      <div class="slds-p-around_xx-small">
+                          <lightning:icon iconName="doctype:unknown" alternativeText="file" />
+                      </div>
+                      <div class="slds-p-around_xx-small" aria-required="true">
+                            {!v.VideoName}
+                      </div>
+                  </div>  
+                </div>
+            </aura:if>
+            </div>
+              <div class="slds-modal__footer footerButtons">    
+                      <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+                      <lightning:button variant="neutral" label="Save &amp; New" onclick="{!c.saveAndNew}" />
+                      <lightning:button variant="brand" label="Save" onclick="{!c.save}" />
+              </div>
+          </div>
+      </div>
+      <div aura:id="overlay" class="slds-backdrop slds-backdrop--open"></div>
+    
+    
+</aura:component>

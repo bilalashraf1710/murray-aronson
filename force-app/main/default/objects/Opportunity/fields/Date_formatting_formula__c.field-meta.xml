@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_formatting_formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>TEXT(MONTH( Date_Added__c ))+ &quot;/&quot; + TEXT(DAY(Date_Added__c ))+ &quot;/&quot; + TEXT(YEAR(Date_Added__c ))</formula>
+    <label>Date formatting formula</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

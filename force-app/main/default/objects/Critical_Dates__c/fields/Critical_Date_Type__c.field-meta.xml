@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Critical_Date_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Critical Date Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Lease Commencement Date</fullName>
+                <default>false</default>
+                <label>Lease Commencement Date</label>
+            </value>
+            <value>
+                <fullName>Lease Expiration Date</fullName>
+                <default>false</default>
+                <label>Lease Expiration Date</label>
+            </value>
+            <value>
+                <fullName>Rent Abatement</fullName>
+                <default>false</default>
+                <label>Rent Abatement</label>
+            </value>
+            <value>
+                <fullName>Rent Increase</fullName>
+                <default>false</default>
+                <label>Rent Increase</label>
+            </value>
+            <value>
+                <fullName>TI to Free Rent Conversion</fullName>
+                <default>false</default>
+                <label>TI to Free Rent Conversion</label>
+            </value>
+            <value>
+                <fullName>Auto-Renewal Notice Date</fullName>
+                <default>false</default>
+                <label>Auto-Renewal Notice Date</label>
+            </value>
+            <value>
+                <fullName>Security Deposit Burn Off</fullName>
+                <default>false</default>
+                <label>Security Deposit Burn Off</label>
+            </value>
+            <value>
+                <fullName>Right to Terminate Effective Date</fullName>
+                <default>false</default>
+                <label>Right to Terminate Effective Date</label>
+            </value>
+            <value>
+                <fullName>Right to Terminate Notice Opening</fullName>
+                <default>false</default>
+                <label>Right to Terminate Notice Opening</label>
+            </value>
+            <value>
+                <fullName>Right to Terminate Notice Closing</fullName>
+                <default>false</default>
+                <label>Right to Terminate Notice Closing</label>
+            </value>
+            <value>
+                <fullName>Right to Renew Opening</fullName>
+                <default>false</default>
+                <label>Right to Renew Opening</label>
+            </value>
+            <value>
+                <fullName>Right to Renew Closing</fullName>
+                <default>false</default>
+                <label>Right to Renew Closing</label>
+            </value>
+            <value>
+                <fullName>Security Deposit Return</fullName>
+                <default>false</default>
+                <label>Security Deposit Return</label>
+            </value>
+            <value>
+                <fullName>COI Expiration</fullName>
+                <default>false</default>
+                <label>COI Expiration</label>
+            </value>
+            <value>
+                <fullName>Notice to Purchase Furniture Due</fullName>
+                <default>false</default>
+                <label>Notice to Purchase Furniture Due</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

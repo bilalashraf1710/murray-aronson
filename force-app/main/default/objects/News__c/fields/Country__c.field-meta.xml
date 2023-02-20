@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Country__c</fullName>
+    <externalId>false</externalId>
+    <label>Country</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Continent__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>USA</fullName>
+                <default>false</default>
+                <label>USA</label>
+            </value>
+            <value>
+                <fullName>Canada</fullName>
+                <default>false</default>
+                <label>Canada</label>
+            </value>
+            <value>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+                <label>Mexico</label>
+            </value>
+            <value>
+                <fullName>Country1</fullName>
+                <default>false</default>
+                <label>Country1</label>
+            </value>
+            <value>
+                <fullName>Country2</fullName>
+                <default>false</default>
+                <label>Country2</label>
+            </value>
+            <value>
+                <fullName>Country3</fullName>
+                <default>false</default>
+                <label>Country3</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>USA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Canada</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Mexico</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>South America</controllingFieldValue>
+            <controllingFieldValue>Europe</controllingFieldValue>
+            <controllingFieldValue>Asia</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <controllingFieldValue>Africa</controllingFieldValue>
+            <controllingFieldValue>Antarctica</controllingFieldValue>
+            <valueName>Country1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>South America</controllingFieldValue>
+            <controllingFieldValue>Europe</controllingFieldValue>
+            <controllingFieldValue>Asia</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <controllingFieldValue>Africa</controllingFieldValue>
+            <controllingFieldValue>Antarctica</controllingFieldValue>
+            <valueName>Country2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>South America</controllingFieldValue>
+            <controllingFieldValue>Europe</controllingFieldValue>
+            <controllingFieldValue>Asia</controllingFieldValue>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <controllingFieldValue>Africa</controllingFieldValue>
+            <controllingFieldValue>Antarctica</controllingFieldValue>
+            <valueName>Country3</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

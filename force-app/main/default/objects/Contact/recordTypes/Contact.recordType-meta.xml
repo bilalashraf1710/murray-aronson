@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact</fullName>
+    <active>true</active>
+    <label>Contact</label>
+    <picklistValues>
+        <picklist>Broker_Company__c</picklist>
+        <values>
+            <fullName>Avison Young</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beta Retail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CBRE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Coldwell Banker Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Colliers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Continental Development Corporation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cresa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cushman %26 Wakefield</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Highland Partners</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In-House</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industry Partners</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JLL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kidder Matthews</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lee %26 Associates</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lincoln Property Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Madison Partners</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medical Asset Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAI Capital</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Newmark Knight Frank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PMRG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pike Properties</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RE%2FMax Commercial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SVN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Savills Studley</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Segal Commercial Property</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Klabin Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tishman Speyer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>rsfLA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Cold Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>External Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Name</picklist>
+        <values>
+            <fullName>Dr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mrs%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ms%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prof%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

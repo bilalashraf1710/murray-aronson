@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_To_Do_List</fullName>
+    <columns>NAME</columns>
+    <columns>Due_Date__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Type__c</columns>
+    <columns>Sub_Type__c</columns>
+    <columns>Sorting__c</columns>
+    <columns>Comments__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All To Dos</label>
+</ListView>

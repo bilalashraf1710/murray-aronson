@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Earlier_Date_Check</fullName>
+    <active>true</active>
+    <description>Date on the Commission object cannot be earlier than the Close Date on the Opportunity</description>
+    <errorConditionFormula>Date__c &lt;  Opportunity__r.CloseDate</errorConditionFormula>
+    <errorDisplayField>Date__c</errorDisplayField>
+    <errorMessage>Date cannot be earlier than the Opportunity&apos;s Close Date</errorMessage>
+</ValidationRule>

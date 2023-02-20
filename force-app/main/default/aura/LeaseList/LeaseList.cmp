@@ -1,0 +1,54 @@
+<aura:component 
+        implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" 
+        access="global"
+        controller="LeaseListController">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="accountName" type="String" />
+    <aura:attribute name="openNewLeaseModal" type="Boolean" default="false" />
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="numberOfLeases" type="String" default="0"/>
+    <aura:attribute name="viewAllLeasesURL" type="String" default="0"/>
+
+    <!-- handlers-->
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+
+    
+    <div class="parentList">
+        <div class="borderParent">
+            <div class="header">
+                <div class="iconAndTitle">
+                    <span>
+                        <lightning:icon class="leaseIcon" iconName="custom:custom19" size="small" alternativeText="Leases">
+                        </lightning:icon>
+                    </span>
+                    <span class="leaseTitle">
+                        &nbsp;Leases&nbsp;({!v.numberOfLeases})
+                    </span>
+                </div>
+                <div class="newLeaseButton">
+                    <lightning:button variant="neutral" label="New Lease" onclick="{!c.openModal}"></lightning:button>
+                </div>
+            </div>
+            <div class="table">
+                <div>
+                    <lightning:datatable
+                            keyField="id"
+                            data="{! v.data }"
+                            columns="{! v.columns }"
+                            hideCheckboxColumn="true"/>
+                </div>
+            </div>
+            <div class="viewAllButton">
+                <a href="{!v.viewAllLeasesURL}">
+                    View All
+                </a>
+            </div>
+        </div>
+        <div>
+            <aura:if isTrue="{!v.openNewLeaseModal}">
+                <c:CreateLease recordId="{!v.recordId}" accountName="{!v.accountName}"/>
+            </aura:if>
+        </div>
+    </div>
+</aura:component>

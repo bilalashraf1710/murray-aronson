@@ -1,0 +1,9 @@
+.THIS .slds-modal__container{
+    /* border:1px solid red; */
+    max-width: 60rem !important;
+    width:50% !important;
+}
+
+.THIS .backgroundWhite{
+    background-color: white;
+}

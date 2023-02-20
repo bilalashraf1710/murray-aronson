@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lease_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Lease Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FSG Absolute</fullName>
+                <default>false</default>
+                <label>FSG Absolute</label>
+            </value>
+            <value>
+                <fullName>FSG</fullName>
+                <default>false</default>
+                <label>FSG</label>
+            </value>
+            <value>
+                <fullName>MG</fullName>
+                <default>false</default>
+                <label>MG</label>
+            </value>
+            <value>
+                <fullName>NNN</fullName>
+                <default>false</default>
+                <label>NNN</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

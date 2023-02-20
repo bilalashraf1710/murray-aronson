@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Country__c</fullName>
+    <externalId>false</externalId>
+    <label>Country</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Continent__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>USA</fullName>
+                <default>false</default>
+                <label>USA</label>
+            </value>
+            <value>
+                <fullName>Australia</fullName>
+                <default>false</default>
+                <label>Australia</label>
+            </value>
+            <value>
+                <fullName>United States</fullName>
+                <default>false</default>
+                <label>United States</label>
+            </value>
+            <value>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+                <label>Mexico</label>
+            </value>
+            <value>
+                <fullName>Canada</fullName>
+                <default>false</default>
+                <label>Canada</label>
+            </value>
+            <value>
+                <fullName>England</fullName>
+                <default>false</default>
+                <label>England</label>
+            </value>
+            <value>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+                <label>Guatemala</label>
+            </value>
+            <value>
+                <fullName>Cuba</fullName>
+                <default>false</default>
+                <label>Cuba</label>
+            </value>
+            <value>
+                <fullName>Haiti</fullName>
+                <default>false</default>
+                <label>Haiti</label>
+            </value>
+            <value>
+                <fullName>Dominican Republic</fullName>
+                <default>false</default>
+                <label>Dominican Republic</label>
+            </value>
+            <value>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+                <label>Honduras</label>
+            </value>
+            <value>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+                <label>Nicaragua</label>
+            </value>
+            <value>
+                <fullName>El Salvador</fullName>
+                <default>false</default>
+                <label>El Salvador</label>
+            </value>
+            <value>
+                <fullName>Costa Rica</fullName>
+                <default>false</default>
+                <label>Costa Rica</label>
+            </value>
+            <value>
+                <fullName>Panama</fullName>
+                <default>false</default>
+                <label>Panama</label>
+            </value>
+            <value>
+                <fullName>Jamaica</fullName>
+                <default>false</default>
+                <label>Jamaica</label>
+            </value>
+            <value>
+                <fullName>Trinidad and Tobago</fullName>
+                <default>false</default>
+                <label>Trinidad and Tobago</label>
+            </value>
+            <value>
+                <fullName>Belize</fullName>
+                <default>false</default>
+                <label>Belize</label>
+            </value>
+            <value>
+                <fullName>Bahamas</fullName>
+                <default>false</default>
+                <label>Bahamas</label>
+            </value>
+            <value>
+                <fullName>Barbados</fullName>
+                <default>false</default>
+                <label>Barbados</label>
+            </value>
+            <value>
+                <fullName>Saint Lucia</fullName>
+                <default>false</default>
+                <label>Saint Lucia</label>
+            </value>
+            <value>
+                <fullName>Grenada</fullName>
+                <default>false</default>
+                <label>Grenada</label>
+            </value>
+            <value>
+                <fullName>Antigua and Barbuda</fullName>
+                <default>false</default>
+                <label>Antigua and Barbuda</label>
+            </value>
+            <value>
+                <fullName>Dominica</fullName>
+                <default>false</default>
+                <label>Dominica</label>
+            </value>
+            <value>
+                <fullName>Greenland</fullName>
+                <default>false</default>
+                <label>Greenland</label>
+            </value>
+            <value>
+                <fullName>Saint Kitts and Nevis</fullName>
+                <default>false</default>
+                <label>Saint Kitts and Nevis</label>
+            </value>
+            <value>
+                <fullName>South America Country 1</fullName>
+                <default>false</default>
+                <label>South America Country 1</label>
+            </value>
+            <value>
+                <fullName>South America Country 2</fullName>
+                <default>false</default>
+                <label>South America Country 2</label>
+            </value>
+            <value>
+                <fullName>South America Country 3</fullName>
+                <default>false</default>
+                <label>South America Country 3</label>
+            </value>
+            <value>
+                <fullName>Europe Country 1</fullName>
+                <default>false</default>
+                <label>Europe Country 1</label>
+            </value>
+            <value>
+                <fullName>Europe Country 2</fullName>
+                <default>false</default>
+                <label>Europe Country 2</label>
+            </value>
+            <value>
+                <fullName>Europe Country 3</fullName>
+                <default>false</default>
+                <label>Europe Country 3</label>
+            </value>
+            <value>
+                <fullName>Asia Country 1</fullName>
+                <default>false</default>
+                <label>Asia Country 1</label>
+            </value>
+            <value>
+                <fullName>Asia Country 2</fullName>
+                <default>false</default>
+                <label>Asia Country 2</label>
+            </value>
+            <value>
+                <fullName>Asia Country 3</fullName>
+                <default>false</default>
+                <label>Asia Country 3</label>
+            </value>
+            <value>
+                <fullName>Africa Country 1</fullName>
+                <default>false</default>
+                <label>Africa Country 1</label>
+            </value>
+            <value>
+                <fullName>Africa Country 2</fullName>
+                <default>false</default>
+                <label>Africa Country 2</label>
+            </value>
+            <value>
+                <fullName>Africa Country 3</fullName>
+                <default>false</default>
+                <label>Africa Country 3</label>
+            </value>
+            <value>
+                <fullName>Australia Country 1</fullName>
+                <default>false</default>
+                <label>Australia Country 1</label>
+            </value>
+            <value>
+                <fullName>Australia Country 2</fullName>
+                <default>false</default>
+                <label>Australia Country 2</label>
+            </value>
+            <value>
+                <fullName>Australia Country 3</fullName>
+                <default>false</default>
+                <label>Australia Country 3</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Africa</controllingFieldValue>
+            <valueName>Africa Country 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Africa</controllingFieldValue>
+            <valueName>Africa Country 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Africa</controllingFieldValue>
+            <valueName>Africa Country 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Asia</controllingFieldValue>
+            <valueName>Asia Country 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Asia</controllingFieldValue>
+            <valueName>Asia Country 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Asia</controllingFieldValue>
+            <valueName>Asia Country 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Australia Country 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Australia Country 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Australia</controllingFieldValue>
+            <valueName>Australia Country 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Europe</controllingFieldValue>
+            <valueName>Europe Country 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Europe</controllingFieldValue>
+            <valueName>Europe Country 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Europe</controllingFieldValue>
+            <valueName>Europe Country 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>United States</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Mexico</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Canada</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Guatemala</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Cuba</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Haiti</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Dominican Republic</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Honduras</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Nicaragua</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>El Salvador</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Costa Rica</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Panama</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Jamaica</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Trinidad and Tobago</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Belize</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Bahamas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Barbados</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Saint Lucia</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Grenada</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Antigua and Barbuda</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Dominica</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Greenland</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>North America</controllingFieldValue>
+            <valueName>Saint Kitts and Nevis</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>South America</controllingFieldValue>
+            <valueName>South America Country 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>South America</controllingFieldValue>
+            <valueName>South America Country 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>South America</controllingFieldValue>
+            <valueName>South America Country 3</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

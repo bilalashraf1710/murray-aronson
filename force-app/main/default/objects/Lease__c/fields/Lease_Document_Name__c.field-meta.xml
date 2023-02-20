@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lease_Document_Name__c</fullName>
+    <externalId>false</externalId>
+    <label>Lease Document Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Combined Lease</fullName>
+                <default>false</default>
+                <label>Combined Lease</label>
+            </value>
+            <value>
+                <fullName>Highlighted Lease</fullName>
+                <default>false</default>
+                <label>Highlighted Lease</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 01</fullName>
+                <default>false</default>
+                <label>Lease Amendment 01</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 02</fullName>
+                <default>false</default>
+                <label>Lease Amendment 02</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 03</fullName>
+                <default>false</default>
+                <label>Lease Amendment 03</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 04</fullName>
+                <default>false</default>
+                <label>Lease Amendment 04</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 05</fullName>
+                <default>false</default>
+                <label>Lease Amendment 05</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 06</fullName>
+                <default>false</default>
+                <label>Lease Amendment 06</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 07</fullName>
+                <default>false</default>
+                <label>Lease Amendment 07</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 08</fullName>
+                <default>false</default>
+                <label>Lease Amendment 08</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 09</fullName>
+                <default>false</default>
+                <label>Lease Amendment 09</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 10</fullName>
+                <default>false</default>
+                <label>Lease Amendment 10</label>
+            </value>
+            <value>
+                <fullName>Master Lease</fullName>
+                <default>false</default>
+                <label>Master Lease</label>
+            </value>
+            <value>
+                <fullName>Consent</fullName>
+                <default>false</default>
+                <label>Consent</label>
+            </value>
+            <value>
+                <fullName>Lease Commencement Memo</fullName>
+                <default>false</default>
+                <label>Lease Commencement Memo</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 01 Commencement Memo</fullName>
+                <default>false</default>
+                <label>Lease Amendment 01 Commencement Memo</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 02 Commencement Memo</fullName>
+                <default>false</default>
+                <label>Lease Amendment 02 Commencement Memo</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 03 Commencement Memo</fullName>
+                <default>false</default>
+                <label>Lease Amendment 03 Commencement Memo</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 04 Commencement Memo</fullName>
+                <default>false</default>
+                <label>Lease Amendment 04 Commencement Memo</label>
+            </value>
+            <value>
+                <fullName>Lease Amendment 05 Commencement Memo</fullName>
+                <default>false</default>
+                <label>Lease Amendment 05 Commencement Memo</label>
+            </value>
+            <value>
+                <fullName>Indemnification Agreement</fullName>
+                <default>false</default>
+                <label>Indemnification Agreement</label>
+            </value>
+            <value>
+                <fullName>Coworking/Executive Suite Lease</fullName>
+                <default>false</default>
+                <label>Coworking/Executive Suite Lease</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

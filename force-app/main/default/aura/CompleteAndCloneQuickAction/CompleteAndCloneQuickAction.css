@@ -1,0 +1,26 @@
+.THIS .slds-fade-in-open {
+    visibility: hidden !important;
+   }
+.THIS .slds-modal__content {
+    background-color: transparent;
+}
+.THIS .slds-modal__container{
+    background-color: transparent;
+}
+ .THIS .slds-spinner_container{
+    background-color: transparent;
+    background: transparent;
+   }
+
+.THIS .iconColor{
+    --sds-c-icon-color-foreground-default: green
+}
+
+.THIS .flex{
+    height: 200px;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}

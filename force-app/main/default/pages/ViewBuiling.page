@@ -1,0 +1,120 @@
+<apex:page standardController="Building__c" extensions="BuildingController" showHeader="false" sidebar="false">
+    <head>
+        <style>
+            tr{
+            border-top: 1px solid black;
+            }
+            tr:last-child{
+            border-bottom: 1px solid black;
+            }
+            <!--
+			td{
+			border-left: 1px solid black;
+			}
+			-->
+            
+            tr td:last-child{
+            border-right: 1px solid black;
+            }
+            
+            table,tbody,tr,td{
+            width:100%;
+            }
+            td{
+            display:flex;
+            flex-direction:column;
+            text-align: center;
+            justify-content: center;
+            word-wrap:break-word;
+            height: 80px;
+            }
+            
+            tr{
+            display:flex;
+            align-items:center;
+            line-height: 20px;
+            }
+            
+            .legendStack{
+            display:flex;
+            flex-direction:row;
+            }
+            
+            
+            .legendStack div{
+            width:10%;
+            height: 25px;
+            text-align:center;
+            padding-top:10px
+            }
+            
+            .abc{
+            width:5%;
+            height:100%;
+            min-height:10px;
+            max-height:350px;
+            overflow:hidden;
+            background-color:red;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <table >
+            <tr style="border-left: 1px solid black;">
+                <td style="height: 30px;">{!resp.Name}</td>
+            </tr>
+            <tr style="border-left: 1px solid black;">
+                <td style="height: 30px;">{!resp.Address}</td>
+            </tr>
+            <apex:repeat value="{!resp.suiteInfoList}" var="cdata">
+                <tr style="min-height:10px; max-height:150px; height:auto; overflow:hidden; border-left: 1px solid black;">
+                    
+                        
+                    
+                        <td style="width:5%; height:auto;">
+                            <div>
+                            	<span>{!cdata.FloorNumber}</span>    
+                            </div>
+                            
+                        </td>    
+                            
+                    
+                    
+                    
+                    <apex:repeat value="{!cdata.individualSuiteList}" var="idata">
+                        <td style="background-color:{!idata.color};color:{!idata.textcolor};width:{!cdata.width}%; min-height:20px; max-height:150px; height:100%; overflow:hidden; border-left: 1px solid black;">
+                            <apex:outputPanel rendered="{!idata.Vacant == 'Yes'}">
+                                <span>Vacant</span>
+                            </apex:outputPanel>
+                            
+                            <span>{!idata.Name}</span>
+                            <span>{!idata.SuiteNumber}</span>
+                            <apex:outputPanel rendered="{!(!ISBLANK(idata.SuiteRSF))}">
+                                <apex:outputText value="{0, number, integer}">
+                                    <apex:param value="{!idata.SuiteRSF}" /> 
+                                </apex:outputText>&nbsp;RSF
+                            </apex:outputPanel>
+                            <span>{!idata.SuiteLEXP}</span>
+                        </td>
+                    </apex:repeat>
+                    
+                </tr>
+            </apex:repeat>
+        </table>
+        <br/>
+        <div class="legendStack">
+            <div style="background-color:#c00000;color:white">2021</div>
+            <div style="background-color:#ff0000;color:black">2022</div>
+            <div style="background-color:#ffc000;color:black">2023</div>
+            <div style="background-color:#ffff00;color:black">2024</div>
+            <div style="background-color:#92d050;color:black">2025</div>
+            <div style="background-color:#00b050;color:black">2026</div>
+            <div style="background-color:#00b0f0;color:black">2027</div>
+            <div style="background-color:#0070c0;color:black">2028</div>
+            <div style="background-color:#002060;color:white">2029</div>
+            <div style="background-color:#7030a0;color:white">2030</div>
+            
+        </div>
+    </body>
+</apex:page>

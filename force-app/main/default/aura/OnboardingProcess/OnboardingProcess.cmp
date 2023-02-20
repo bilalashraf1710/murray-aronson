@@ -1,0 +1,139 @@
+<aura:component controller="OnboardingProcessController"
+    implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,force:apphostable"
+    access="global">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="editMode" type="Boolean" default="false" />
+
+    <aura:if isTrue="{!v.editMode}">
+        <div class="record-layout-container">
+
+            <div style="background-color: white;">
+                <!-- <div class="" style="background-color: white;">
+                    <h3 class="slds-section__title slds-themeshade slds-p-around_xx-small">Task Information</h3>
+                </div>-->
+                <div class="" style="background-color: white;">
+                    <h3 class="slds-section__title slds-theme--shade slds-p-around_xx-small">Costar Research</h3>
+                </div> 
+                <lightning:layout>
+                    <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <lightning:select value="Incomplete" label="Vacancies Added">
+                            <option value="Complete">Complete</option>
+                            <option value="Incomplete">Incomplete</option>
+                        </lightning:select>
+                    </lightning:layoutItem>
+                </lightning:layout>                
+                <lightning:layout>
+                    <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <lightning:select value="Incomplete" label="Direct Flyer Added">
+                            <option value="Complete">Complete</option>
+                            <option value="Incomplete">Incomplete</option>
+                            <option value="No Direct Flyer">No Direct Flyer</option>
+                        </lightning:select>
+                    </lightning:layoutItem>
+                </lightning:layout>                
+                <lightning:layout>
+                    <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <lightning:select value="Incomplete" label="Brokers Added">
+                            <option value="Complete">Complete</option>
+                            <option value="Incomplete">Incomplete</option>
+                            <option value="No Listing Brokers">No Listing Brokers</option>
+                        </lightning:select>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <lightning:select value="Incomplete" label="Sales Added">
+                            <option value="Complete">Complete</option>
+                            <option value="Incomplete">Incomplete</option>
+                            <option value="No Listing Brokers">No Sales Data</option>
+                        </lightning:select>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <!-- <div class="" style="background-color: white;">
+                    <h3 class="slds-section__title slds-themeshade slds-p-around_xx-small">Other Information</h3>
+                </div> -->
+
+            </div>
+            <div class="slds-docked-form-footer footerButtons stickyFooter">
+                <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}" />
+                <lightning:button variant="brand" label="Save" onclick="" />
+            </div>
+            
+        </div>
+        
+    </aura:if>
+
+    <aura:if isTrue="{!not(v.editMode)}">
+        <div>
+            <div style="background-color: white;">
+                <!-- <div class="" style="background-color: white;">
+                    <h3 class="slds-section__title slds-themeshade slds-p-around_xx-small">Task Information</h3>
+                </div>-->
+                
+                
+                <div class="" style="background-color: white;">
+                    <h3 class="slds-section__title slds-theme--shade slds-p-around_xx-small">Costar Research</h3>
+                </div> 
+
+                
+                <!-- <lightning:layout>
+                    <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <div style="font-size: 12px; color:#444444">Vacancies Added</div>
+                        <span class="slds-border_bottom fieldFlex" style="font-size:14px">
+                            <span>{!v.newTask.Status}</span>
+                            <div class="slds-icon_xx-small pointer" onclick="{!c.editTask}">
+                                <lightning:icon iconName="utility:edit" alternativeText="Edit Task" title="Edit"
+                                    class="slds-icon_xx-small" size="xx-small" />
+                            </div>
+                        </span>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <div style="font-size: 12px; color:#444444">Direct Flyer Added</div>
+                        <span class="slds-border_bottom fieldFlex" style="font-size:14px">
+                            <span>{!v.newTask.Status}</span>
+                            <div class="slds-icon_xx-small pointer" onclick="{!c.editTask}">
+                                <lightning:icon iconName="utility:edit" alternativeText="Edit Task" title="Edit"
+                                    class="slds-icon_xx-small" size="xx-small" />
+                            </div>
+                        </span>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <div style="font-size: 12px; color:#444444">Brokers Added</div>
+                        <span class="slds-border_bottom fieldFlex" style="font-size:14px">
+                            <span>{!v.newTask.Status}</span>
+                            <div class="slds-icon_xx-small pointer" onclick="{!c.editTask}">
+                                <lightning:icon iconName="utility:edit" alternativeText="Edit Task" title="Edit"
+                                    class="slds-icon_xx-small" size="xx-small" />
+                            </div>
+                        </span>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <div style="font-size: 12px; color:#444444">Sales Added</div>
+                        <span class="slds-border_bottom fieldFlex" style="font-size:14px">
+                            <span>{!v.newTask.Status}</span>
+                            <div class="slds-icon_xx-small pointer" onclick="{!c.editTask}">
+                                <lightning:icon iconName="utility:edit" alternativeText="Edit Task" title="Edit"
+                                    class="slds-icon_xx-small" size="xx-small" />
+                            </div>
+                        </span>
+                    </lightning:layoutItem>
+                </lightning:layout> -->
+                
+                <!-- <div class="" style="background-color: white;">
+                    <h3 class="slds-section__title slds-themeshade slds-p-around_xx-small">Other Information</h3>
+                </div> -->
+                
+
+            </div>
+
+        </div>
+    </aura:if>
+</aura:component>

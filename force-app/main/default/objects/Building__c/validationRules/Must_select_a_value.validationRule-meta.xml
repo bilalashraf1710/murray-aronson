@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Must_select_a_value</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(Vacancies_Added__c, &apos;&apos;)</errorConditionFormula>
+    <errorDisplayField>Vacancies_Added__c</errorDisplayField>
+    <errorMessage>Select a value</errorMessage>
+</ValidationRule>

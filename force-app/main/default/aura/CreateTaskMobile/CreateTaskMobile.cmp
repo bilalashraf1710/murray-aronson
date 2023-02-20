@@ -1,0 +1,375 @@
+<aura:component controller="TaskRecordPageController" implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,force:apphostable" access="global">
+    <lightning:overlayLibrary aura:id="overlayLib"/>    
+
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!-- <aura:handler name="change" value="{!v.newTask.IsReminderSet}" action="{!c.reminderSetChanged}"/> -->
+
+    <aura:attribute name="pageReference" type="Object"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="url" type="String"/>
+    <aura:attribute name="selectedId" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="accountName" type="String" default="" />
+    <aura:attribute name="IsUserJohn" type="Boolean" default="false" />
+    <aura:attribute name="IsSystemAdmin" type="Boolean" default="false" />
+    <aura:attribute name="IsMurrayAronson" type="Boolean" default="false" />
+    <aura:attribute name="IsNewTask" type="Boolean" default="true" />
+    <aura:attribute name="relatedSObjectAPIName" type="String" default="Account" />
+    <aura:attribute name="relatedContactAPIName" type="String" default="Contact" />
+    <aura:attribute name="relatedSObjectName" type="String" default="Account" />
+    <aura:attribute name="relatedContactName" type="String" default="Contact" />
+    <aura:attribute name="ownerName" type="String" default="" />
+    <aura:attribute name="taskURL" type="String" default="" />
+    <aura:attribute name="editMode" type="Boolean" default="false" />
+    <aura:attribute name="showErrorDateTime" type="Boolean" default="false" />
+    <aura:attribute name="accountServicingSelected" type="Boolean" default="false" />
+    <aura:attribute name="showAccountRequiredMessage" type="Boolean" default="false" />
+    
+    
+    
+
+    
+    <aura:attribute name="newTask" type="Task"
+    default="{ 'sobjectType': 'Task',
+                   'Subject': '',
+                    'Id': null,
+                   'WhatId': '',
+                   'ActivityDate': '',
+                   'WhoId': '',
+                   'Last_Completed__c':'',
+                   'Type__c': '',
+                   'Sub_Type__c': '',
+                   'Periodicity__c': '',
+                   'OwnerId': '',
+                   'Status': 'In Progress',
+                   'Priority': 'Normal',
+                   'ReminderDateTime': '',
+                   'IsReminderSet': '',
+                   'IsRecurrence': '',
+                   'Description':''}"/>
+                
+                
+                   <!-- <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                   </section> -->
+    <!-- <div  style="height: 100%;" aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="leaseHeader" class="slds-modal slds-fade-in-open slds-p-around_medium "> -->
+        <div class="parent" style="padding:5px;" >
+            <aura:if isTrue="{!v.IsNewTask}">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading--medium">New Task</h2>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!not(v.IsNewTask)}">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading--medium">Edit Task</h2>
+                </div>
+            </aura:if>
+            
+
+            
+            <div style="background-color: white;" class="slds-scrollable">
+                <div class="slds-p-bottom_xx-small slds-p-top_small" style="background-color: white; font-weight:bold">
+                    <h3 class="">Task Information</h3>
+                </div>
+                <lightning:layout>
+                    <lightning:layoutItem size="12">
+                        <lightning:input 
+                            aura:id="taskForm"
+                            class=""
+                            name="input6" 
+                            required="true" 
+                            value="{!v.newTask.Subject}" 
+                            label="Subject" />
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <!-- relaed api name: {!v.relatedSObjectAPIName} -->
+                    <lightning:layoutItem size="12" class="backgroundWhite">
+                        <div style="background-color:white" class=" centerLookup">
+                            <div class="textPosition" style="font-size: 12px; color:#444444;">
+                                <aura:if isTrue="{!v.accountServicingSelected}">
+                                    <span style="color:red">*</span>
+                                </aura:if>
+                                Related To
+                            </div>
+                            <div style="margin-top:20px; width:35px; height:40px;">
+
+                            
+                                <lightning:buttonMenu 
+                                        alternativeText="Show menu" 
+                                        menuAlignment="auto" 
+                                        value="{!v.relatedSObjectAPIName}"
+                                        onselect="{!c.onSelectMenuItem}">
+                                    
+                                    <lightning:menuItem value="Account" label="Accounts" prefixIconName="standard:account" />
+                                    
+                                    <lightning:menuItem value="AssetRelationship" label="Asset Relationships" prefixIconName="standard:asset_relationship" />
+                                    <lightning:menuItem value="Asset" label="Assets" prefixIconName="standard:asset_object" />
+                                    <lightning:menuItem value="Building_Brokers__c" label="Building Brokers" prefixIconName="custom:custom15" />
+                                    <lightning:menuItem value="Building__c" label="Buildings" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="Campaign" label="Campaigns" prefixIconName="standard:campaign" />
+                                    <lightning:menuItem value="Case" label="Cases" prefixIconName="standard:case" />
+                                    <lightning:menuItem value="CommSubscriptionConsent" label="Communication Subscription Consents" prefixIconName="standard:contact" />
+                                    <lightning:menuItem value="ContactRequest" label="Contact Requests" prefixIconName="standard:contact_request" />
+                                    <lightning:menuItem value="Contract" label="Contracts" prefixIconName="standard:contract" />
+                                    <lightning:menuItem value="Critical_Dates__c" label="Critical Dates" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="Financial_Analyses__c" label="Financial Analyses" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="Image" label="Images" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="Lease__c" label="Leases" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="ListEmail" label="List Emails" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="Opportunity" label="Opportunities" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="Order" label="Orders" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="PartyConsent" label="Party Consents" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="ProcessException" label="Process Exceptions" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="Product2" label="Products" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="Rents__c" label="Rent" prefixIconName="custom:custom24" />
+                                    <lightning:menuItem value="Suites__c" label="Suites" prefixIconName="custom:custom24" />
+                                    
+                                </lightning:buttonMenu>
+                            </div>
+                            <div style="width:100%;">
+
+                            
+                                <aura:if isTrue="{!v.relatedSObjectAPIName}">
+                                    <!-- <aura:if isTrue="{!v.isSearching}">
+                                        <lightning:spinner size="small"/>
+                                    </aura:if> -->
+                                    <c:Lookup
+                                        objectAPIName="{!v.relatedSObjectAPIName}" 
+                                        
+
+                                        selectedId="{!v.newTask.WhatId}"
+                                        selectedName="{!v.relatedSObjectName}"/>
+                                </aura:if>
+                            </div>
+                        </div>
+                        <aura:if isTrue="{!v.showAccountRequiredMessage}">
+                            <span class="slds-required" style="font-size:12px">
+                                Complete this field.
+                            </span>
+                        </aura:if>
+                    </lightning:layoutItem>
+                </lightning:layout>
+
+                
+                <lightning:layout>
+                    <lightning:layoutItem size="12" class="">
+                        <lightning:input 
+                            disabled="{!v.newTask.IsRecurrence}"
+                            value="{!v.newTask.ActivityDate}"
+                            type="date" 
+                            dateStyle="short"
+                            name="input1" 
+                            label="Due Date" />
+                    </lightning:layoutItem>
+                    </lightning:layout>
+                    <!-- <lightning:layoutItem size="1">
+                        hello
+                    </lightning:layoutItem> -->
+                    <lightning:layout>
+                    <lightning:layoutItem size="12" class=" centerLookup">
+                        <div class="textPosition" style="font-size: 12px; color:#444444;">Name</div>
+                        <div style="margin-top:20px; width:35px; height:40px;">
+                            <lightning:buttonMenu 
+                                    alternativeText="Show menu" 
+                                    menuAlignment="auto" 
+                                    value="{!v.relatedContactAPIName}"
+                                    onselect="{!c.onSelectContactAPI}">
+                                
+                                <lightning:menuItem value="Contact" label="Contacts" prefixIconName="standard:contact" />
+                                <!-- <lightning:menuItem value="Lead" label="Tenants" prefixIconName="standard:lead" /> -->
+                            </lightning:buttonMenu>
+                        </div>
+                        <div style="width:100%;">
+                            <c:Lookup
+                            objectAPIName="{!v.relatedContactAPIName}" 
+                            returnFields="['Name']" 
+                            queryFields="['Name']"
+                            selectedId="{!v.newTask.WhoId}"
+                            selectedName="{!v.relatedContactName}"/>
+                        </div>
+
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="12" class="">
+                        <lightning:input 
+                            value="{!v.newTask.Last_Completed__c}"
+                            type="date" 
+                            dateStyle="short"
+                            name="input1" 
+                            label="Last Completed" />
+                    </lightning:layoutItem>
+                    </lightning:layout>
+                    
+                <lightning:layout>
+                    <lightning:layoutItem size="12" class="">
+                        <!-- <lightning:select value="{!v.aname.Rating}" label="Periodicity" required="true">       
+                            <option value="choose">None</option> 
+                                <aura:iteration items="{!v.picvalue}" var="s">
+                                        <option value="{!s}">{!s}</option>
+                                </aura:iteration> 
+                        </lightning:select>  -->
+                        <lightning:select class='slds-p-bottom_small slds-p-top_small' value="{!v.newTask.Periodicity__c}" label="Periodicity" required="true" aura:id="taskForm">
+                            <option value="">--None--</option>
+                            <option value="Annually">Annually</option>
+                            <option value="Biannually">Biannually</option>
+                            <option value="Quarterly">Quarterly</option>
+                            <option value="Bimonthly">Bimonthly</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="Biweekly">Biweekly</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Other">Other</option>
+                            <option value="N/A">N/A</option>
+                        </lightning:select>
+                    </lightning:layoutItem>
+                    </lightning:layout>
+                    <lightning:layout>
+                    <lightning:layoutItem size="12" class="slds-p-bottom_small slds-p-top_small">
+                        <lightning:select 
+                                value="{!v.newTask.Type__c}" 
+                                label="Type" 
+                                aura:id="taskForm"
+                                required="true"
+                                onchange="{! c.onTypeChange }">
+                            <option value="">--None--</option>
+                            <option value="Murray Aronson">Murray Aronson</option>
+                            <option value="Personal">Personal</option>
+                        </lightning:select>
+                            
+                    </lightning:layoutItem>
+                </lightning:layout>
+                    <lightning:layout>
+                    <lightning:layoutItem size="12" class="slds-p-bottom_small slds-p-top_small">
+                        <lightning:select 
+                            value="{!v.newTask.Sub_Type__c}" 
+                            label="Sub-Type" 
+                            disabled="{!not(v.newTask.Type__c)}"
+                            required="true" 
+                            onchange="{! c.onSubTypeChange }"
+                            aura:id="taskForm">
+                            <option value="">--None--</option>
+                            <aura:if isTrue="{!and(v.IsMurrayAronson,not(v.IsUserJohn))}">
+                                <option value="Account Servicing">Account Servicing</option>
+                                <option value="Prospecting">Prospecting</option>
+                                <option value="Company Infrastructure">Company Infrastructure</option>
+                                <option value="Market Intel">Market Intel</option>
+                                <option value="Provisors">Provisors</option>
+                                <option value="Other">Other</option>
+                            </aura:if>
+                            <aura:if isTrue="{!and(v.IsMurrayAronson,v.IsUserJohn)}">
+                                <option value="Account Servicing">Account Servicing</option>
+                                <option value="Prospecting">Prospecting</option>
+                                <option value="Company Infrastructure">Company Infrastructure</option>
+                                <option value="Market Intel">Market Intel</option>
+                                <option value="Salesforce">Salesforce</option>
+                                <option value="Other">Other</option>
+                            </aura:if>
+                            <aura:if isTrue="{!and(not(v.IsMurrayAronson),not(v.IsUserJohn))}">
+                                <option value="Personal">Personal</option>
+                            </aura:if>
+                            <aura:if isTrue="{!and(not(v.IsMurrayAronson),v.IsUserJohn)}">
+                                <option value="Desert House">Desert House</option>
+                                <option value="El Segundo House">El Segundo House</option>
+                                <option value="Events">Events</option>
+                                <option value="Family">Family</option>
+                                <option value="Finances">Finances</option>
+                                <option value="Habits">Habits</option>
+                                 <option value="Hank">Hank</option>
+                                <option value="Health">Health</option>
+                                <option value="Jack">Jack</option>
+                                <option value="Projects">Projects</option>
+                            </aura:if>
+
+                        </lightning:select>
+                        
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="12" class="slds-p-bottom_small slds-p-top_small">
+                        <lightning:textarea 
+                            name="input6" 
+                            value="{!v.newTask.Description}" 
+                            label="Comments" />
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <div class="slds-p-bottom_xx-small slds-p-top_small" style="background-color: white; font-weight:bold">
+                    <h3 class="">Additional Information</h3>
+                </div>
+                <lightning:layout>
+                    <lightning:layoutItem size="12" class="slds-p-bottom_small slds-p-top_small">
+                        <c:Lookup
+                        objectAPIName="User" 
+                        label="Assigned To"
+                        returnFields="['Name']" 
+                        queryFields="['Name']"
+                        selectedId="{!v.newTask.OwnerId}"
+                        selectedName="{!v.ownerName}"/>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="12" class="slds-p-bottom_small slds-p-top_small">
+                        <lightning:select value="{!v.newTask.Status}" label="Status" required="true" aura:id="taskForm">
+                            <option value="">--None--</option>
+                            <option value="Not Started">Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Waiting on someone else">Waiting on someone else</option>
+                            <option value="Deferred">Deferred</option>
+                        </lightning:select>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout>
+                    <lightning:layoutItem size="12" class="slds-p-bottom_small slds-p-top_small">
+                        <lightning:select value="{!v.newTask.Priority}" label="Priority" required="true" aura:id="taskForm">
+                            <option value="">--None--</option>
+                            <option value="High">High</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Low">Low</option>
+                        </lightning:select>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <div class=" slds-p-bottom_xx-small slds-p-top_small" style="background-color: white; font-weight:bold">
+                    <h3 class="">Other Information</h3>
+                </div>
+                <lightning:layout>
+                    <lightning:layoutItem size="12" class="slds-p-bottom_small slds-p-top_small">
+                        <lightning:input
+                            checked="{!v.newTask.IsReminderSet}" 
+                            type="checkbox" 
+                            onchange="{!c.reminderSetChanged}"
+                            label="Reminder Set"> </lightning:input>
+                            
+                        <aura:if isTrue="{!v.newTask.IsReminderSet}">
+                            <ui:inputDateTime 
+                                value="{!v.newTask.ReminderDateTime}" 
+                                displayDatePicker="true"
+                                required="true"
+                                 />
+                        </aura:if>
+                    </lightning:layoutItem>
+                    <!-- <lightning:layoutItem size="6" class="">
+                        <lightning:input
+                            disabled="{!not(empty(v.newTask.ActivityDate))}"
+                            value="false"
+                            checked="{!v.newTask.IsRecurrence}" 
+                            type="checkbox" 
+                            label="Create Recurring Series of Tasks"> </lightning:input>
+                    </lightning:layoutItem> -->
+                </lightning:layout>
+                
+            </div>
+            
+            <div class="buttonsFlex" style="padding:20px;">    
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+                    <!-- <aura:if isTrue="{!v.IsNewTask}">
+                        <lightning:button variant="neutral" label="Save &amp; New" onclick="{!c.saveAndNew}" />
+                    </aura:if> -->
+                    
+                    <lightning:button variant="brand" label="Save" onclick="{!c.save}" />
+            </div>
+        </div>
+    <!-- </div> -->
+    <!-- <div aura:id="overlay" class="slds-backdrop slds-backdropopen"></div> -->
+</aura:component>

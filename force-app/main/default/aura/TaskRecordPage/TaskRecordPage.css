@@ -1,0 +1,87 @@
+.THIS .textAreaFlex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.THIS .fieldFlex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+}
+.THIS .pointer{
+    --sds-c-icon-color-foreground-default: rgba(221,219,218,1);
+}
+
+.THIS .pointer:hover{
+    cursor: pointer;
+    --sds-c-icon-color-foreground-default: rgba(128,128,128,1);
+}
+
+
+.THIS .footerButtons{
+    position: sticky;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.THIS .centerLookup{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+}
+
+.THIS .textPosition{
+    position: absolute;
+    border: 1 px solid saddlebrown;
+    left: 10px;
+}
+
+.THIS .textAreaSize:hover textarea {
+    /* height: 100px; */
+    height: auto;
+    width: 100%;
+    /* border: 1px solid green; */
+    cursor: auto;
+    --lwc-colorBackgroundInputDisabled: rgba(1,1,1,0);
+  }
+  .THIS .textAreaSize textarea {
+    /* height: 100px; */
+    height: 100%;
+    /* width: 100%; */
+    max-width: 100%;
+    /* border: 1px solid green; */
+    --lwc-colorBackgroundInputDisabled: rgba(1,1,1,0);
+  }
+
+  .THIS .textAreaSize{
+    /* height: 100px; */
+    /* border: 1px solid red; */
+    height: 100%;
+    /* width: 200px; */
+    width: 100%;
+    /* border: 1px solid green; */
+    --lwc-colorBackgroundInputDisabled: rgba(1,1,1,0);
+  }
+
+   .THIS .textAreaHeight textarea{
+     height: 100px;
+     /* height: auto;  */
+  }
+
+.THIS .border{
+    border:1px solid red;
+}
+
+.THIS .fieldFlex .slds-dropdown{
+    height: 100px;
+    position:absolute;
+    bottom: 10px;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Parking_Stalls__c</fullName>
+    <externalId>false</externalId>
+    <formula>Valet__c + Reserved_Structure__c  +  Reserved_Covered__c  + Reserved_Lot__c +  Unreserved_Structure__c +  Unreserved_Covered__c +  Unreserved_Lot__c +  Tandem_Structure__c  + Tandem_Covered__c +  Tandem_Lot__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Parking Stalls</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

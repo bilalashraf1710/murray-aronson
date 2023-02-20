@@ -1,0 +1,34 @@
+<aura:component 
+                implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" 
+                access="global"
+                controller="FilesListController">
+    <aura:attribute name="filesList" type="ContentDocument[]" default="[]" />
+	<aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:if isTrue="{!not(empty(v.filesList))}">
+        <div style="font-weight:bold; font-size:large; background-color: #f3f3f3;border: 1px solid #d9d9d9; border-radius: 3px"
+                class = "slds-p-around_small backgroundColorHeader">
+            <span><lightning:icon iconName="standard:file" alternativeText="file" /></span>
+            <span>&nbsp; &nbsp;Files</span>    
+        </div>
+        <div style="border: 1px solid #f7f7f7; border-radius: 3px">
+            <lightning:card>
+                <aura:iteration items="{!v.filesList}" var="file">
+                    <div class="flexImage slds-p-around_xx-small">
+                        <div class="slds-p-around_xx-small iconClass">
+                            <lightning:icon iconName="doctype:unknown" alternativeText="file" />
+                        </div>
+                        <div class="slds-p-around_xx-small"> 
+                            <lightning:formattedUrl value="{!file.URL}" label="{!file.Title}" target="_blank" />
+                            <br></br>
+                            <lightning:formattedDateTime value="{!file.Date}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC" />  -  {!file.FileType}  -  {!file.Size}
+                            <br></br>
+                        </div>
+                    </div>
+                </aura:iteration>
+            </lightning:card>
+        </div>
+    </aura:if>
+</aura:component>

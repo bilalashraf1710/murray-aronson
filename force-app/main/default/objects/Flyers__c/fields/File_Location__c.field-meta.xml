@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>File_Location__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Upload Flyer below, open the PDF in Salesforce by clicking on the link, click the Public Link button at the top of the page, click Create Link, Copy Link, and paste into this field</inlineHelpText>
+    <label>File Location</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

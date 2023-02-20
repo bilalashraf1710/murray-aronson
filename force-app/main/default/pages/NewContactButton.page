@@ -1,0 +1,4 @@
+<apex:page extensions="NewContactButtonExtension" standardController="Account" recordSetVar="sobjects"  standardStylesheets="false" sidebar="false">
+    
+    
+</apex:page>

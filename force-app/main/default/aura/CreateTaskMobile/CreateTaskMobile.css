@@ -1,0 +1,28 @@
+.THIS {
+}
+
+.THIS .centerLookup{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    padding-top:10px;
+}
+
+.THIS .textPosition{
+    position: absolute;
+    left: 1px;
+}
+
+.THIS .buttonsFlex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width:100%;
+    align-items: center;
+}
+
+.THIS .parent{
+    width: 100%;
+    background-color: white;
+}

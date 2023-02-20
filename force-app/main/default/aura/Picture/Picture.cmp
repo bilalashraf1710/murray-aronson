@@ -1,0 +1,56 @@
+<aura:component controller="PictureController"
+                implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId"  access="global" >
+    
+     <!-- Id of the Record the page hosting this component is showing -->
+    <aura:attribute name="recordId" type="string" default="a084A00002DarSQQAZ" />
+	<aura:attribute name="images" type="string[]" />
+    <aura:attribute name="currentImage" type="integer" default="0"/>
+    <aura:attribute name="pictureSrc" type="String" 
+            default="https://s3-us-west-1.amazonaws.com/sfdc-demo/image-placeholder.png"/>
+    <aura:attribute name="widhtImg" type="string" default="50" />
+    <aura:attribute name="highImg" type="string" default="200" />
+    <aura:attribute name="ciclo" type="boolean" default="false" />
+	<aura:attribute name="numbers" type="integer" default="0" />
+    <aura:attribute name="countImage" type="integer" default="0" />
+    <aura:attribute name="message" type="String" default="Drag profile picture here"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    
+    <aura:attribute name="toggleSpinner" type="boolean" default="false"/> 
+    
+    testing building photo
+	    <div  style="text-align:center;border-style: none">   
+            <aura:if isTrue="{!v.toggleSpinner}">
+ <div class="slds-spinner_container">
+  <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+    <span class="slds-assistive-text">Loading</span>
+    <div class="slds-spinner__dot-a"></div>
+    <div class="slds-spinner__dot-b"></div>
+  </div>
+</div>
+ </aura:if>  
+            
+            
+            <!--
+            <div  max-width="{!v.widhtImg}" style="{height:auto; width:auto;}">
+                <img src="{!v.pictureSrc}" style="{!'height:'+v.highImg+'px;width:100%;'}"/>
+            </div>
+            -->
+            <div >
+                <img src="{!v.pictureSrc}" style="height:650px; width:auto;"/>
+            </div>
+            
+			<div max-width="{!v.widhtImg}" style="width:100%;">            	
+               	<div style="overflow: hidden;white-space: nowrap;">
+                    <a style="font-weight: bold;font-size:xx-small;font:caption;color:#000000;  background-color: transparent; text-decoration: none;" onclick="{!c.prev}">&#60;	&nbsp;	&nbsp;</a>         
+                    <label style="font:caption;">{!v.numbers}</label>
+                    <label  style="font:caption;">/</label>
+                    <label  style="font:caption;">{!v.countImage}</label>
+                    <a style="font-weight: bold;font-size:xx-small;font:caption;color:#000000;  background-color: transparent; text-decoration: none;" onclick="{!c.next}">	&nbsp;	&nbsp;&#62;</a>
+                    
+                </div>
+                
+            </div>  
+    	</div>            
+	</aura:component>

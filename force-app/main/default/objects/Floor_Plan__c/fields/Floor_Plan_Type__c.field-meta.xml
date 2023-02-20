@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Floor_Plan_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Floor Plan Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Original</fullName>
+                <default>false</default>
+                <label>Original</label>
+            </value>
+            <value>
+                <fullName>Scrubbed</fullName>
+                <default>false</default>
+                <label>Scrubbed</label>
+            </value>
+            <value>
+                <fullName>MA Branded</fullName>
+                <default>false</default>
+                <label>MA Branded</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

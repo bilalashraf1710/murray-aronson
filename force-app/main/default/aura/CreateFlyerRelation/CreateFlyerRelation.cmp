@@ -1,0 +1,111 @@
+<aura:component controller="NewFlyerController" implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.accountName}" action="{!c.accountChange}"/>
+    <aura:handler name="change" value="{!v.suiteName}" action="{!c.suiteChange}"/>
+
+    <aura:attribute name="pageReference" type="Object"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg','.pdf','.doc','.docx','.xls','.xlsx','.ppt','.pptx']" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="flyerId" type="String" />
+    <aura:attribute name="documentId" type="String" />
+    <aura:attribute name="saveAndOpen" type="Boolean" default="false" />
+    <aura:attribute name="documentName" type="String" default=""/>
+    <aura:attribute name="buildingName" type="String" access="public"/>
+    <aura:attribute name="accountId" type="String" access="public"/>
+    <aura:attribute name="suiteId" type="String" access="public"/>
+    <aura:attribute name="accountName" type="String" access="public"/>
+    <aura:attribute name="suiteName" type="String" access="public"/>
+    <aura:attribute name="items" type="List"/>
+    <aura:attribute name="itemsSuites" type="List"/>
+    <aura:attribute name="excludeAccounts" type="List"/>
+    <aura:attribute name="selectedAccountIds" type="List"/>
+    <aura:attribute name="selectedSuitesIds" type="List"/>
+    <aura:attribute name="accountsToSearch" type="List" access="public"/>
+    <aura:attribute name="showAccountAndSuiteField" type="Boolean" default="false"/>
+    <aura:attribute name="fileAttached" type="Boolean" default="false"/>
+    <aura:attribute name="showFileAttachMessage" type="Boolean" default="false"/>
+    <aura:attribute name="showMessage" type="Boolean" default="false"/>
+    <div>
+        <div class="">
+            <c:FlyerRelatedAccounts recordId="{!v.recordId}" aura:id="refreshAccounts"></c:FlyerRelatedAccounts>
+        </div>
+
+        <div class="slds-p-vertical_small">
+            <c:FlyerRelatedSuites recordId="{!v.recordId}" aura:id="refreshSuites"></c:FlyerRelatedSuites>
+        </div>
+        <lightning:accordion
+        class="borderParent"
+        allowMultipleSectionsOpen="true"
+        >
+            <lightning:accordionSection name="A" label="Add Relation">
+                <div class="slds-p-horizontal_large slds-p-vertical_small " style="background-color:white; width:50%">
+                    <c:BuildingAccountLookup
+                        aura:id="clearMethodAccount"
+                        relatedRecordId="{!v.recordId}"
+                        relatedRecordAPIName="Building_Lookup__c"
+                        objectAPIName="Account" 
+                        label="Account:"
+                        returnFields="['Name']" 
+                        queryFields="['Name']"
+                        selectedId="{!v.accountId}"
+                        selectedName="{!v.accountName}"
+                        excludeIds="{!v.excludeAccounts}"
+                        accountsToSearch="{!v.accountsToSearch}"/>
+
+                </div>
+                <aura:if isTrue="{!not(empty(v.items))}">
+                    <div class="slds-p-horizontal_large slds-p-vertical_xxx-small" style="background-color: white;">
+                        Selected Accounts: 
+                        <p><lightning:pillContainer items="{!v.items}" onitemremove="{!c.handleItemRemove}">
+                        </lightning:pillContainer></p>
+                    </div>
+                </aura:if>
+
+                <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color:white; width: 50%">
+                    <c:BuildingSuiteLookup
+                        aura:id="clearMethodSuite"
+                        relatedAccountIds="{!v.excludeAccounts}"
+                        relatedRecordAPIName="Building_Lookup__c"
+                        objectAPIName="Suites__c" 
+                        label="Suites:"
+                        returnFields="['Name']" 
+                        queryFields="['Name']"
+                        selectedId="{!v.suiteId}"
+                        selectedName="{!v.suiteName}"
+                        excludeIds="{!v.selectedSuitesIds}"
+                        accountsToSearch="{!v.accountsToSearch}"/>
+
+                </div>
+                <aura:if isTrue="{!not(empty(v.itemsSuites))}">
+                    <div class="slds-p-horizontal_large slds-p-vertical_xxx-small" style="background-color: white;">
+                        Selected Suites: 
+                        <p><lightning:pillContainer items="{!v.itemsSuites}" onitemremove="{!c.handleItemRemoveSuites}">
+                        </lightning:pillContainer></p>
+                    </div>
+                </aura:if>
+
+                <aura:if isTrue="{!v.showMessage}">
+                    <div class="slds-p-horizontal_large slds-p-vertical_small" style="color: red">
+                        Please select a relation
+                    </div>
+                </aura:if>
+
+                <div class=" footerButtons slds-p-vertical_small">    
+                    <lightning:button variant="neutral" label="Clear Selection" onclick="{!c.clearSelection}"/>
+                    <lightning:button variant="brand" label="Add Relation" onclick="{!c.addRelation}" />
+                </div>
+            </lightning:accordionSection>
+        </lightning:accordion>
+
+        <!-- <div class="slds-p-vertical_small">
+            <c:FlyerRelatedAccounts recordId="{!v.recordId}" aura:id="refreshAccounts"></c:FlyerRelatedAccounts>
+        </div>
+
+        <div class="slds-p-vertical_small">
+            <c:FlyerRelatedSuites recordId="{!v.recordId}" aura:id="refreshSuites"></c:FlyerRelatedSuites>
+        </div> -->
+
+
+    </div>
+</aura:component>

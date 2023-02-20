@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Sub-Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Servicing</fullName>
+                <default>false</default>
+                <label>Account Servicing</label>
+            </value>
+            <value>
+                <fullName>Company Infrastructure</fullName>
+                <default>false</default>
+                <label>Company Infrastructure</label>
+            </value>
+            <value>
+                <fullName>Desert House</fullName>
+                <default>false</default>
+                <label>Desert House</label>
+            </value>
+            <value>
+                <fullName>El Segundo House</fullName>
+                <default>false</default>
+                <label>El Segundo House</label>
+            </value>
+            <value>
+                <fullName>Events</fullName>
+                <default>false</default>
+                <label>Events</label>
+            </value>
+            <value>
+                <fullName>Family</fullName>
+                <default>false</default>
+                <label>Family</label>
+            </value>
+            <value>
+                <fullName>Finances</fullName>
+                <default>false</default>
+                <label>Finances</label>
+            </value>
+            <value>
+                <fullName>Health</fullName>
+                <default>false</default>
+                <label>Health</label>
+            </value>
+            <value>
+                <fullName>Market Intel</fullName>
+                <default>false</default>
+                <label>Market Intel</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Projects</fullName>
+                <default>false</default>
+                <label>Projects</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Murray Aronson</controllingFieldValue>
+            <valueName>Account Servicing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Murray Aronson</controllingFieldValue>
+            <valueName>Company Infrastructure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Murray Aronson</controllingFieldValue>
+            <valueName>Market Intel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Murray Aronson</controllingFieldValue>
+            <controllingFieldValue>Personal</controllingFieldValue>
+            <valueName>N/A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Murray Aronson</controllingFieldValue>
+            <controllingFieldValue>Personal</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Personal</controllingFieldValue>
+            <valueName>Desert House</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Personal</controllingFieldValue>
+            <valueName>El Segundo House</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Personal</controllingFieldValue>
+            <valueName>Events</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Personal</controllingFieldValue>
+            <valueName>Family</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Personal</controllingFieldValue>
+            <valueName>Finances</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Personal</controllingFieldValue>
+            <valueName>Health</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Personal</controllingFieldValue>
+            <valueName>Projects</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

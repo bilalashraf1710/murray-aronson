@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Broker_Company__c</fullName>
+    <externalId>false</externalId>
+    <label>Broker Company</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Avison Young</fullName>
+                <default>false</default>
+                <label>Avison Young</label>
+            </value>
+            <value>
+                <fullName>Beta Retail</fullName>
+                <default>false</default>
+                <label>Beta Retail</label>
+            </value>
+            <value>
+                <fullName>CBRE</fullName>
+                <default>false</default>
+                <label>CBRE</label>
+            </value>
+            <value>
+                <fullName>Coldwell Banker Commercial</fullName>
+                <default>false</default>
+                <label>Coldwell Banker Commercial</label>
+            </value>
+            <value>
+                <fullName>Colliers</fullName>
+                <default>false</default>
+                <label>Colliers</label>
+            </value>
+            <value>
+                <fullName>Compass</fullName>
+                <default>false</default>
+                <label>Compass</label>
+            </value>
+            <value>
+                <fullName>Continental Development Corporation</fullName>
+                <default>false</default>
+                <label>Continental Development Corporation</label>
+            </value>
+            <value>
+                <fullName>Cresa</fullName>
+                <default>false</default>
+                <label>Cresa</label>
+            </value>
+            <value>
+                <fullName>Cushman &amp; Wakefield</fullName>
+                <default>false</default>
+                <label>Cushman &amp; Wakefield</label>
+            </value>
+            <value>
+                <fullName>Highland Partners</fullName>
+                <default>false</default>
+                <label>Highland Partners</label>
+            </value>
+            <value>
+                <fullName>Industry Partners</fullName>
+                <default>false</default>
+                <label>Industry Partners</label>
+            </value>
+            <value>
+                <fullName>In-House</fullName>
+                <default>false</default>
+                <label>In-House</label>
+            </value>
+            <value>
+                <fullName>JLL</fullName>
+                <default>false</default>
+                <label>JLL</label>
+            </value>
+            <value>
+                <fullName>Kidder Matthews</fullName>
+                <default>false</default>
+                <label>Kidder Matthews</label>
+            </value>
+            <value>
+                <fullName>Lee &amp; Associates</fullName>
+                <default>false</default>
+                <label>Lee &amp; Associates</label>
+            </value>
+            <value>
+                <fullName>Lincoln Property Company</fullName>
+                <default>false</default>
+                <label>Lincoln Property Company</label>
+            </value>
+            <value>
+                <fullName>Madison Partners</fullName>
+                <default>false</default>
+                <label>Madison Partners</label>
+            </value>
+            <value>
+                <fullName>Medical Asset Management</fullName>
+                <default>false</default>
+                <label>Medical Asset Management</label>
+            </value>
+            <value>
+                <fullName>NAI Capital</fullName>
+                <default>false</default>
+                <label>NAI Capital</label>
+            </value>
+            <value>
+                <fullName>Newmark Knight Frank</fullName>
+                <default>false</default>
+                <label>Newmark Knight Frank</label>
+            </value>
+            <value>
+                <fullName>Pike Properties</fullName>
+                <default>false</default>
+                <label>Pike Properties</label>
+            </value>
+            <value>
+                <fullName>PMRG</fullName>
+                <default>false</default>
+                <label>PMRG</label>
+            </value>
+            <value>
+                <fullName>RE/Max Commercial</fullName>
+                <default>false</default>
+                <label>RE/Max Commercial</label>
+            </value>
+            <value>
+                <fullName>rsfLA</fullName>
+                <default>false</default>
+                <label>rsfLA</label>
+            </value>
+            <value>
+                <fullName>Savills Studley</fullName>
+                <default>false</default>
+                <label>Savills Studley</label>
+            </value>
+            <value>
+                <fullName>Segal Commercial Property</fullName>
+                <default>false</default>
+                <label>Segal Commercial Property</label>
+            </value>
+            <value>
+                <fullName>SVN</fullName>
+                <default>false</default>
+                <label>SVN</label>
+            </value>
+            <value>
+                <fullName>The Klabin Company</fullName>
+                <default>false</default>
+                <label>The Klabin Company</label>
+            </value>
+            <value>
+                <fullName>Tishman Speyer</fullName>
+                <default>false</default>
+                <label>Tishman Speyer</label>
+            </value>
+            <value>
+                <fullName>Westpac Partners</fullName>
+                <default>false</default>
+                <label>Westpac Partners</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

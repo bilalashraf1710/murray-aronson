@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Sub-Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Servicing</fullName>
+                <default>false</default>
+                <label>Account Servicing</label>
+            </value>
+            <value>
+                <fullName>Company Infrastructure</fullName>
+                <default>false</default>
+                <label>Company Infrastructure</label>
+            </value>
+            <value>
+                <fullName>Market Intel</fullName>
+                <default>false</default>
+                <label>Market Intel</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Desert House</fullName>
+                <default>false</default>
+                <label>Desert House</label>
+            </value>
+            <value>
+                <fullName>El Segundo House</fullName>
+                <default>false</default>
+                <label>El Segundo House</label>
+            </value>
+            <value>
+                <fullName>Events</fullName>
+                <default>false</default>
+                <label>Events</label>
+            </value>
+            <value>
+                <fullName>Family</fullName>
+                <default>false</default>
+                <label>Family</label>
+            </value>
+            <value>
+                <fullName>Finances</fullName>
+                <default>false</default>
+                <label>Finances</label>
+            </value>
+            <value>
+                <fullName>Health</fullName>
+                <default>false</default>
+                <label>Health</label>
+            </value>
+            <value>
+                <fullName>Projects</fullName>
+                <default>false</default>
+                <label>Projects</label>
+            </value>
+            <value>
+                <fullName>Personal</fullName>
+                <default>false</default>
+                <label>Personal</label>
+            </value>
+            <value>
+                <fullName>Prospecting</fullName>
+                <default>false</default>
+                <label>Prospecting</label>
+            </value>
+            <value>
+                <fullName>Habits</fullName>
+                <default>false</default>
+                <label>Habits</label>
+            </value>
+            <value>
+                <fullName>Hank</fullName>
+                <default>false</default>
+                <label>Hank</label>
+            </value>
+            <value>
+                <fullName>Jack</fullName>
+                <default>false</default>
+                <label>Jack</label>
+            </value>
+            <value>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+                <label>Salesforce</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

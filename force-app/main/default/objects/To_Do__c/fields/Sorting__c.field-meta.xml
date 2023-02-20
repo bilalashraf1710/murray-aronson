@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sorting__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(Priority__c),
+&apos;High&apos;, TEXT(YEAR(Due_Date__c)) &amp; &apos;.&apos; &amp;  if(Month(Due_Date__c) &lt; 10, &apos;0&apos; + TEXT(Month(Due_Date__c)), TEXT(Month(Due_Date__c))) &amp; &apos;.&apos; &amp; if(Day(Due_Date__c) &lt; 10, &apos;0&apos; + TEXT(Day(Due_Date__c)), TEXT(Day(Due_Date__c))) &amp; &apos;.1&apos;,
+&apos;Normal&apos;, TEXT(YEAR(Due_Date__c)) &amp; &apos;.&apos; &amp; if(Month(Due_Date__c) &lt; 10, &apos;0&apos; + TEXT(Month(Due_Date__c)), TEXT(Month(Due_Date__c))) &amp; &apos;.&apos; &amp; if(Day(Due_Date__c) &lt; 10, &apos;0&apos; + TEXT(Day(Due_Date__c)), TEXT(Day(Due_Date__c))) &amp; &apos;.2&apos;,
+&apos;Low&apos;, TEXT(YEAR(Due_Date__c)) &amp; &apos;.&apos; &amp; if(Month(Due_Date__c) &lt; 10, &apos;0&apos; + TEXT(Month(Due_Date__c)), TEXT(Month(Due_Date__c))) &amp; &apos;.&apos; &amp; 
+if(Day(Due_Date__c) &lt; 10, &apos;0&apos; + TEXT(Day(Due_Date__c)), TEXT(Day(Due_Date__c))) &amp; &apos;.3&apos;,
+&apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sorting</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

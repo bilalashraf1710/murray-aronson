@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LEXP_Date_Field_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>LEXP__c  &lt;  LCD__c</errorConditionFormula>
+    <errorDisplayField>LEXP__c</errorDisplayField>
+    <errorMessage>LEXP date is earlier than the LCD date</errorMessage>
+</ValidationRule>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rent_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Rent Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Base Rent</fullName>
+                <default>false</default>
+                <label>Base Rent</label>
+            </value>
+            <value>
+                <fullName>Operating Expenses</fullName>
+                <default>false</default>
+                <label>Operating Expenses</label>
+            </value>
+            <value>
+                <fullName>Real Estate Taxes</fullName>
+                <default>false</default>
+                <label>Real Estate Taxes</label>
+            </value>
+            <value>
+                <fullName>Parking</fullName>
+                <default>false</default>
+                <label>Parking</label>
+            </value>
+            <value>
+                <fullName>Electric</fullName>
+                <default>false</default>
+                <label>Electric</label>
+            </value>
+            <value>
+                <fullName>Janitorial</fullName>
+                <default>false</default>
+                <label>Janitorial</label>
+            </value>
+            <value>
+                <fullName>Free Rent</fullName>
+                <default>false</default>
+                <label>Free Rent</label>
+            </value>
+            <value>
+                <fullName>Rent Schedule</fullName>
+                <default>false</default>
+                <label>Rent Schedule</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

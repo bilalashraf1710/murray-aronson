@@ -1,0 +1,36 @@
+<aura:component controller="CityMapController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="mapMarkers" type="Object"/>
+    <aura:attribute name="center" type="Object" />
+    <aura:attribute name="zoomLevel" type="Integer" />
+    <aura:attribute name="markersTitle" type="String" />
+	<aura:attribute name="counter" type="Integer" default="0" />
+    <aura:attribute name="showFooter" type="Boolean" />
+    <aura:attribute name="showMaps" type="Boolean" default="false"/>
+    <aura:attribute name="selectedMarkerValue" type="String" default="" />
+	 <aura:attribute name="recentClickId" type="String" default =""/>
+    
+     <aura:if isTrue="{!v.showMaps}"> 
+    <lightning:map
+
+        mapMarkers="{! v.mapMarkers }"
+        center="{! v.center }"
+        selectedMarkerValue="{!v.selectedMarkerValue}"
+        onmarkerselect="{!c.handleMarkerSelect}"
+        zoomLevel="{! v.zoomLevel }"
+        markersTitle="{! v.markersTitle }"
+        showFooter="{ !v.showFooter }"
+        listView="hidden"
+        class="customMapTitle"
+                   
+         >
+    </lightning:map>
+
+     </aura:if>
+    
+
+  
+
+</aura:component>

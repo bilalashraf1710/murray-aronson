@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sorting__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(Priority),
+&apos;High&apos;, TEXT(YEAR(ActivityDate)) &amp; &apos;.&apos; &amp; if(Month(ActivityDate) &lt; 10, &apos;0&apos; + TEXT(Month(ActivityDate)), TEXT(Month(ActivityDate))) &amp; &apos;.&apos; &amp; if(Day(ActivityDate) &lt; 10, &apos;0&apos; + TEXT(Day(ActivityDate)), TEXT(Day(ActivityDate))) &amp; &apos;.1&apos;,
+&apos;Normal&apos;, TEXT(YEAR(ActivityDate)) &amp; &apos;.&apos; &amp; if(Month(ActivityDate) &lt; 10, &apos;0&apos; + TEXT(Month(ActivityDate)), TEXT(Month(ActivityDate))) &amp; &apos;.&apos; &amp; if(Day(ActivityDate) &lt; 10, &apos;0&apos; + TEXT(Day(ActivityDate)), TEXT(Day(ActivityDate))) &amp; &apos;.2&apos;,
+&apos;Low&apos;, TEXT(YEAR(ActivityDate)) &amp; &apos;.&apos; &amp; if(Month(ActivityDate) &lt; 10, &apos;0&apos; + TEXT(Month(ActivityDate)), TEXT(Month(ActivityDate))) &amp; &apos;.&apos; &amp;
+if(Day(ActivityDate) &lt; 10, &apos;0&apos; + TEXT(Day(ActivityDate)), TEXT(Day(ActivityDate))) &amp; &apos;.3&apos;,
+&apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sorting</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Listing_Broker_Company__c</fullName>
+    <externalId>false</externalId>
+    <label>Listing Broker Company(not used)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Beitler</fullName>
+                <default>false</default>
+                <label>Beitler</label>
+            </value>
+            <value>
+                <fullName>C&amp;W</fullName>
+                <default>false</default>
+                <label>C&amp;W</label>
+            </value>
+            <value>
+                <fullName>CBRE</fullName>
+                <default>false</default>
+                <label>CBRE</label>
+            </value>
+            <value>
+                <fullName>Charles Dunn</fullName>
+                <default>false</default>
+                <label>Charles Dunn</label>
+            </value>
+            <value>
+                <fullName>Colliers</fullName>
+                <default>false</default>
+                <label>Colliers</label>
+            </value>
+            <value>
+                <fullName>Cornish &amp; Carey Commercial Newmark Knight Frank</fullName>
+                <default>false</default>
+                <label>Cornish &amp; Carey Commercial Newmark Knight Frank</label>
+            </value>
+            <value>
+                <fullName>Industry Partners</fullName>
+                <default>false</default>
+                <label>Industry Partners</label>
+            </value>
+            <value>
+                <fullName>In-House</fullName>
+                <default>false</default>
+                <label>In-House</label>
+            </value>
+            <value>
+                <fullName>JLL</fullName>
+                <default>false</default>
+                <label>JLL</label>
+            </value>
+            <value>
+                <fullName>Klabin Company</fullName>
+                <default>false</default>
+                <label>Klabin Company</label>
+            </value>
+            <value>
+                <fullName>Lee &amp; Associates</fullName>
+                <default>false</default>
+                <label>Lee &amp; Associates</label>
+            </value>
+            <value>
+                <fullName>MacVaugh &amp; Co.</fullName>
+                <default>false</default>
+                <label>MacVaugh &amp; Co.</label>
+            </value>
+            <value>
+                <fullName>Madison Partners</fullName>
+                <default>false</default>
+                <label>Madison Partners</label>
+            </value>
+            <value>
+                <fullName>Murray Aronson</fullName>
+                <default>false</default>
+                <label>Murray Aronson</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>NAI Capital</fullName>
+                <default>false</default>
+                <label>NAI Capital</label>
+            </value>
+            <value>
+                <fullName>Newmark</fullName>
+                <default>false</default>
+                <label>Newmark</label>
+            </value>
+            <value>
+                <fullName>Paley Commercial</fullName>
+                <default>false</default>
+                <label>Paley Commercial</label>
+            </value>
+            <value>
+                <fullName>PRES Companies</fullName>
+                <default>false</default>
+                <label>PRES Companies</label>
+            </value>
+            <value>
+                <fullName>PS Business Parks</fullName>
+                <default>false</default>
+                <label>PS Business Parks</label>
+            </value>
+            <value>
+                <fullName>Regus</fullName>
+                <default>false</default>
+                <label>Regus</label>
+            </value>
+            <value>
+                <fullName>Told Partners</fullName>
+                <default>false</default>
+                <label>Told Partners</label>
+            </value>
+            <value>
+                <fullName>Transwestern</fullName>
+                <default>false</default>
+                <label>Transwestern</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

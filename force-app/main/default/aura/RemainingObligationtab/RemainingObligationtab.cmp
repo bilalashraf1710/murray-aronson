@@ -1,0 +1,148 @@
+<aura:component controller="RemainingObligationController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="nextPaymentDate"   type="String" />
+    <aura:attribute name="nextPaymentAmount" type="String" />
+    <aura:attribute name="remainingObligations" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="ShowPreviousValues" type="Boolean" default="false" />
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    
+
+    
+    
+   <lightning:layout>
+                     <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <div style="font-size: 12px; color:#444444">Next Rent Payment Date</div>
+                        <span class="slds-border_bottom fieldFlex" style="font-size:14px">
+                            <aura:if isTrue="{!v.nextPaymentDate}">
+                                <span><lightning:formattedDateTime value="{!v.nextPaymentDate}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC"/></span>
+                            </aura:if>
+                            <aura:if isTrue="{!not(!v.nextPaymentDate)}">
+                                <span>&nbsp;</span>
+                            </aura:if>
+                        </span>
+                    </lightning:layoutItem>
+       
+       
+       <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <div style="font-size: 12px; color:#444444">Next Rent Payment Amount</div>
+                        <span class="slds-border_bottom fieldFlex" style="font-size:14px">
+                            <aura:if isTrue="{!v.nextPaymentAmount}">
+                                <span><p><lightning:formattedNumber value="{!v.nextPaymentAmount}" style="currency" currencyCode="USD"/></p></span>
+                            </aura:if>
+                            <aura:if isTrue="{!not(!v.nextPaymentAmount)}">
+                                <span>&nbsp;</span>
+                            </aura:if>
+                        </span>
+       </lightning:layoutItem>
+       </lightning:layout>
+        <lightning:layout>
+       <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                        <div style="font-size: 12px; color:#444444">Remaining Obligation</div>
+                        <span class="slds-border_bottom fieldFlex" style="font-size:14px">
+                            <aura:if isTrue="{!v.remainingObligations}">
+                                <span><p><lightning:formattedNumber value="{!v.remainingObligations}" style="currency" currencyCode="USD"/></p></span>
+                            </aura:if>
+                            <aura:if isTrue="{!not(!v.remainingObligations)}">
+                                <span>&nbsp;</span>
+                            </aura:if>
+                        </span>
+       </lightning:layoutItem>
+       
+      </lightning:layout>
+    
+    
+          <aura:if isTrue="{!v.ShowPreviousValues}">
+                 <!--
+                <div class="slds-box">       
+               <div style="height: 150px">
+                   
+        			<lightning:datatable
+                	keyField="id"
+                	data="{!v.data}"
+                	columns="{!v.columns}"
+                	hideCheckboxColumn="true"
+             />
+ 				  
+                    </div>  
+                   </div>
+-->
+              
+              <div class="slds-box">
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+	<thead>
+	<tr class="slds-line-height_reset">
+	<th scope="col">
+	<div class="slds-truncate" title="RS Start Date">RS Start Date</div>
+	</th>
+	<th scope="col">
+	<div class="slds-truncate" title="RS End Date">RS End Date</div>
+	</th>
+	<th scope="col">
+	<div class="slds-truncate" title="Rent per Month">Rent per Month</div>
+	</th>
+	<th scope="col">
+	<div class="slds-truncate" title="RSF">RSF</div>
+	</th>
+	</tr>
+	</thead>
+	<tbody>
+	<aura:iteration items="{!v.data}" var="ct">
+		<tr>
+		<th scope="row" data-label="RS Start Date">
+		<div class="slds-truncate" title="{! ct.RS_Start_Date__c }">
+             <aura:if isTrue="{!ct.RowBold}">
+             <span Style="font-weight:bold"><lightning:formattedDateTime value="{! ct.RS_Start_Date__c}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC"/></span>
+             </aura:if>
+             <aura:if isTrue="{!not(ct.RowBold)}">
+             <span ><lightning:formattedDateTime value="{! ct.RS_Start_Date__c}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC"/></span>
+             </aura:if>
+        </div>
+		</th>
+		<td data-label="RS End Date">
+		<div class="slds-truncate" title="{! ct.RS_End_Date__c }">
+              <aura:if isTrue="{!ct.RowBold}">
+            <span Style="font-weight:bold"><lightning:formattedDateTime value="{! ct.RS_End_Date__c}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC"/></span>
+            </aura:if>
+             <aura:if isTrue="{!not(ct.RowBold)}">
+            <span><lightning:formattedDateTime value="{! ct.RS_End_Date__c}" year="numeric"
+                                    month="numeric" day="numeric" timeZone="UTC"/></span>
+            </aura:if>
+            </div>
+		</td>
+		<td data-label="Rent per Month">
+		<div class="slds-truncate" title="{! ct.Rent_per_Month__c }">
+            <aura:if isTrue="{!ct.RowBold}">
+             <span Style="font-weight:bold"><p><lightning:formattedNumber value="{! ct.Rent_per_Month__c }" style="currency" currencyCode="USD"/></p></span>
+            </aura:if>
+            <aura:if isTrue="{!not(ct.RowBold)}">
+             <span><p><lightning:formattedNumber value="{! ct.Rent_per_Month__c }" style="currency" currencyCode="USD"/></p></span>
+            </aura:if>
+            </div>
+		</td>
+		<td data-label="RSF">
+		<div class="slds-truncate" title="{! ct.RSF__c }">
+            <aura:if isTrue="{!ct.RowBold}">
+             <p Style="font-weight:bold"><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
+            </aura:if>
+            <aura:if isTrue="{!not(ct.RowBold)}">
+             <p><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
+            </aura:if>
+            </div>
+		</td>
+		</tr>
+	</aura:iteration>
+	</tbody>
+	</table>
+   </div> 
+                  </aura:if>
+               
+   
+</aura:component>

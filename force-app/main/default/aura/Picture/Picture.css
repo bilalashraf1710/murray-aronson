@@ -1,0 +1,9 @@
+.THIS {
+    text-align: center;
+}
+
+.THIS > p {
+    font-size: 14px;
+    color: #CCCCCC;
+    margin: 4px 0;
+}

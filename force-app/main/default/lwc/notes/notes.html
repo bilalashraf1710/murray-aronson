@@ -1,0 +1,20 @@
+<template>
+
+    <div class = "header">
+        <span style="width:75%; padding: 4px;">Note</span>
+        <span style="width:20%; padding: 4px;">Date</span>
+    </div>
+    <template if:true={data}>
+        <template for:each={data} for:item="note">
+            <div class="tableRow" key={note.Id}>
+                
+                <lightning-formatted-text class="breaking" value={note.Note__c} ></lightning-formatted-text>
+                <lightning-formatted-date-time class="dateColumn" value={note.Date__c}></lightning-formatted-date-time>
+                
+            </div>
+        </template>
+    </template>
+
+    <lightning-input type="text" label="" onchange={onchange} value={text}></lightning-input>
+    <lightning-button variant="brand" label="Add Note" title="Primary action" onclick={saveNote} class="slds-m-left_x-small"></lightning-button>
+</template>

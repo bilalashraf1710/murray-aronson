@@ -1,0 +1,17 @@
+.THIS {
+}
+
+.THIS .backgroundColorHeader{
+    color: rgb(0, 156, 196);
+    border: 1px solid red;
+}
+
+.THIS .flexImage{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.THIS .iconClass{
+    padding-top: 10px;
+}

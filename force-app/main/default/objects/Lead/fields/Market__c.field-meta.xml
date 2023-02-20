@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Market__c</fullName>
+    <externalId>false</externalId>
+    <label>Market</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>State__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Los Angeles</fullName>
+                <default>false</default>
+                <label>Los Angeles</label>
+            </value>
+            <value>
+                <fullName>Orange County</fullName>
+                <default>false</default>
+                <label>Orange County</label>
+            </value>
+            <value>
+                <fullName>San Francisco</fullName>
+                <default>false</default>
+                <label>San Francisco</label>
+            </value>
+            <value>
+                <fullName>San Jose</fullName>
+                <default>false</default>
+                <label>San Jose</label>
+            </value>
+            <value>
+                <fullName>San Diego</fullName>
+                <default>false</default>
+                <label>San Diego</label>
+            </value>
+            <value>
+                <fullName>Ventura County</fullName>
+                <default>false</default>
+                <label>Ventura County</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>CA</controllingFieldValue>
+            <valueName>Los Angeles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CA</controllingFieldValue>
+            <valueName>Orange County</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CA</controllingFieldValue>
+            <valueName>San Francisco</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CA</controllingFieldValue>
+            <valueName>San Jose</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CA</controllingFieldValue>
+            <valueName>San Diego</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>CA</controllingFieldValue>
+            <valueName>Ventura County</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

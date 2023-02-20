@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Opex__c</fullName>
+    <externalId>false</externalId>
+    <formula>Opex__c +  Janitorial__c + Repairs_and_Maintenance__c  +  Security_and_Life_Safety__c +  Insurance__c +
+ Utilities__c +  HVAC__c +  Roads_and_Grounds__c +  Management_Office_and_Admin__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Opex</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

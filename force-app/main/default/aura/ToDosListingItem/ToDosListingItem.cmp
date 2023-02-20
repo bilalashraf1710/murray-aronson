@@ -1,0 +1,35 @@
+<aura:component controller="ToDosListingController" access="global" implements="force:hasRecordId">
+    <aura:attribute access="global" name="ToDo" type="To_Do__c"></aura:attribute>
+    <aura:attribute name="url" type="String"/>
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <lightning:navigation aura:id="navLink"/>
+    
+    <lightning:card>
+        <div class="c-container slds-p-horizontal_small" onclick="{!c.goToDoRecord}">
+            <lightning:layout verticalAlign="stretch" multipleRows="false" class="x-large  slds-p-horizontal_xx-small">
+                <h2 class='slds-text-title_bold'>{!v.ToDo.Name}</h2>  
+            </lightning:layout>    
+            
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col">
+                    <span>                    <p>Due Date: </p><lightning:formattedDateTime value="{!v.ToDo.Due_Date__c}" year="numeric" month="numeric" day="numeric" timeZone="UTC"></lightning:formattedDateTime>
+                    </span>
+                </div>
+                <div class="slds-col slds-size_2-of-6">
+                    <span>     <p>Type: </p><p>{!v.ToDo.Type__c}</p></span>
+                </div>
+                <div class="slds-col">
+                    <span>                    <p>Priority: </p><p>{!v.ToDo.Priority__c}</p>
+                    </span>
+                </div>
+            </div>
+            
+            
+            
+        </div>
+        
+    </lightning:card>
+    
+    
+</aura:component>

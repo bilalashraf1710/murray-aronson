@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Majority_and_Minority_not_together</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(INCLUDES(Investment_Type__c , &quot;Majority&quot;),INCLUDES(Investment_Type__c , &quot;Minority&quot;))</errorConditionFormula>
+    <errorDisplayField>Investment_Type__c</errorDisplayField>
+    <errorMessage>Majority and Minority Investment Types cannot be selected together</errorMessage>
+</ValidationRule>

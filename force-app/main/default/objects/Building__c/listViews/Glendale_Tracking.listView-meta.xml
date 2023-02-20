@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Glendale_Tracking</fullName>
+    <columns>NAME</columns>
+    <columns>Name__c</columns>
+    <columns>Class__c</columns>
+    <columns>Floors__c</columns>
+    <columns>RSF__c</columns>
+    <columns>Landlord__c</columns>
+    <columns>Parking_Ratio__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>City__c</field>
+        <operation>equals</operation>
+        <value>Glendale</value>
+    </filters>
+    <label>Glendale</label>
+</ListView>

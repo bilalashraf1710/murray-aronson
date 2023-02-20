@@ -1,0 +1,101 @@
+<aura:component controller="ToDosListingController" implements="force:hasRecordId,force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:attribute name="ToDos" type="To_Do__c[]" />
+    <aura:attribute name="chkboxvalue" type="boolean" default="false"/>    
+    <aura:attribute name="prioritySelected" type="String" default="High"/>    
+    <aura:attribute name="toDoQuery" type="String" default=''/>    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    
+    
+    <div class="slds-page-header">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-custom-custom29" title="To Dos">
+                            
+                            <lightning:icon iconName="custom:custom29"/>
+                            
+                            <span class="slds-assistive-text">To Dos List</span>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span class="slds-page-header__title slds-truncate" title="My To Do List">My To Do List</span>
+                                </h1>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <div class="slds-grid slds-wrap slds-m-top_small">
+                            <div class="slds-col slds-size_3-of-6">
+                                <span> 
+                                    <div onkeyup="{!c.up}">
+                                        <div >
+                                            <lightning:input
+                                                             aura:id="toDoSearch"
+                                                             name="enter-search"
+                                                             label="To Do's Search"
+                                                             value="{!v.toDoQuery}"
+                                                             type="search"
+                                                             onchange="{!c.getsearchToDo}"
+                                                             
+                                                             />
+                                        </div></div>
+                                    
+                                </span>
+                            </div>
+                            <div class="slds-col slds-m-left_x-large slds-size_2-of-6 ">
+                                <span>    <lightning:select aura:id="ToDoSelection" label="Priority Order?" value ="{!v.prioritySelected}" required="true" onchange="{!c.getPriorityChange}">
+                                    <option value="High">High to Low</option>
+                                    <option value="Low">Low to High</option>
+                                    </lightning:select>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-grid slds-grid_">
+                            <div class="slds-col slds-size_3-of-6">
+                                <p> </p>
+                            </div>
+                            <div class="slds-col slds-size_3-of-6 slds-m-left_large">
+                                <span>                    <div class="slds-m-around_medium">
+                                    <div class="slds-form-element">
+                                        <label class="slds-checkbox_toggle slds-grid">
+                                            <span class="slds-form-element__label slds-m-bottom_none">Public To Dos </span>
+                                            <ui:inputCheckbox aura:id="chkbox" class="slds-input" change="{!c.getButtonValue}"/>
+                                            <span id="toggle-desc" class="slds-checkbox_faux_container" aria-live="assertive">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-checkbox_on"></span>
+                                                <span class="slds-checkbox_off"></span>
+                                            </span>
+                                        </label>
+                                    </div> 
+                                    </div> 
+                                    
+                                </span>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <ui:scrollerWrapper class="scrollerSize">
+    <aura:iteration items="{!v.ToDos}" var="ToDo">
+        
+        <c:ToDosListingItem ToDo='{!ToDo}' > </c:ToDosListingItem>
+
+    </aura:iteration> 
+  </ui:scrollerWrapper>
+</aura:component>

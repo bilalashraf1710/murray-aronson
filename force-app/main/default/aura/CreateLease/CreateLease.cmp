@@ -1,0 +1,133 @@
+<aura:component controller="CreateLeaseController" implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:attribute name="pageReference" type="Object"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="url" type="String"/>
+    <aura:attribute name="selectedId" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="originalDocument" type="Boolean" default="false" />
+    <aura:attribute name="MADocument" type="Boolean" default="true" />
+    <aura:attribute name="firstPage" type="Boolean" default="true" />
+    <aura:attribute name="secondPage" type="Boolean" default="false" />
+    <aura:attribute name="leaseType" type="String" default="" />
+    <aura:attribute name="documentId" type="String" default="" />
+    <aura:attribute name="documentName" type="String" default="" />
+    <aura:attribute name="accountName" type="String" default="" />
+    <aura:attribute name="leaseId" type="String" default="" />
+    <aura:attribute name="showConfirmationModal" type="Boolean" default="false" />
+    <aura:attribute name="proceedUpload" type="Boolean" default="false" />
+    <aura:attribute name="saveAndOpen" type="Boolean" default="false" />
+    <aura:attribute name="showEstoppelLeaseMessage" type="Boolean" default="false"/>
+    <aura:attribute name="newLease" type="Lease__c"
+    default="{ 'sobjectType': 'Lease__c',
+                   'Date_Type__c': '',
+                   'Lease_Document_Name__c': '',
+                   'Account__c': '',
+                   'Lease_Date__c': '',
+                   'Lease_Type__c':''}"/>
+                   <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                   </section>
+    <aura:if isTrue="{!not(v.showConfirmationModal)}">
+    <div aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="leaseHeader" class="slds-modal slds-fade-in-open slds-p-around_medium">
+        <div class="slds-modal__container slds-p-around_medium">
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading--medium">New Lease</h2>
+            </div>
+            <aura:if isTrue="{!v.firstPage}">
+                <lightning:layout class="backgroundWhite">
+                    <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="background-color:white" class="slds-p-around_medium">
+                            <c:Lookup
+                                objectAPIName="Account" 
+                                label="Account:"
+                                returnFields="['Name','Phone','Website']" 
+                                queryFields="['Name','Phone','Website']"
+                                selectedId="{!v.newLease.Account__c}"
+                                selectedName="{!v.accountName}"/>
+                        </div>
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="background-color:white" class="slds-p-around_medium">
+                            <lightning:select name="select1" label="Lease Type: " required="true" 
+                                value="{!v.newLease.Lease_Type__c}"
+                                aura:id="leaseTypeSelect"
+                                onchange="{! c.onLeaseTypeChange }">
+                                <option value="Murray Aronson Document">Murray Aronson Document</option>
+                                <option value="Original Document">Original Document</option>
+                            </lightning:select>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </aura:if>
+        
+            <aura:if isTrue="{!v.originalDocument}">
+                <lightning:layout class="backgroundWhite">
+                    <lightning:layoutItem size="6">
+                        <lightning:input 
+                            type="date" 
+                            name="input1" 
+                            label="Lease Date: " 
+                            class="slds-p-around_medium"
+                            value="{!v.newLease.Lease_Date__c}"/>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="6">
+                        <div class="slds-p-around_medium">
+                            <lightning:select 
+                                name="select1" 
+                                label="Date Type: "
+                                value="{!v.newLease.Date_Type__c}">
+                                <option value="">None</option>
+                                <option value="Approximate Date">Approximate Date</option>
+                                <option value="Date of Document">Date of Document</option>
+                                <option value="Signature Block Date">Signature Block Date</option>
+                            </lightning:select>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </aura:if>
+            <div class="slds-p-around_medium" style="background-color:white">
+                <c:UploadAttachment 
+                    originalDocument="{!v.originalDocument}" 
+                    MADocument="{!v.MADocument}"
+                    documentId="{!v.documentId}" 
+                    LeaseDocument="{!v.newLease.Lease_Document_Name__c}"/>
+            </div>
+            <div class="slds-modal__footer footerButtons">    
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+                    <lightning:button variant="neutral" label="Save &amp; New" onclick="{!c.saveAndNew}" />
+                    <lightning:button variant="brand" label="Save" onclick="{!c.save}" />
+            </div>
+        </div>
+    </div>
+    </aura:if>
+    <aura:if isTrue="{!v.showConfirmationModal}">
+
+    
+        <div aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="modalDocument" class="slds-modal slds-fade-in-open slds-p-around_medium">
+            <div  class="slds-modal__container slds-p-around_medium">
+                <div class="slds-modal__header">
+                    <aura:if isTrue="{!v.showEstoppelLeaseMessage}">
+                        <h2 class="slds-text-heading--medium" id="modalDocument">{!v.newLease.Lease_Document_Name__c} With Same Date Already Exists</h2>
+                    </aura:if>
+                    <aura:if isTrue="{!not(v.showEstoppelLeaseMessage)}">
+                        <h2 class="slds-text-heading--medium" id="modalDocument">{!v.newLease.Lease_Document_Name__c} Document Already Exists</h2>
+                    </aura:if>
+                </div>
+                <div class="slds-modal__footer footerButtons">    
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelConfirmation}"/>
+                    <aura:if isTrue="{!v.showEstoppelLeaseMessage}">
+                        <lightning:button variant="brand" label="Replace Document" onclick="{!c.proceedConfirmationEstoppel}"/>
+                    </aura:if>
+                    <aura:if isTrue="{!not(v.showEstoppelLeaseMessage)}">
+                        <lightning:button variant="brand" label="Replace Document" onclick="{!c.proceedConfirmation}" />
+                    </aura:if >
+                </div>
+            </div>
+        </div>
+        <div aura:id="overlay" class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <div aura:id="overlay" class="slds-backdrop slds-backdrop--open"></div>
+</aura:component>

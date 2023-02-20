@@ -1,0 +1,100 @@
+<aura:component controller="NewFloorPlanController" implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global">
+    
+    <aura:registerEvent name="CloseModal" type="c:CloseModal"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:attribute name="pageReference" type="Object"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg','.pdf','.doc','.docx','.xls','.xlsx','.ppt','.pptx']" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="documentId" type="String" />
+    <aura:attribute name="saveAndOpen" type="Boolean" default="false" />
+    <aura:attribute name="documentName" type="String" default=""/>
+    <aura:attribute name="fileAttached" type="Boolean" default="false"/>
+    <aura:attribute name="showFileAttachMessage" type="Boolean" default="false"/>
+    <aura:attribute name="floorPlanTypeValues" type="Map"/>
+
+    <aura:attribute name="newFloorPlan" type="Floor_Plan__c"
+    default="{ 'sobjectType': 'Floor_Plan__c',
+                   'Floor_Plan_Date__c': '',
+                   'Building__c': '',
+                   'Floor_Plan_Type__c': '',
+                   'Suites__c':''}"/>
+
+      <div aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="leaseHeader" class="slds-modal slds-fade-in-open slds-p-around_medium">
+          <div class="slds-modal__container slds-p-around_medium">
+              <div class="slds-modal__header">
+                  <h2 class="slds-text-heading--medium">New Floor Plan</h2>
+              </div>
+              <div class="slds-scrollable backgroundWhite">
+
+                  <lightning:layout class="backgroundWhite">
+  
+                      <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="overflow: visible;">
+                          <lightning:input 
+                          required="true"
+                          type="date" 
+                          name="input1" 
+                          label="Floor Plan Date" 
+                          aura:id="validFlyer"
+                          style="background-color:white" 
+                          class="slds-p-horizontal_large slds-p-vertical_small slds-scrollable_none"
+                          value="{!v.newFloorPlan.Floor_Plan_Date__c}"/>
+                        
+                        </div>
+                      </lightning:layoutItem>
+                      <lightning:layoutItem size="6">
+                        <div style="background-color:white" class="slds-p-horizontal_large slds-p-vertical_small">
+                          <lightning:select name="select1" label="Floor Plan Type" required="true" 
+                              value="{!v.newFloorPlan.Floor_Plan_Type__c}"
+                              aura:id="validFlyer">
+                              <option value="">--None--</option>
+                              <aura:iteration items="{!v.floorPlanTypeValues}" var="i" indexVar="key">
+                                <option text="{!i.value}" value="{!i.key}" />
+                              </aura:iteration>
+                          </lightning:select>
+                      </div>
+                      </lightning:layoutItem>
+                  </lightning:layout>
+                
+              <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color:white">
+                <lightning:fileUpload label="Attach file"
+                                      aria-required="true"
+                                      name="fileUploader"
+                                      multiple="false"
+                                      accept="{!v.filetype}"
+                                      recordId="{!v.recordId}"
+                                      onuploadfinished="{!c.handleUploadFinished}" />
+                  <aura:if isTrue="{!v.showFileAttachMessage}">
+                    <div style="color: red">Attachment is Required</div>
+                  </aura:if>
+              </div>
+              <aura:if isTrue="{!v.documentName}">
+
+                <div style="background-color: white;" class="slds-p-horizontal_large slds-p-vertical_small">
+
+                
+                  <div >Attached File: </div>
+                  <div style="background-color: white;" class="flexImage slds-p-around_xx-small">
+                      <div class="slds-p-around_xx-small">
+                          <lightning:icon iconName="doctype:unknown" alternativeText="file" />
+                      </div>
+                      <div class="slds-p-around_xx-small" aria-required="true">
+                            {!v.documentName}
+                      </div>
+                  </div>  
+                </div>
+            </aura:if>
+            </div>
+              <div class="slds-modal__footer footerButtons">    
+                      <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+                      <lightning:button variant="neutral" label="Save &amp; New" onclick="{!c.saveAndNew}" />
+                      <lightning:button variant="brand" label="Save" onclick="{!c.save}" />
+              </div>
+          </div>
+      </div>
+      <div aura:id="overlay" class="slds-backdrop slds-backdrop--open"></div>
+
+</aura:component>

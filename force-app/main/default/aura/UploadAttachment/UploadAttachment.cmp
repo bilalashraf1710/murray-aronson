@@ -1,0 +1,125 @@
+<aura:component controller="UploadAttachmentController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:attribute name="LeaseDocument" type="String" default="" />
+    <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg','.pdf','.doc','.docx','.xls','.xlsx','.ppt','.pptx']" />
+    <aura:attribute name="multiple" type="Boolean" default="true" />
+    <aura:attribute name="disabled" type="Boolean" default="true" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    <aura:attribute name="originalDocument" type="Boolean" default="false" />
+    <aura:attribute name="MADocument" type="Boolean" default="true" />
+    <aura:attribute name="documentName" type="String" default="" />
+    <aura:attribute name="documentId" type="String" default="" />
+    <aura:attribute name="fileName" type="String" default="" />
+
+    <aura:attribute name="contentDocumentList" type="ContentDocument[]" default="[]" />
+        
+        <lightning:card iconName="standard:file" title="Upload Lease Document">
+            <!--<c:helloMessage message="{!v.cnt.Name}"  />-->
+            
+            <lightning:select aura:id="LeaseDocumentSelect" 
+                              name="LeaseDocumentSelect" 
+                              label="Please select a lease document name" 
+                              onchange="{! c.onLeaseDocumentChange }"
+                              value = "{! v.LeaseDocument}"
+                              >
+                <option value="" disabled="true" selected="true" >choose one...</option>
+                <aura:if isTrue="{!v.originalDocument}">
+                    <option value="Lease">Lease</option>
+                    <!-- <aura:if isTrue="{!v.originalDocument}">
+                        <option value="Combined Lease">Combined Lease</option>
+                        <option value="Highlighted Lease">Highlighted Lease</option>
+                    </aura:if> -->
+                    <option value="Lease Amendment 01">Lease Amendment 01</option>
+                    <option value="Lease Amendment 02">Lease Amendment 02</option>
+                    <option value="Lease Amendment 03">Lease Amendment 03</option>
+                    <option value="Lease Amendment 04">Lease Amendment 04</option>
+                    <option value="Lease Amendment 05">Lease Amendment 05</option>
+                    <option value="Lease Amendment 06">Lease Amendment 06</option>
+                    <option value="Lease Amendment 07">Lease Amendment 07</option>
+                    <option value="Lease Amendment 08">Lease Amendment 08</option>
+                    <option value="Lease Amendment 09">Lease Amendment 09</option>
+                    <option value="Lease Amendment 10">Lease Amendment 10</option>
+                    <option value="Master Lease">Master Lease</option>
+                    <option value="Consent">Consent</option>
+                    <option value="Sublease">Sublease</option>
+                    <option value="Sublease Commencement Memo">Sublease Commencement Memo</option>
+                    <option value="Sublease, Master Lease, and Consent">Sublease, Master Lease, and Consent</option>
+                    <option value="Coworking/Executive Suite Lease">Coworking/Executive Suite Lease</option>
+                    <option value="Coworking/Executive Suite Lease Amendment 01">Coworking/Executive Suite Lease Amendment 01</option>
+                    <!-- <aura:if isTrue="{!v.originalDocument}">
+                        <option value="Combined Sublease">Combined Sublease</option>
+                        <option value="Highlighted Sublease">Highlighted Sublease</option>
+                    </aura:if> -->
+                    <option value="Coworking/Executive Suite Lease Amendment 02">Coworking/Executive Suite Lease Amendment 02</option>
+                    <option value="Lease Commencement Memo">Lease Commencement Memo</option>
+                    <option value="Lease Amendment 01 Commencement Memo">Lease Amendment 01 Commencement Memo</option>
+                    <option value="Lease Amendment 02 Commencement Memo">Lease Amendment 02 Commencement Memo</option>
+                    <option value="Lease Amendment 03 Commencement Memo">Lease Amendment 03 Commencement Memo</option>
+                    <option value="Lease Amendment 04 Commencement Memo">Lease Amendment 04 Commencement Memo</option>
+                    <option value="Lease Amendment 05 Commencement Memo">Lease Amendment 05 Commencement Memo</option>
+                    <option value="Estoppel Certificate">Estoppel Certificate</option>
+                    <option value="SNDA">SNDA</option>
+                    <option value="Certificate of Occupancy">Certificate of Occupancy</option>
+                    <option value="Indemnification Agreement">Indemnification Agreement</option>
+                    <option value="Termination Agreement">Termination Agreement</option>
+                    <option value="Storage Lease">Storage Lease</option>
+                    <option value="House Rules">House Rules</option>
+                    <option value="Terms and Conditions">Terms and Conditions</option>
+                    <option value="Side Letter">Side Letter</option>
+                    <option value="Satisfaction of Condition Precedent">Satisfaction of Condition Precedent</option>
+                </aura:if>
+                <aura:if isTrue="{!v.MADocument}">
+                    <option value="Combined Lease">Combined Lease</option>
+                    <option value="Highlighted Lease">Highlighted Lease</option>
+                    <option value="Combined Sublease">Combined Sublease</option>
+                    <option value="Highlighted Sublease">Highlighted Sublease</option>
+                    <option value="Combined Coworking/Executive Suite Lease">Combined Coworking/Executive Suite Lease</option>
+                    <option value="Highlighted Coworking/Executive Suite Lease">Highlighted Coworking/Executive Suite Lease</option>
+                    
+                </aura:if>
+                
+            </lightning:select>
+            
+            <aura:if isTrue="{! v.LeaseDocument != '' }">
+                <lightning:fileUpload label="Attach file"
+                                      name="fileUploader"
+                                      multiple="false"
+                                      accept="{!v.filetype}"
+                                      recordId="{!v.recordId}"
+                                      onuploadfinished="{!c.handleUploadFinished}" />
+            </aura:if>
+            <aura:if isTrue="{!not(empty(v.contentDocumentList))}">
+                <div class="slds-p-vertical_small">
+                    <c:FilesList filesList="{!v.contentDocumentList}"/>
+                </div>
+            </aura:if>
+
+            <aura:if isTrue="{!empty(v.recordId)}">
+                <aura:if isTrue="{!v.documentId}">
+
+                
+                    <div>Attached File: </div>
+                    <div class="flexImage slds-p-around_xx-small">
+                        <div class="slds-p-around_xx-small">
+                            <lightning:icon iconName="doctype:unknown" alternativeText="file" />
+                        </div>
+                        <div class="slds-p-around_xx-small">
+                               {!v.documentName}
+                        </div>
+                    </div>
+                </aura:if>
+            </aura:if>
+            
+            <aura:if isTrue="{!v.showSpinner}">
+                <div class="slds-spinner_container">
+                    <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="alert">
+                        <span class="slds-assistive-text">Loading, Please Wait...</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </aura:if>
+        </lightning:card>	
+    </aura:component>

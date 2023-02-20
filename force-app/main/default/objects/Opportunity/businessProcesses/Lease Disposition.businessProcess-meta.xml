@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lease Disposition</fullName>
+    <description>Lease Disposition</description>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Actively Marketing</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Consent</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Exclusive Signed</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>First Meeting and Tour</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>LOI</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Lease Draft</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Lease Signed</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Marketing Materials Created</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Occupancy</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Payment</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>

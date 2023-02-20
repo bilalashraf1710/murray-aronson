@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Location_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Location Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Account_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Headquarters</fullName>
+                <default>false</default>
+                <label>Headquarters</label>
+            </value>
+            <value>
+                <fullName>Satellite</fullName>
+                <default>false</default>
+                <label>Satellite</label>
+            </value>
+            <value>
+                <fullName>Sister</fullName>
+                <default>false</default>
+                <label>Sister</label>
+            </value>
+            <value>
+                <fullName>No Locations</fullName>
+                <default>false</default>
+                <label>No Locations</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Single</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Single</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Single Location</controllingFieldValue>
+            <controllingFieldValue>Sister Locations</controllingFieldValue>
+            <controllingFieldValue>Headquarters with Satellite Locations</controllingFieldValue>
+            <valueName>Headquarters</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sister Locations</controllingFieldValue>
+            <valueName>Sister</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Headquarters with Satellite Locations</controllingFieldValue>
+            <valueName>Satellite</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>N/A</controllingFieldValue>
+            <valueName>N/A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>No Locations</controllingFieldValue>
+            <valueName>No Locations</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

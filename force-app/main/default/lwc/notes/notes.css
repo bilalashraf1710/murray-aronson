@@ -1,0 +1,35 @@
+.slds-button_icon-bare{
+    display: none;
+}
+
+.breaking{    
+    width:75%;
+    word-wrap: break-word;
+    /* border-bottom: 1px solid black; */
+    margin: 2px;
+}
+
+.dateColumn{
+    width: 20%;
+    word-wrap: break-word;
+    /* border-bottom: 1px solid black; */
+}
+
+.header{
+    font-weight: bold;
+    height: 32px;
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgba(243, 243, 243, 1);
+}
+
+.tableRow{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(229, 229, 229, 1);
+    padding: 4px;
+}

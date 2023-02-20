@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Directory_Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Directory Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fully Vacant</fullName>
+                <default>false</default>
+                <label>Fully Vacant</label>
+            </value>
+            <value>
+                <fullName>Future Building</fullName>
+                <default>false</default>
+                <label>Future Building</label>
+            </value>
+            <value>
+                <fullName>No Directory</fullName>
+                <default>false</default>
+                <label>No Directory</label>
+            </value>
+            <value>
+                <fullName>Secured Building</fullName>
+                <default>false</default>
+                <label>Secured Building</label>
+            </value>
+            <value>
+                <fullName>Under Construction</fullName>
+                <default>false</default>
+                <label>Under Construction</label>
+            </value>
+            <value>
+                <fullName>Walked</fullName>
+                <default>false</default>
+                <label>Walked</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

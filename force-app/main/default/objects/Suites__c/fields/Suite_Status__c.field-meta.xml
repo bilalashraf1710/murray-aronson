@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Suite_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISPICKVAL( Vacant__c , &apos;Yes&apos;) , &apos;Vacant&apos;,
+IF( ISPICKVAL( Vacant__c , &apos;No&apos;) , IF(ISBLANK( Account__r.Name ), Tenant_Company_Name__c, Account__r.Name ) ,
+IF( ISPICKVAL( Vacant__c, &apos;Marketed for Sublease&apos;), Account__r.Name, &apos;&apos;)
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Suite Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

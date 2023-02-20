@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Estimated_Commission</fullName>
+    <active>true</active>
+    <label>Commissions</label>
+    <picklistValues>
+        <picklist>Est_Act__c</picklist>
+        <values>
+            <fullName>Deposit Date</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Estimated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Payment_Method__c</picklist>
+        <values>
+            <fullName>Check</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TBD</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Wire</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Payment_Number__c</picklist>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 01</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 02</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 03</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 04</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 05</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 06</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 07</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 08</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 09</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 11</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment 12</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

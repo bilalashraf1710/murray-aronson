@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Broker</fullName>
+    <fields>Name</fields>
+    <fields>Title</fields>
+    <fields>Broker_Company_formula__c</fields>
+    <fields>Cell_Phone__c</fields>
+    <fields>Email</fields>
+    <label>Broker</label>
+</CompactLayout>
