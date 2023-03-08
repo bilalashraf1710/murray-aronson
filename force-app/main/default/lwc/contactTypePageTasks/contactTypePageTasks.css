@@ -1,0 +1,13 @@
+.sectionClass{
+    font-weight: bold;
+    border:1px solid #F3F3F3;
+    font-size: 13px;
+    color:#444444;
+}
+
+.centerText{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}

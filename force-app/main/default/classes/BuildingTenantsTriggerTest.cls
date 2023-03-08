@@ -3,9 +3,13 @@ public with sharing class BuildingTenantsTriggerTest {
     @isTest
     public static void buildingTenantsTriggerTest() {
 		Account ac = new Account(
-        	Name='testAccount'
+        	Name='testAccount',
+            Property_Address__c = 'testBuilding',
+            Country__c = 'USA',
+            State__c='CA',
+            City__c = 'El Segundo'
         );
-        insert ac;
+        
         Market__c market = new Market__c(
         	Continent__c='North America',
             Country__c='United States',
@@ -17,10 +21,11 @@ public with sharing class BuildingTenantsTriggerTest {
             Continent__c='North America',
             Country__c='United States',
             StatePK__c='CA',
+             City__c = 'El Segundo',
             Market_Lookup__c=market.Id
         );
         insert bld;
-        
+        insert ac;
 		building_account__c buildingTenants = new building_account__c(
         	Building_Account__c = ac.Id,
             Building_BA__c = bld.Id

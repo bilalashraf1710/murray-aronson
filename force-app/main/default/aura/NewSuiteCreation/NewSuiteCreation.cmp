@@ -1,17 +1,18 @@
 <aura:component implements="lightning:actionOverride,lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller = "NewSuiteCreation">
    <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> -->
     <aura:handler name="init" value="{!this}" action="{!c.fetchListOfRecordTypes}"/>
-	<aura:attribute name="parentRecordId" type="String" />
+	<aura:attribute name="parentRecordId" type="String" access="global"/>
+    <aura:attribute name="recordId" type="String" />
     <aura:attribute name="suiteWrap" type="object"/>
     <aura:attribute name="BuildingId" type="String" />
     <aura:attribute name="url" type="String" access="global"
         />
-    
+     <lightning:navigation aura:id="navService"/>
     <aura:attribute name="lstOfRecordType" type="String[]" />
     <aura:attribute name="isOpen" type="boolean" default="false" />
  	 <aura:attribute name="options" type="List" default="[
-    {'label': 'Not Tracking', 'value': 'Not Tracking'},
-    {'label': 'Vacancy', 'value': 'Vacancy'}
+    {'label': 'Vacancy', 'value': 'Vacancy'},
+    {'label': 'Not Tracking', 'value': 'Not Tracking'}
     ]"/>
     <aura:attribute name="value" type="String" default="Vacancy"/>
      
@@ -40,7 +41,6 @@
                             </ui:inputSelect>
 -->
                             <lightning:radioGroup name="radioGroup"
-                          
                           options="{! v.options }"
                           value="{! v.value }"
                           type="radio"/>

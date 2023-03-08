@@ -154,7 +154,7 @@
                 </lightning:layout>
                 <lightning:layout>
                     <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
-                        <lightning:select value="{!v.newTask.Periodicity__c}" label="Periodicity">
+                        <lightning:select value="{!v.newTask.Periodicity__c}" label="Periodicity" required="true" aura:id="taskForm">
                             <option value="">--None--</option>
                             <option value="Annually">Annually</option>
                             <option value="Biannually">Biannually</option>

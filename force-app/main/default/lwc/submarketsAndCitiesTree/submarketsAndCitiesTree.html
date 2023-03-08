@@ -1,0 +1,33 @@
+<template>
+<!-- 
+    <div class="slds-box">
+    <div class="slds-p-around_medium lgc-bg" >
+        <lightning-tree items={items} header={marketName}></lightning-tree>
+    </div>
+    </div> -->
+    <template if:true={showData}>
+        <div style="border: 1px solid rgba(201, 201, 201, 1); border-radius: 5px;">
+        <lightning-accordion allow-multiple-sections-open="true">
+        <lightning-accordion-section name={marketName} label={marketName}>
+                <!-- <ul style="list-style-type: square;margen-left:10px"> -->
+                <template for:each={items} for:item="item" >
+                    <!-- <br key={item.Id}> -->
+                    <!-- <li key={item.Id}>  -->
+                    <a style="display:flex; font-size:16px ;margin: 8px 37px 8px;color:black;font-weight: 500;" key={item.Id} href={item.href}>&raquo;{item.label}</a> 
+                    <!-- </li>  -->
+                    <!-- <ul key={item.Id} style="list-style-type: square"> -->
+                        <div key={item.Id} style="margin-left:40px">
+                    <template for:each={item.items} for:item="item1">
+                        <!-- <li key={item1.Id} style=" display: inline-block; "> -->
+                          <a style=" margin: 0px 20px 0px; font-size:14px ;font-weight: 350;color:black;" key={item1.Id} href={item1.href}>&raquo;{item1.label}</a> 
+                        <!-- </li>  -->
+                    </template> 
+                </div>
+                <!-- </ul>  -->
+                </template>
+            <!-- </ul> -->
+</lightning-accordion-section>
+</lightning-accordion>
+</div>
+</template>
+  </template>
