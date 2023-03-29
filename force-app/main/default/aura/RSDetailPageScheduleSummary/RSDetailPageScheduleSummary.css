@@ -1,6 +1,7 @@
 .THIS .slds-pill__remove {
     display: none !important;
 }
+
 .THIS .container {
   display: flex;
   flex-direction: column;

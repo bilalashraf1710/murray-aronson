@@ -11,7 +11,6 @@ public class NewRentSchedulesController {
     
     @AuraEnabled
     public static Rent_Schedule__c saveRentSchedule( Rent_Schedule__c rentSchedule) {
-        system.debug('Rent Schedule Object ' + rentSchedule);
         upsert rentSchedule;   
         return rentSchedule;   
     }

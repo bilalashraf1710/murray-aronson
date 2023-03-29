@@ -69,20 +69,7 @@
                 </lightning:layout>
                   
                <aura:if isTrue="{!v.ShowPreviousValues}">
-                 <!--
-                <div class="slds-box">       
-               <div style="height: 150px">
-                   
-        			<lightning:datatable
-                	keyField="id"
-                	data="{!v.data}"
-                	columns="{!v.columns}"
-                	hideCheckboxColumn="true"
-             />
- 				  
-                    </div>  
-                   </div>
--->
+               
                    <div class="slds-box">
     <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
 	<thead>

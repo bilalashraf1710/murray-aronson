@@ -10,29 +10,24 @@
     },
     
     saveRentSchedule: function(component,event,helper){
-        console.log('In save rent schedule ');
         let openRecordOnSave = component.get('v.saveAndOpen');
         helper.saveRecord(component, event, helper, openRecordOnSave);
     },
     
     saveRecord: function(component, event, helper, openRecordOnSave) {
-        console.log('In save Record ');
         var RentScheduleObject = component.get("v.newRentSchedule"); 
         helper.createRentSchedule(component, RentScheduleObject, helper, openRecordOnSave);
     },
     
     createRentSchedule: function(component, RentScheduleObject,helper, openRecordOnSave ) {
-        console.log('In create Rent Schedule ');
+
         let action = component.get("c.saveRentSchedule");
-    	console.log('Rent Schedule Object ', JSON.stringify(RentScheduleObject));
         action.setParams({
             rentSchedule: RentScheduleObject
         });
         action.setCallback(this, function(response){
             let state = response.getState();
-            console.log('State' , state);
             if (state === "SUCCESS") {
-               console.log('In state condition');
                 
                 if(openRecordOnSave) {
                     let AccountId = component.get('v.newRentSchedule.Account__c');
@@ -47,21 +42,16 @@
                     component.set('v.newRentSchedule.Data_Summary__c','');
                   
                 } else {
-                    console.log('In else condition');
                     component.set("v.PreviousEndDate",component.get("v.newRentSchedule.RS_End_Date__c"));
                     let recentEndDate = component.get("v.newRentSchedule.RS_End_Date__c");
-                    let endDate = component.get("v.newRentSchedule.RS_End_Date__c");
-                    console.log(recentEndDate);
-                    console.log(endDate);
+                    let endDate = component.get("v.newRentSchedule.RS_End_Date__c");;
                     let date = new Date(recentEndDate);
 					// add a day
 					date = new Date( date.getTime() + Math.abs(date.getTimezoneOffset()*60000) );
 					date.setDate(date.getDate() + 1);
-                    console.log(date);
                     let DateFormatted = date.getFullYear() + '-' +
                        (date.getMonth()+1).toString().padStart(2, "0")  + '-' +
                         date.getDate().toString().padStart(2, "0");
-                     console.log(DateFormatted);
                     
                     let nextYearDate = new Date(endDate);
                     nextYearDate = new Date( nextYearDate.getTime() + Math.abs(nextYearDate.getTimezoneOffset()*60000) );
@@ -69,13 +59,9 @@
                      let EndDateFormatted = nextYearDate.getFullYear() + '-' +
                        (nextYearDate.getMonth()+1).toString().padStart(2, "0")  + '-' +
                         nextYearDate.getDate().toString().padStart(2, "0");
-                     console.log(EndDateFormatted);
-                   //component.find("StartDate").set("v.value",DateFormatted);
                    component.set("v.newRentSchedule.RS_Start_Date__c", DateFormatted);
                    component.set("v.newRentSchedule.RS_End_Date__c", EndDateFormatted);
-                    //component.set("v.newRentSchedule.RS_End_Date__c", '');
-                    //component.set("v.newRentSchedule.RSF__c", '');
-                    //component.set("v.newRentSchedule.Rent_per_Month__c", '');
+                   
                 }
                 
                

@@ -2,6 +2,7 @@
 	
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.PageReload}" action="{!c.doInit}"/>
     <aura:attribute name="nextPaymentDate"   type="String" />
     <aura:attribute name="nextPaymentAmount" type="String" />
     <aura:attribute name="remainingObligations" type="String" />
@@ -9,8 +10,10 @@
     <aura:attribute name="ShowPreviousValues" type="Boolean" default="false" />
     <aura:attribute name="data" type="Object"/>
     <aura:attribute name="columns" type="List"/>
-    
-
+    <aura:attribute name="generateButton" type="Boolean" default="false" />
+    <aura:attribute name="showReportLinks" type="Boolean" default="false" />
+    <aura:attribute name="reportsLink" type="Object"/>
+	<aura:attribute name="PageReload" type="Boolean" default="false" />
     
     
    <lightning:layout>
@@ -57,20 +60,7 @@
     
     
           <aura:if isTrue="{!v.ShowPreviousValues}">
-                 <!--
-                <div class="slds-box">       
-               <div style="height: 150px">
-                   
-        			<lightning:datatable
-                	keyField="id"
-                	data="{!v.data}"
-                	columns="{!v.columns}"
-                	hideCheckboxColumn="true"
-             />
- 				  
-                    </div>  
-                   </div>
--->
+              
               
               <div class="slds-box">
     <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
@@ -141,6 +131,35 @@
 	</aura:iteration>
 	</tbody>
 	</table>
+     <div class="slds-m-top_medium">
+    <lightning:button label="Generate Reports" iconName="utility:form" iconPosition="left"  variant="brand" disabled="{!v.generateButton}" onclick="{!c.generateReports}"/>  
+     </div>
+                  
+      <aura:if isTrue="{!v.showReportLinks}">
+          
+   
+          
+               <div class="container slds-m-top_medium">
+  <div class="row">
+    <div class="col" style="  font-weight: bold;">
+      <p>All Rent Objects</p>
+    </div>
+    <div class="col" style="  font-weight: bold;">
+      <p>Remaining Obligation Rent Objects</p>
+    </div>
+  </div>
+  <div class="row">
+     <aura:iteration items="{!v.reportsLink}" var="rl">
+    <div class="col sub-col">
+      <p><a href="{!rl.href}" target="_blank">{!rl.label} </a></p>
+    </div>
+    </aura:iteration>
+  </div>
+</div>
+           </aura:if>
+                  
+
+                  
    </div> 
                   </aura:if>
                
