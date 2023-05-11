@@ -23,7 +23,6 @@
         if(!recordId){
             recordId = component.get('v.recordId');
         }
-        console.log('account id ', recordId);
         if(recordId) {
             component.set("v.newLease.Account__c", recordId);
             let action = component.get("c.getAccountNameFromId");
@@ -34,7 +33,6 @@
                 let state = response.getState();
                 if (state === "SUCCESS") {
                     if(response.getReturnValue()){
-                        console.log(response.getReturnValue());
                         component.set('v.newRentSchedule.Account__c', recordId);
                         component.set('v.accountName', response.getReturnValue());
                     }
@@ -51,7 +49,6 @@
                 let state = response.getState();
                 if (state === "SUCCESS") {
                     if(response.getReturnValue()){
-                        console.log(response.getReturnValue());
                         component.set('v.RentAlreadyCreated', response.getReturnValue());
                     }
                 }
@@ -89,14 +86,9 @@
         	}, true);    
           if(validRS)
        	  	{
-         		console.log('In valid RS');
          		let values = [];
          		values = component.get("v.OldValues"); 
-         		console.log('values ',values);
- 
-        
         		let previousEndDate = component.get("v.PreviousEndDate");
-        		console.log('previousEndDate ',previousEndDate);
         		if(previousEndDate)
         			{
              			let startDate = component.get("v.newRentSchedule.RS_Start_Date__c");
@@ -107,38 +99,31 @@
                         previousEndDate = previousEndDate.getFullYear() + '-' +
                        (previousEndDate.getMonth()+1).toString().padStart(2, "0")  + '-' +
                         previousEndDate.getDate().toString().padStart(2, "0");
-                        console.log('previousEndDate ',previousEndDate);
                         if(startDate != previousEndDate)
              				{
                  				component.set('v.showInValidDateMessage2', true);
                  				check1 = false;
              				}
         			}
-        		 console.log('In revious End Date else');
             	 let startDate = component.get("v.newRentSchedule.RS_Start_Date__c");
-            	 console.log('startdate ', startDate);
               	 let endDate = component.get("v.newRentSchedule.RS_End_Date__c");
-            	 console.log('endDate ', endDate);
         		let todayDate = new Date();
         		if(new Date(todayDate) >  new Date(startDate) && new Date(todayDate) < new Date(endDate))
                 {
                     btwTodayDate = true;
-                    console.log(btwTodayDate);
                 }
-                console.log(btwTodayDate);
             	 if(startDate < endDate )
             		{
                         if( check1)
                         {
-           			 console.log('In true condition');
 					 let oldRs = {
             				RS_Start_Date__c : component.get("v.newRentSchedule.RS_Start_Date__c"),
            					RS_End_Date__c : component.get("v.newRentSchedule.RS_End_Date__c"),
             				RSF__c : component.get("v.newRentSchedule.RSF__c"),
             				Rent_per_Month__c : component.get("v.newRentSchedule.Rent_per_Month__c"),
+                         	Cowork_Exec_Suite__c : component.get("v.newRentSchedule.Cowork_Exec_Suite__c"),
                          	RowBold : btwTodayDate
         						}  
-         		console.log(JSON.stringify(oldRs));
          		values.push(oldRs);
          		component.set('v.OldValues',values);
          		component.set('v.newRentSchedule.Data_Summary__c',JSON.stringify(values));
@@ -178,8 +163,6 @@
         {
          let values = [];
          values = component.get("v.OldValues"); 
-         console.log('values '+ values);
- 
          let previousEndDate = component.get("v.PreviousEndDate");
         
         if(previousEndDate)
@@ -192,7 +175,6 @@
                         previousEndDate = previousEndDate.getFullYear() + '-' +
                        (previousEndDate.getMonth()+1).toString().padStart(2, "0")  + '-' +
                         previousEndDate.getDate().toString().padStart(2, "0");
-                        console.log('previousEndDate ',previousEndDate);
                         if(startDate != previousEndDate)
              				{
                  				component.set('v.showInValidDateMessage2', true);
@@ -200,19 +182,13 @@
              				}
         }
         
-     
-           console.log('In revious End Date else');
             let startDate = component.get("v.newRentSchedule.RS_Start_Date__c");
-            console.log('startdate ', startDate);
             let endDate = component.get("v.newRentSchedule.RS_End_Date__c");
-            console.log('endDate ', endDate);
             let todayDate = new Date();
         		if(new Date(todayDate) >  new Date(startDate) && new Date(todayDate) < new Date(endDate))
                 {
                     btwTodayDate = true;
-                    console.log(btwTodayDate);
                 }
-                console.log(btwTodayDate);
             if(startDate < endDate)
             {
  			    if(check1)
@@ -222,9 +198,9 @@
             		RS_End_Date__c : component.get("v.newRentSchedule.RS_End_Date__c"),
             		RSF__c : component.get("v.newRentSchedule.RSF__c"),
             		Rent_per_Month__c : component.get("v.newRentSchedule.Rent_per_Month__c"),
+                    Cowork_Exec_Suite__c : component.get("v.newRentSchedule.Cowork_Exec_Suite__c"),
                     RowBold : btwTodayDate
        		}  
-         	console.log('oldRS '+ oldRs);
          	values.push(oldRs);
          	component.set('v.OldValues',values);
          	component.set('v.newRentSchedule.Data_Summary__c',JSON.stringify(values));
@@ -266,6 +242,17 @@
         
      handleDateChange2: function (cmp, event) {
         cmp.set('v.showInValidDateMessage2', false);
+    },
+        
+     handleSuiteChange: function (component, event) {
+       let suiteSelection = component.get('v.newRentSchedule.Cowork_Exec_Suite__c');
+        if(suiteSelection === 'No'){
+            component.set('v.showRSF', true);
+        } else {
+            component.set('v.showRSF', false);
+            component.set("v.newRentSchedule.RSF__c", '');
+            //component.set('v.showRSF', false);
+        }
     },
         
 })

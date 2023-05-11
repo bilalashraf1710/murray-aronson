@@ -1,17 +1,6 @@
 ({
 	 doInit : function(component, event, helper) {
-         /*
-           component.set('v.columns', [
-            {label: 'RS Start Date', fieldName: 'RS_Start_Date__c', type: 'date',
-             typeAttributes:{month: "2-digit",day: "2-digit",year: "numeric",timeZone:"UTC"}},
-            {label: 'RS End Date', fieldName: 'RS_End_Date__c', type: 'date',
-             typeAttributes:{month: "2-digit",day: "2-digit",year: "numeric",timeZone:"UTC"}},
-            {label: 'Rent per Month', fieldName: 'Rent_per_Month__c', type: 'currency',
-             cellAttributes: { alignment: 'left' }},
-            {label: 'RSF', fieldName: 'RSF__c', type: 'number',
-            cellAttributes: { alignment: 'left' }},
-        ]);
-         */
+      
          let recordId = component.get('v.recordId');
          console.log('recordId' + recordId);
          if(recordId)
@@ -28,16 +17,46 @@
               let summary = response.getReturnValue();
          	  if(summary.length > 0)
          		{
-             console.log('Data Summary',summary[0].Data_Summary__c);
              let data = summary[0].Data_Summary__c;
-             console.log('data=>', data);
-              component.set("v.data",JSON.parse(data));
+             let data1 = JSON.parse(data);
+             data1.forEach(function(item)
+                          {
+                              item.RentRSFMonth = item.Rent_per_Month__c/item.RSF__c;                
+                          });     
+              let reportsLinks;
+             if(summary[0].ReportsLinks__c !== undefined)
+             {
+             reportsLinks = JSON.parse(summary[0].ReportsLinks__c);
+             }
+              component.set("v.data",data1);
               component.set("v.ShowPreviousValues",true);
+                  if(reportsLinks === undefined)
+             {
+                  component.set('v.showReportLinks',false);
+             }
+             else
+             {
+                  let reports = reportsLinks.reportsList.map(function(item)
+                                                                {
+                                                                return {
+                                                                href:'/lightning/r/City__c/' + item.Id +'/view',
+                                                                label : item.Name,
+                                                                }
+                                                                });
+                              
+                 let sortedReports = reports.sort(
+                                            function(objA, objB){
+                                                return objA.label.localeCompare(objB.label);
+                                            }
+                                          );
+                 component.set('v.reportsLink',sortedReports);
+                 component.set('v.showReportLinks',true);
+             }   
          }
-              }
+      }
               
               
-              });
+       });
               
              $A.enqueueAction(dataSummary);    
          }
