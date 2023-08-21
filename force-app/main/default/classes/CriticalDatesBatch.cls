@@ -1,8 +1,8 @@
 public class CriticalDatesBatch implements Database.Batchable<sObject>, Database.Stateful{
     
     public String hostURL = System.URL.getSalesforceBaseUrl().getHost();
-    // public Date todayDate = date.today(); 
-    public Date todayDate = Date.newInstance(2023, 2, 28);
+     public Date todayDate = date.today(); 
+    //public Date todayDate = Date.newInstance(2023, 2, 28);
     //templates are not being used now
     // public EmailTemplate template = [Select id,name,subject from EmailTemplate where name='EmailNotificationCriticalDates'];
     // public EmailTemplate templateOnDate = [Select Id, Name, Subject FROM EmailTemplate WHERE Name='EmailOnDate'];
@@ -82,8 +82,8 @@ public Boolean isEndOfMonth(Date d) {
                         }
                     }
                     if(this.isEndOfMonth(todayDate) && todayDate.day() < 31 && cd.Critical_Date__c.day() > todayDate.day() && s != 'On Date') {
-                        if(advanceNoticeAndDateMap.get(s).day() < cd.Critical_Date__c.day() && advanceNoticeAndDateMap.get(s).month() == cd.Critical_Date__c.month()){
-                            message.setHtmlBody('Your client, '+ cd.Account__r.Name+', has '+article+' '+cd.Critical_Date_Type__c+' occurring on '+cd.Critical_Date__c.format() +', '+s+' from today.');
+                        if(advanceNoticeAndDateMap.get(s).day() < cd.Critical_Date__c.day() && advanceNoticeAndDateMap.get(s).month() == cd.Critical_Date__c.month()  && advanceNoticeAndDateMap.get(s).Year() == cd.Critical_Date__c.Year()){
+                            message.setHtmlBody('Your client, <a href="'+hostURL+'/lightning/r/Account/'+cd.Account__r.Id+'/view">' + cd.Account__r.Name+'</a>, has '+article+' '+cd.Critical_Date_Type__c+' occurring on '+cd.Critical_Date__c.format() +', '+s+' from today.');
                             emails.add(message);  
                         }
                     }
@@ -104,8 +104,7 @@ public Boolean isEndOfMonth(Date d) {
             List<Messaging.SingleEmailMessage> msgListToBeSend = new List<Messaging.SingleEmailMessage>();
             for (Messaging.SingleEmailMessage email : emails) {
                 Messaging.SingleEmailMessage emailToSend = new Messaging.SingleEmailMessage();
-                emailToSend.setToAddresses(new List<String>{'khaqanmahmood@ocloudsolutions.net'});
-                // emailToSend.setToAddresses(email.getToAddresses());
+                emailToSend.setToAddresses(email.getToAddresses());
                 emailToSend.setPlainTextBody(email.getPlainTextBody());
                 emailToSend.setHTMLBody(email.getHTMLBody());
                 emailToSend.setSubject(email.getSubject());

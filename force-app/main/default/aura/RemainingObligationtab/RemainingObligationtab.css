@@ -1,2 +1,68 @@
-.THIS {
+.THIS .slds-pill__remove {
+    display: none !important;
+}
+.THIS .container {
+  display: flex;
+  flex-direction: column;
+  min-height: 50px;
+ 
+}
+
+.THIS .row1 {
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+  background-color: rgba(243, 243, 243,1);
+}
+
+.THIS .row2 {
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+}
+
+.THIS .col1 {
+  flex-basis: 50%;
+  border-right: 1px solid rgba(229, 229, 229,1);
+  border-top: 1px solid rgba(229, 229, 229,1);
+  border-bottom: 1px solid rgba(229, 229, 229,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+
+.THIS .col2 {
+  flex-basis: 50%;
+  border-top: 1px solid rgba(229, 229, 229,1);
+  border-bottom: 1px solid rgba(229, 229, 229,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+
+.THIS .sub-col:not(:last-child) {
+  flex-basis: 33.33%;
+  border-right: 1px solid rgba(229, 229, 229,1);
+  border-bottom: 1px solid rgba(229, 229, 229,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+
+
+
+.THIS .sub-col:last-child {
+  flex-basis: 33.33%;
+  border-bottom: 1px solid rgba(229, 229, 229,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top:4px;
+  padding-bottom:4px;
 }

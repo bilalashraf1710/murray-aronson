@@ -1,0 +1,14 @@
+<template>
+        <lightning-layout>
+            <lightning-layout-item size="12">
+
+            
+                <template for:each={contactFields} for:item="item">
+                    <lightning-layout-item size="6" key={item}>
+                        <lightning-input type="checkbox" label={item.label} checked={item.visible}></lightning-input>
+                    </lightning-layout-item>
+                    <!-- <p key={item}>{item} </p> -->
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+</template>

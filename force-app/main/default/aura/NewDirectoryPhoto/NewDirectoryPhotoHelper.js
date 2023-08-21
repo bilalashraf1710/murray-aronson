@@ -43,11 +43,13 @@
                     this.gotoURL(component, response.getReturnValue().Id, 'Building_Directory__c');
                     component.set("v.newPhoto.Date_Walked__c", '');
                     component.set("v.newPhoto.Directory_Status__c", '');
+                    component.set("v.newPhoto.Walked_Notes__c", '');
                     component.set("v.documentId", '');
                     component.set("v.documentName", '');
                 } else {
                     component.set("v.newPhoto.Date_Walked__c", '');
                     component.set("v.newPhoto.Directory_Status__c", '');
+                    component.set("v.newPhoto.Walked_Notes__c", '');
                     component.set("v.documentId", '');
                     component.set("v.documentName", '');
                 }
@@ -69,6 +71,7 @@
                 if(response.getReturnValue()){
                     component.set("v.newPhoto.Date_Walked__c", '');
                     component.set("v.newPhoto.Directory_Status__c", '');
+                    component.set("v.newPhoto.Walked_Notes__c", '');
                     component.set("v.documentId", '');
                     component.set("v.documentName", '');
                 }

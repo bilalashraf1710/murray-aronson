@@ -33,6 +33,7 @@
                 
                 var createRecordEvent = $A.get("e.force:createRecord");
             if(recordId.substring(0, 3) == '001'){
+            console.log("v.suiteWrap.buildingId", component.get("v.suiteWrap.buildingId"));
             createRecordEvent.setParams({ 
                 "entityApiName": "Suites__c",
                 "recordTypeId": RecTypeID,
@@ -95,6 +96,14 @@
             createRecordEvent.fire();
         }
         
-    }
+    },
+     gotoURL : function (component, id, apiName) {
+        var urlEvent = $A.get("e.force:navigateToURL");
+        let recordURL = '/lightning/r/'+apiName+'/' +id +'/view'
+        urlEvent.setParams({
+          "url": recordURL
+        });
+        urlEvent.fire();
+    },
     
 })

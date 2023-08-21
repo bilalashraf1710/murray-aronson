@@ -1,6 +1,7 @@
 import { LightningElement } from 'lwc';
 import { wire, api, track } from 'lwc';
 import getBrokerTasksData from '@salesforce/apex/QueryTaskData.QueryBrokerTasks';
+import getBuildingFromSuites from '@salesforce/apex/QueryTaskData.getBuildingsRelatedToSuites';
 const columns = [
     { label: 'Task', fieldName: 'TaskURL' ,   type:'url' ,
         typeAttributes: {
@@ -18,6 +19,16 @@ const columns = [
             year: "numeric"
         }  
     },
+
+    {
+        label: 'Building', fieldName: 'BuildingId', type:'url',
+            typeAttributes: {
+                label: {
+                    fieldName: 'BuildingName'
+                }
+            }
+    },
+    
     { label: 'Relationship', fieldName: 'RelatedToURL' ,type:'url', 
         typeAttributes: {
             label: {
@@ -44,72 +55,88 @@ export default class brokerTasks extends LightningElement {
     // connectedCallback(){
     //     console.log('broker idi: ', this.recordId);
     // }
+    suiteIds = [];
     @track showIncompleteTasks = false;
     @track showCompletedTasks = false;
+    buildingSuiteIdsMap = [];
 
-    @wire(getBrokerTasksData, {brokerId: '$recordId'})
-    getBuildingTasksDataCallback(response){
-        const {error, data} = response;
-        if(response.data){
-            this.loaded = true;
-        }
-        console.log('dara: ', data);
-        this.data = data;
-        if(this.data){
-            this.incompleteTasks = data.filter((item)=>item.Status !== 'Completed');
-            this.completedTasks = data.filter((item)=>item.Status === 'Completed');
-        }
+   // @wire(getBrokerTasksData, {brokerId: '$recordId'})
+   // getBuildingTasksDataCallback(response){
+        //const {error, data} = response;
+       // if(response.data){
+           // this.loaded = true;
+        //}
+       // console.log('dara: ', data);
+    async connectedCallback(){
+        let data = await getBrokerTasksData({brokerId: this.recordId});
+        if(data)
+        {
+        this.loaded = true;
         
-        // let copyOfData =[];
-        // this.data?.map((item)=>{
-        //     copyOfData.push({
-        //         ...item,
-        //         OwnerName: item.Owner.Name,
-        //         RelatedToName: item?.What?.Name,
-        //         RelatedToURL: (item.WhatId).startsWith('a0L8') ? '/lightning/r/Suites__c/' +item.WhatId +'/view' : '/lightning/r/Building__c/' +item.WhatId +'/view',
-        //         TaskURL:'/lightning/r/Task/' +item['Id'] +'/view'
-        //     });
-        // })
-        // this.data = copyOfData;
-        // console.log('data: ', this.data);
-        // if(this.)
-        // this.loaded = true;
-        // this.loaded = false;
-
-        // if(this.IncompleteTaskdata.length > 0){
-        //     this.showIncompleteTasks = true;
-        // }else{
-        //     this.showIncompleteTasks = false;
-        // }
+      
+        this.incompleteTasks = data.filter((item)=>item.Status !== 'Completed');
+        this.completedTasks = data.filter((item)=>item.Status === 'Completed');
+        
+        
+       
 
         this.showIncompleteTasks = this.incompleteTasks.length > 0 ? true : false;
         this.showCompletedTasks = this.completedTasks.length > 0 ? true : false;
-        // if(this.completedTaskdata.length > 0){
-        //     this.showCompleteTasks = true;
-        // } else {
-        //     this.showCompleteTasks = false;
-        // }
-        console.log('show takss: ', this.showIncompleteTasks);
-
+        
+       // console.log('show takss: ', this.showIncompleteTasks);
+        this.suiteIds = this.getSuiteIdsFromTasksTable(data);
+    }
+        this.buildingSuiteIdsMap = await getBuildingFromSuites({suiteIds: this.suiteIds});
         this.incompleteTasks = this.addRelatedURLsToItems(this.incompleteTasks);
         this.completedTasks = this.addRelatedURLsToItems(this.completedTasks);
 
         console.log('completed tasks ', this.completedTasks);
     }
 
-    addRelatedURLsToItems(data1)
+    addRelatedURLsToItems(data)
     {
-        let copyOfData=[];
-        data1?.forEach((item)=>{
-            copyOfData.push({
+        let dataWithRelatedURL=[];
+        let dataWithBuildingsURL=[];
+        data?.forEach((item)=>{
+            if((item?.WhatId)?.startsWith('a0L')) {
+                this.suiteIds.push(item.WhatId);
+            } 
+            dataWithRelatedURL.push({
                 ...item,
                 OwnerName: item?.Owner?.Name,
                 RelatedToName: item?.What?.Name,
-                RelatedToURL: (item?.WhatId)?.startsWith('a0L8') ? '/lightning/r/Suites__c/' +item?.WhatId +'/view' : '/lightning/r/Building__c/' +item?.WhatId +'/view',
-                TaskURL:'/lightning/r/Task/' +item['Id'] +'/view'
+                RelatedToURL: (item?.WhatId) ? (item?.WhatId)?.startsWith('a0L8') ? '/lightning/r/Suites__c/' +item?.WhatId +'/view' : '/lightning/r/Building__c/' +item?.WhatId +'/view' : '',
+                TaskURL:'/lightning/r/Task/' +item['Id'] +'/view',
+                BuildingId:(item?.WhatId) ? (item?.WhatId)?.startsWith('a0L8') ? '/lightning/r/Suites__c/' +item?.WhatId +'/view' : '/lightning/r/Building__c/' +item?.WhatId +'/view' : '',
+                BuildingName:item?.What?.Name
             });
         })
-        return copyOfData;
+        dataWithRelatedURL?.forEach((item)=>{
+            if((item?.WhatId)?.startsWith('a0L')){
+                dataWithBuildingsURL.push({
+                    ...item,
+                    BuildingId:(this.buildingSuiteIdsMap[item?.WhatId])?'/lightning/r/Building__c/' + this.buildingSuiteIdsMap[item?.WhatId]?.Id + '/view':'',
+                    BuildingName:this.buildingSuiteIdsMap[item?.WhatId]?.Name,
+                })
+            } else{
+                dataWithBuildingsURL.push({
+                    ...item,
+                })
+            }
+            
+        })
+        return dataWithBuildingsURL;
+    }
+
+    getSuiteIdsFromTasksTable(data)
+    {
+        let suiteIds = [];
+        data?.forEach((item)=>{
+            if((item?.WhatId)?.startsWith('a0L')) {
+                suiteIds.push(item.WhatId);
+            } 
+        })
+        return suiteIds;
     }
 
 

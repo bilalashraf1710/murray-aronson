@@ -17,10 +17,11 @@ public class BuildingController {
                                           where Id=: std.getId()];
         
         if(buildingList.size() > 0){
-            List<Suites__c> suitesList = [Select Id,Name,Suite_Floor_Number__c,Suite_Number__c,Suite_RSF__c,Suite_LEXP__c,Account__c,Building__c,
-                                          Account__r.Name, Tenant__c, Tenant__r.Company, Vacant__c from Suites__c 
+            List<Suites__c> suitesList = [Select Id,RecordTypeId, Name,Suite_Floor_Number__c,Suite_Number__c,Suite_RSF__c,Suite_LEXP__c,Account__c,Building__c,
+                                          Account__r.Name, Tenant__c, Tenant__r.Company, Vacant__c,Landlord_Use__c,Not_Tracked__c from Suites__c 
                                           where Building__c =: buildingList[0].Id
                                           order by Suite_Floor_Number__c desc];
+            
             
             Map<Decimal,List<Suites__c>> suitesMap = new Map<Decimal,List<Suites__c>>();
             for(Suites__c s: suitesList){
@@ -36,6 +37,7 @@ public class BuildingController {
      
             
             Building__c c= buildingList[0];
+            system.debug('Building' + c);
             resp.Name = c.Name__c;
             resp.Address = c.Name + ', ' + c.City__c + ', ' + c.StatePK__c;
             resp.suiteInfoList = new List<SuiteInfo>();
@@ -66,19 +68,39 @@ public class BuildingController {
                         
                         isrec.SuiteLink = URL.getOrgDomainUrl().toExternalForm() +'/' + fs.Id;
                         
-                        
-                        
-
+                         System.debug('RecordTypeName=>');
+                        if(fs.RecordTypeId !=null)
+                        {
+                        isrec.RecordTypeName =Schema.getGlobalDescribe().get('Suites__c').getDescribe().getRecordTypeInfosById().get(fs.RecordTypeId).getName();
+                        }
+                        System.debug('RecordTypeName=>' + isrec.RecordTypeName);
+						isrec.LandlordUse = fs.Landlord_Use__c;
+                        isrec.NotTracked =  fs.Not_Tracked__c;
                         isrec.SuiteNumber = 'Suite ' + fs.Suite_Number__c;
                         isrec.SuiteRSF = fs.Suite_RSF__c;
-                        isrec.Vacant = fs.vacant__c;
+                       // isrec.Vacant = fs.vacant__c;
                         isrec.color = '';
+                        
+                        /*
                         if(isrec.Vacant=='Yes'){
                             isrec.color='#ddd';
                         }
-
+						*/
                         
+                        if(isrec.RecordTypeName == 'Vacancy')
+                        {
+							  isrec.color='#ddd';
+                        }
+                        
+                       
+                        
+                        if(isrec.LandlordUse !='N/A' )
+                        {
+                            isrec.LandlordUse = 'Vacant - ' + isrec.LandlordUse;
+                        }
+                      
                         isrec.textcolor = '';
+                        /*
                         if(fs.Suite_LEXP__c != null){
                             isrec.SuiteLEXP = fs.Suite_LEXP__c.month() + '/' + fs.Suite_LEXP__c.day() + '/' + fs.Suite_LEXP__c.year();
                             String cyear = String.valueOf(fs.Suite_LEXP__c.year());
@@ -100,7 +122,7 @@ public class BuildingController {
                                 }
                             }
                         }
-
+						*/
 
                         si.individualSuiteList.add(isrec);
                     }
@@ -166,12 +188,13 @@ public class BuildingController {
                         Integer MaxCount = 0;
                         for (IndividualSuite s : si.individualSuiteList){
                             heightCell = 0;
+                            /*
                             if(s.Name != null){
-
                             heightCell = heightCell + 18;
                             count++;
 
                             }
+*/
                             if(s.SuiteNumber != null){
                                
                             heightCell = heightCell + 18;
@@ -183,16 +206,25 @@ public class BuildingController {
                             count++;   
                             }
                             
-                            if(s.SuiteLEXP != null){
+                            if(s.LandlordUse != null){
                                
                             heightCell = heightCell + 18;
 							count++;
                             }
+
+                            if(s.NotTracked != null){
+                               
+                            heightCell = heightCell + 18;
+							count++;
+                            }
+                            /*
                             if(s.Address != null){
                                
                             heightCell = heightCell + 18;
                             count++;
                             }
+*/
+                            /*
                             if(s.Vacant != null){
                             if(s.Vacant == 'Yes')
                             {
@@ -205,6 +237,7 @@ public class BuildingController {
                             count++; 
                             }
                             }
+*/
                             
                             if(heightCell > MaxHeight)
                             {
@@ -260,7 +293,9 @@ public class BuildingController {
         public String SuiteLEXP{get;set;}
         public String Address{get;set;}
         public String Vacant{get;set;}
-        
+        public String RecordTypeName{get;set;}
+        public String LandlordUse{get;set;}
+        public String NotTracked{get;set;}
         public String Link{get;set;}
         public String SuiteLink{get;set;}
     }

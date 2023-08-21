@@ -1,0 +1,26 @@
+.THIS .slds-modal__container{
+    /* border:1px solid red; */
+    max-width: 70rem !important;
+    width:60% !important;
+}
+
+.THIS .backgroundWhite{
+    background-color: white;
+}
+
+.THIS .attachedFiles{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    flex-wrap:wrap;
+}
+
+.THIS .file{
+    margin: 2px;
+    background-color: #f7f7f7;
+    width:260px; 
+    border: 1px solid #c2b9b9; 
+    border-radius: 3px
+    
+}

@@ -69,6 +69,9 @@
                     <option value="Terms and Conditions">Terms and Conditions</option>
                     <option value="Side Letter">Side Letter</option>
                     <option value="Satisfaction of Condition Precedent">Satisfaction of Condition Precedent</option>
+                    <option value="Sale Notice">Sale Notice</option>
+                    <option value="Temporary License">Temporary License</option>
+                    <option value="Substantial Completion Notice">Substantial Completion Notice</option>
                 </aura:if>
                 <aura:if isTrue="{!v.MADocument}">
                     <option value="Combined Lease">Combined Lease</option>

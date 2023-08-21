@@ -154,7 +154,7 @@
                 </lightning:layout>
                 <lightning:layout>
                     <lightning:layoutItem size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
-                        <lightning:select value="{!v.newTask.Periodicity__c}" label="Periodicity">
+                        <lightning:select value="{!v.newTask.Periodicity__c}" label="Periodicity" required="true" aura:id="taskForm">
                             <option value="">--None--</option>
                             <option value="Annually">Annually</option>
                             <option value="Biannually">Biannually</option>
@@ -177,6 +177,7 @@
                                 <option value="Account Servicing">Account Servicing</option>
                                 <option value="Prospecting">Prospecting</option>
                                 <option value="Company Infrastructure">Company Infrastructure</option>
+                                <option value="Business Plan">Business Plan</option>
                                 <option value="Market Intel">Market Intel</option>
                                 <option value="Provisors">Provisors</option>
                                 <option value="Other">Other</option>
@@ -185,6 +186,7 @@
                                 <option value="Account Servicing">Account Servicing</option>
                                 <option value="Prospecting">Prospecting</option>
                                 <option value="Company Infrastructure">Company Infrastructure</option>
+                                <option value="Business Plan">Business Plan</option>
                                 <option value="Market Intel">Market Intel</option>
                                 <option value="Salesforce">Salesforce</option>
                                 <option value="Other">Other</option>
@@ -232,6 +234,7 @@
                             <option value="Completed">Completed</option>
                             <option value="Waiting on someone else">Waiting on someone else</option>
                             <option value="Deferred">Deferred</option>
+                            <option value="Failed">Failed</option>
                         </lightning:select>
                     </lightning:layoutItem>
                 </lightning:layout>

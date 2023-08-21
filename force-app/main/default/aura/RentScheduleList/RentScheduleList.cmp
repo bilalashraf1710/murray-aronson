@@ -1,0 +1,85 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"
+                 controller="RentScheduleListController">
+	
+     <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="accountName" type="String" />
+    <aura:attribute name="openNewRSModal" type="Boolean" default="false" />
+    <aura:attribute name="showViewAllButton" type="Boolean" default="false" />
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="actions" type="List"/>
+    <aura:attribute name="numberOfRS" type="String" default="0"/>
+    <aura:attribute name="viewAllRSURL" type="String" default="0"/>
+    <aura:attribute name="RentScheduleId" type="String"/>
+    <aura:attribute name="showDeleteModal" type="Boolean" default="false"/>
+	 <lightning:overlayLibrary aura:id="overlayLib"/>
+    <!-- handlers-->
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+
+    
+    <div class="parentList">
+        <div class="borderParent">
+            <div class="header">
+                <div class="iconAndTitle">
+                    <span>
+                        <lightning:icon class="leaseIcon" iconName="custom:custom19" size="small" alternativeText="Leases">
+                        </lightning:icon>
+                    </span>
+                    <span class="leaseTitle">
+                        &nbsp;Rent&nbsp;Schedules&nbsp;({!v.numberOfRS})
+                    </span>
+                </div>
+                <div class="newLeaseButton">
+                    <lightning:button variant="neutral" label="New" onclick="{!c.openModal}"></lightning:button>
+                </div>
+            </div>
+             <aura:if isTrue="{!v.showViewAllButton}">
+            <div class="table">
+                <div>
+                    <lightning:datatable
+                            keyField="id"
+                            data="{! v.data }"
+                            columns="{! v.columns }"
+                            hideCheckboxColumn="true"
+                            onrowaction="{! c.handleRowAction }"/>
+                </div>
+            </div>
+            <div class="viewAllButton">
+                <a href="{!v.viewAllRSURL}">
+                    View All
+                </a>
+            </div>
+           </aura:if>
+        </div>
+        <div>
+            <aura:if isTrue="{!v.openNewRSModal}">
+                <c:NewRentSchedules recordId="{!v.recordId}" accountName="{!v.accountName}"/>
+            </aura:if>
+        </div>
+    </div>
+    
+    <!--============ Modal Component ==========-->
+    <aura:if isTrue="{!v.showDeleteModal}">
+        <div aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="leaseHeader" class="slds-modal slds-fade-in-open slds-p-around_medium">
+            <div class="slds-modal__container slds-p-around_medium">
+                <div class="backgroundWhite">
+                    
+                    <div class="slds-modal__header">
+                  		<h2 class="slds-text-heading--medium">Delete Rent Schedule</h2>
+                    </div>
+                    <div class="slds-p-around_medium flexCenter" >
+                        Are you sure you want to delete this Rent Schedule?
+                    </div>
+                        
+                    
+                </div>
+                <div class="slds-modal__footer footerButtons">    
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+                    <lightning:button variant="brand" label="Delete" onclick="{!c.onDelete}" />
+                </div>
+         	</div>
+        </div>
+        <div aura:id="overlay" class="slds-backdrop slds-backdrop--open"></div>
+    </aura:if>
+    
+</aura:component>
