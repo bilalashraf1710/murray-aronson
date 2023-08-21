@@ -65,8 +65,8 @@
                                       name="fileUploader"
                                       multiple="false"
                                       accept="{!v.filetype}"
-                                      recordId="{!v.recordId}"
                                       onuploadfinished="{!c.handleUploadFinished}" />
+					<!--  recordId="{!v.recordId}" -->
                   <aura:if isTrue="{!v.showFileAttachMessage}">
                     <div style="color: red">Attachment is Required</div>
                   </aura:if>

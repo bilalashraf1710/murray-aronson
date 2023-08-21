@@ -1,10 +1,13 @@
 <apex:page standardController="Suites__c" recordSetVar="Suites">
-     <apex:includeLightning />
+    <apex:includeLightning />
     <div id="lightning" />
     <script>
-        $Lightning.use("c:MyApp", function() {
-            $Lightning.createComponent("c:NewSuiteCreation", 
-            { /* component attributes */ }, "lightning");
+        $Lightning.use("c:NewSuiteCreation", function() {
+            $Lightning.createComponent("c:NewSuiteCreation", {},
+            "lightning",
+            function(cmp) {
+                // component was created
+            });
         });
     </script>
     

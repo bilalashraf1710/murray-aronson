@@ -58,7 +58,8 @@ public class HandlerGeneralTriggerOnDocument {
             		system.debug(DeleteSObjectList);// getting the  Sobject that want to delete
             	}
                 
-                else if (ObjectType =='Building_Directory__c')
+                //else if (ObjectType =='Building_Directory__c' || ObjectType =='Suite_Photos__c')
+             /*    else if (ObjectType =='Building_Directory__c')
                 {
                     List<ContentDocumentLink> directoryObjDoc = [SELECT ContentDocumentId FROM ContentDocumentLink where LinkedEntityId =:directoryObjectId];
                     system.debug('directoryObjDoc=>' + directoryObjDoc);
@@ -71,6 +72,7 @@ public class HandlerGeneralTriggerOnDocument {
                     }
                     
                 }
+*/
             }  
             
             if(DeleteSObjectList!=NULL)

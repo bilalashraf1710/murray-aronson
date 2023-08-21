@@ -87,38 +87,17 @@
                     
                     
                     <apex:repeat value="{!cdata.individualSuiteList}" var="idata">
-                          <apex:outputPanel rendered="{!AND(idata.Vacant != 'Marketed for Sublease', idata.Vacant != 'Marketed Direct')}">
+                          <apex:outputPanel rendered="{!idata.RecordTypeName == 'Vacancy'}">
                           <!--     <apex:outputPanel rendered="{!idata.Vacant != 'Marketed for Sublease'}"> -->
                         	<td style="background-color:{!idata.color};color:{!idata.textcolor};width:{!cdata.width}%;  border-left: 1px solid black;height:{!cdata.height}px;">
-                                <apex:outputPanel rendered="{!idata.Vacant == 'Yes'}">
-                                    <span>Vacant</span>
+                                <apex:outputPanel rendered="{!idata.LandlordUse != NULL}">
+                                    <span>{!idata.LandlordUse}</span>
                                 </apex:outputPanel>
-                                <apex:outputPanel rendered="{!idata.textcolor=='#ff0000'}">
+                              
+                                 
                                     <div>
-                                    <apex:outputlink style="color:red" value="{!idata.Link}">{!idata.Name}</apex:outputlink>
+                                    <apex:outputlink value="{!idata.SuiteLink}">{!idata.SuiteNumber}</apex:outputlink>
                                     </div>
-                                    <div>
-                                    <apex:outputlink style="color:red" value="{!idata.SuiteLink}">{!idata.SuiteNumber}</apex:outputlink>
-                                    </div>
-                                </apex:outputPanel>
-                                
-                                <apex:outputPanel rendered="{!idata.textcolor=='white'}">
-                                    <div>
-                                    <apex:outputlink style="color:white" value="{!idata.Link}">{!idata.Name}</apex:outputlink>
-                                    </div>
-                                    <div>
-                                    <apex:outputlink style="color:white" value="{!idata.SuiteLink}">{!idata.SuiteNumber}</apex:outputlink>
-                                    </div>
-                                </apex:outputPanel>
-                                
-                                 <apex:outputPanel rendered="{!AND(idata.textcolor!='#ff0000',idata.textcolor!='white')}">
-                                      <div>
-                                    <apex:outputlink value="{!idata.Link}">{!idata.Name}</apex:outputlink>
-                                     </div>
-                                    <div>
-                                    <apex:outputlink value="{!idata.SuiteLink}">{!idata.SuiteNumber}</apex:outputlink> 
-                                        </div>  
-                                 </apex:outputPanel>
                                 
                                 <apex:outputPanel rendered="{!(!ISBLANK(idata.SuiteRSF))}">
                                     <apex:outputText value="{0, number, integer}">
@@ -126,56 +105,31 @@
                                     </apex:outputText>&nbsp;RSF
                              
                                 </apex:outputPanel>
-                                <span>{!idata.SuiteLEXP}</span>
                         	</td>
                         </apex:outputPanel>
-                       <apex:outputPanel rendered="{!OR(idata.Vacant == 'Marketed for Sublease', idata.Vacant == 'Marketed Direct')}">
+                       <apex:outputPanel rendered="{!idata.RecordTypeName == 'Not Tracking'}">
                        <!-- <apex:outputPanel rendered="{!idata.Vacant == 'Marketed for Sublease'}"> -->
-                        	<td style="background-color:rgba(221,221,221,1);color:{!idata.textcolor};width:{!cdata.width}%;  border-left: 1px solid black; height:{!cdata.height}px;">
-                                <apex:outputPanel rendered="{!idata.Vacant == 'Yes'}">
-                                    <div>Vacant</div>
-                                </apex:outputPanel>
-                            <apex:outputPanel rendered="{!idata.textcolor=='#ff0000'}">
-                                 <div>
-                                    <apex:outputlink style="color:red" value="{!idata.Link}">{!idata.Name}</apex:outputlink>
-                                </div>
-                                <div>
-                                    <apex:outputlink style="color:red" value="{!idata.SuiteLink}">{!idata.SuiteNumber}</apex:outputlink>
-                                </div>
-                            </apex:outputPanel>
+                        	<td style="background-color:{!idata.color};color:{!idata.textcolor};width:{!cdata.width}%;  border-left: 1px solid black; height:{!cdata.height}px;">
+                                <apex:outputPanel rendered="{!idata.NotTracked != NULL}"> 
+                                    <span>{!idata.NotTracked}</span>
+                               </apex:outputPanel> 
+                            <apex:outputPanel rendered="{!idata.SuiteLink != NULL}">
                                 
-                                 <apex:outputPanel rendered="{!idata.textcolor=='white'}">
-                                    <div>
-                                    <apex:outputlink style="color:white" value="{!idata.Link}">{!idata.Name}</apex:outputlink>
-                                    </div>
-                                    <div>
-                                    <apex:outputlink style="color:white" value="{!idata.SuiteLink}">{!idata.SuiteNumber}</apex:outputlink>
-                                    </div>
-                                </apex:outputPanel>
-                                
-                                 <apex:outputPanel rendered="{!AND(idata.textcolor!='#ff0000',idata.textcolor!='white')}">
-                                 <div>
-                                    <apex:outputlink value="{!idata.Link}">{!idata.Name}</apex:outputlink>
-                                </div>
                                 <div>
                                     <apex:outputlink value="{!idata.SuiteLink}">{!idata.SuiteNumber}</apex:outputlink>
                                 </div>
                             </apex:outputPanel>
+                                
                                 
                                 <div>
                                     <apex:outputPanel rendered="{!(!ISBLANK(idata.SuiteRSF))}">
                                     <apex:outputText value="{0, number, integer}">
                                         <apex:param value="{!idata.SuiteRSF}" /> 
                                     </apex:outputText>&nbsp;RSF
-                                    <apex:outputPanel rendered="{!idata.Vacant == 'Marketed for Sublease'}">
-                                        <span>Marketed for Sublease</span>
-                                    </apex:outputPanel>
-                                    <apex:outputPanel rendered="{!idata.Vacant == 'Marketed Direct'}">
-                                        <span>Marketed Direct</span>
-                                    </apex:outputPanel> 
+  
                                 </apex:outputPanel>
                                 </div>
-                                <div>{!idata.SuiteLEXP}</div>
+                               
                         	</td>
                         </apex:outputPanel>
                         

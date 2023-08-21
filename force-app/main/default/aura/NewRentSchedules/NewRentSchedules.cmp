@@ -16,6 +16,8 @@
      <aura:attribute name="PreviousEndDate" type="Date"  access="public" />
     <aura:attribute name="showInValidDateMessage" type="Boolean" default="false"/>
     <aura:attribute name="showInValidDateMessage2" type="Boolean" default="false"/>
+    <aura:attribute name="showRSF" type="Boolean" default="false"/>
+    <aura:attribute name="showExecSuite" type="Boolean" default="true"/>
     
     <aura:attribute name="newRentSchedule" type="Rent_Schedule__c"
     default="{ 'sobjectType': 'Rent_Schedule__c',
@@ -24,7 +26,8 @@
                    'Account__c': '',
                    'RSF__c': '',
                    'Rent_per_Month__c':'',
-             	   'Data_Summary__c':''
+             	   'Data_Summary__c':'',
+             	   'Cowork_Exec_Suite__c':''
              }"/>
     
      
@@ -69,20 +72,7 @@
                 </lightning:layout>
                   
                <aura:if isTrue="{!v.ShowPreviousValues}">
-                 <!--
-                <div class="slds-box">       
-               <div style="height: 150px">
-                   
-        			<lightning:datatable
-                	keyField="id"
-                	data="{!v.data}"
-                	columns="{!v.columns}"
-                	hideCheckboxColumn="true"
-             />
- 				  
-                    </div>  
-                   </div>
--->
+               
                    <div class="slds-box">
     <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
 	<thead>
@@ -141,11 +131,22 @@
 		<td data-label="RSF">
 		<div class="slds-truncate" title="{! ct.RSF__c }">
             <aura:if isTrue="{!ct.RowBold}">
-             <p Style="font-weight:bold"><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
+             
+             <aura:if isTrue="{!not(empty(ct.RSF__c))}">
+                 <p Style="font-weight:bold"><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
+			  </aura:if>
+                <aura:if isTrue="{!empty(ct.RSF__c)}">
+                    <p Style="font-weight:bold">N/A</p>
+			  </aura:if>
             </aura:if>
             <aura:if isTrue="{!not(ct.RowBold)}">
+              <aura:if isTrue="{!not(empty(ct.RSF__c))}">
              <p><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
-            </aura:if>
+             </aura:if>
+			  <aura:if isTrue="{!empty(ct.RSF__c)}">
+              <p >N/A</p>
+			  </aura:if>
+            </aura:if>    
             </div>
 		</td>
 		</tr>
@@ -188,7 +189,8 @@
                         type="number" 
                         formatter="currency"
                         name="input1" 
-                        label="Rent per Month" 
+                        label="Rent per Month"
+                        step="0.01"
                         aura:id="validRS"
                         style="background-color:white" 
                         class="slds-p-horizontal_large slds-scrollable_none"
@@ -223,9 +225,38 @@
                   		</aura:if>
                         </div>
                     </lightning:layoutItem>
-        
+        		
+          <aura:if isTrue="{!v.showExecSuite}">
+         
       		 <lightning:layoutItem size="6" class="backgroundWhite">
                         <div style="overflow: visible; padding-bottom:10px;padding-top:7px;" >
+
+                        
+                       <lightning:select  
+                        required="true"
+                        name="input1" 
+                        label="Cowork/Exec Suite" 
+                        aura:id="validRS"
+                        class="slds-p-horizontal_large slds-scrollable_none"
+                        value="{!v.newRentSchedule.Cowork_Exec_Suite__c}"
+                        onchange="{!c.handleSuiteChange}">
+                         <option value="">--None--</option>
+                                  <option value="Yes">Yes</option>
+                                  <option value="No">No</option>   
+                            
+                            </lightning:select>
+
+                      </div>
+                      </lightning:layoutItem>
+
+                 </aura:if>
+                </lightning:layout>
+                 
+                   <aura:if isTrue="{!v.showRSF}">
+                  <lightning:layout class="backgroundWhite">
+        
+      		 <lightning:layoutItem size="6" class="backgroundWhite">
+                        <div style="overflow: visible; padding-bottom:13px;" class="slds-p-horizontal_x-large ">
 
                         
                         <lightning:input 
@@ -235,7 +266,7 @@
                         label="RSF" 
                         aura:id="validRS"
                         style="background-color:white" 
-                        class="slds-p-horizontal_large slds-scrollable_none"
+                        class=""
                         value="{!v.newRentSchedule.RSF__c}"
                        />
 
@@ -244,7 +275,7 @@
 
                   
                 </lightning:layout>
-                  
+                       </aura:if>
                   
         </div>
               <div class="slds-modal__footer footerButtons">    

@@ -1,0 +1,39 @@
+<template>
+  <template if:true={showData}>
+    <div style="border: 1px solid rgba(201, 201, 201, 1); border-radius: 5px">
+      <lightning-accordion allow-multiple-sections-open="true">
+        <lightning-accordion-section name={marketName} label={marketName}>
+          <template for:each={items} for:item="item">
+            <a
+              style="
+                display: flex;
+                font-size: 16px;
+                margin: 8px 37px 8px;
+                color: black;
+                font-weight: 500;
+              "
+              key={item.Id}
+              href={item.href}
+              >&raquo;{item.label}</a
+            >
+            <div key={item.Id} style="margin-left: 40px">
+              <template for:each={item.items} for:item="item1">
+                <a
+                  style="
+                    margin: 0px 20px 0px;
+                    font-size: 14px;
+                    font-weight: 350;
+                    color: black;
+                  "
+                  key={item1.Id}
+                  href={item1.href}
+                  >&raquo;{item1.label}</a
+                >
+              </template>
+            </div>
+          </template>
+        </lightning-accordion-section>
+      </lightning-accordion>
+    </div>
+  </template>
+</template>

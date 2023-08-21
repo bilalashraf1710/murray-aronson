@@ -151,7 +151,7 @@ public with Sharing class BuildingSuiteLookupController {
         
         return details;
     }
-    
+
     public class objectDetails {
         @AuraEnabled
         public string iconName;

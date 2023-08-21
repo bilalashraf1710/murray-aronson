@@ -6,40 +6,30 @@
     <aura:attribute name="ShowPreviousValues" type="Boolean" default="false" />
     <aura:attribute name="data" type="Object"/>
     <aura:attribute name="columns" type="List"/>
-    
+    <aura:attribute name="showReportLinks" type="Boolean" default="false" />
+    <aura:attribute name="reportsLink" type="Object"/>
     
      <aura:if isTrue="{!v.ShowPreviousValues}">
-                 <!--
-                <div class="slds-box">       
-               <div style="height: 150px">
-                   
-        			<lightning:datatable
-                	keyField="id"
-                	data="{!v.data}"
-                	columns="{!v.columns}"
-                	hideCheckboxColumn="true"
-             />
- 				  
-                    </div>  
-                   </div>
--->
-                 
+                
     
     <div class="slds-box">
     <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
 	<thead>
 	<tr class="slds-line-height_reset">
-	<th scope="col">
+	<th scope="col" style="width:20%">
 	<div class="slds-truncate" title="RS Start Date">RS Start Date</div>
 	</th>
-	<th scope="col">
+	<th scope="col" style="width:20%">
 	<div class="slds-truncate" title="RS End Date">RS End Date</div>
 	</th>
-	<th scope="col">
+	<th scope="col" style="width:20%">
 	<div class="slds-truncate" title="Rent per Month">Rent per Month</div>
 	</th>
-	<th scope="col">
+	<th scope="col" style="width:20%">
 	<div class="slds-truncate" title="RSF">RSF</div>
+	</th>
+    <th scope="col" style="width:20%">
+	<div class="slds-truncate" title="Rent per RSF per Month">Rent per RSF per Month</div>
 	</th>
 	</tr>
 	</thead>
@@ -83,17 +73,69 @@
 		<td data-label="RSF">
 		<div class="slds-truncate" title="{! ct.RSF__c }">
             <aura:if isTrue="{!ct.RowBold}">
-             <p Style="font-weight:bold"><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
+             <aura:if isTrue="{!not(empty(ct.RSF__c))}">
+                 <p Style="font-weight:bold"><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
+			  </aura:if>
+                <aura:if isTrue="{!empty(ct.RSF__c)}">
+                    <p Style="font-weight:bold">N/A</p>
+			  </aura:if>
             </aura:if>
             <aura:if isTrue="{!not(ct.RowBold)}">
+            <aura:if isTrue="{!not(empty(ct.RSF__c))}">
              <p><lightning:formattedNumber value="{! ct.RSF__c }"/></p>
+             </aura:if>
+			  <aura:if isTrue="{!empty(ct.RSF__c)}">
+              <p >N/A</p>
+			  </aura:if>
             </aura:if>
             </div>
 		</td>
+        <td data-label="Rent per RSF per Month">
+		<div class="slds-truncate" title="{! ct.RentRSFMonth }">
+            <aura:if isTrue="{!ct.RowBold}">
+            <aura:if isTrue="{!not(empty(ct.RSF__c))}">
+             <p Style="font-weight:bold"><lightning:formattedNumber value="{! ct.RentRSFMonth }" style="currency" currencyCode="USD"/></p>
+             </aura:if>
+             <aura:if isTrue="{!empty(ct.RSF__c)}">
+             <p Style="font-weight:bold">N/A</p>
+			  </aura:if>
+            </aura:if>
+            <aura:if isTrue="{!not(ct.RowBold)}">
+                   <aura:if isTrue="{!not(empty(ct.RSF__c))}">
+             <p><lightning:formattedNumber value="{! ct.RentRSFMonth }" style="currency" currencyCode="USD"/></p>
+             </aura:if>
+			  <aura:if isTrue="{!empty(ct.RSF__c)}">
+              <p >N/A</p>
+			  </aura:if>
+            </aura:if>
+            </div>
+	    </td>
 		</tr>
 	</aura:iteration>
 	</tbody>
 	</table>
+        
+      <aura:if isTrue="{!v.showReportLinks}">
+          
+   <div class="container slds-m-top_large">
+  <div class="row1">
+    <div class="col1" style="  font-weight: bold; color:rgba(68,68,68);">
+      <p>Lease Value Reports</p>
+    </div>
+    <div class="col2" style="  font-weight: bold;color:rgba(68,68,68);">
+      <p>Remaining Obligation Reports</p>
+    </div>
+  </div>
+  <div class="row2">
+     <aura:iteration items="{!v.reportsLink}" var="rl">
+    <div class="sub-col">
+      <p><a href="{!rl.href}" target="_blank">{!rl.label} </a></p>
+    </div>
+    </aura:iteration>
+  </div>
+ </div>
+           </aura:if>   
+        
    </div> 
          
           </aura:if>

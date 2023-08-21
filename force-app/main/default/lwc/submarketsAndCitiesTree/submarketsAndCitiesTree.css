@@ -1,0 +1,25 @@
+/* .lgc-bg {
+    background-color: rgb(242 242 242);
+    --lwc-fontsize3: 30px;
+} */
+
+/* .lgc-bg-inverse {
+    background-color: rgb(22 50 92);
+} */
+
+/* body{
+    --lwc-fontSize3:30;
+} */
+
+/* .slds-tree__item-label{
+    font-weight: bold;
+} */
+/* 
+:host {
+    --my-font-size: 30px;
+  }
+
+  .slds-tree__item-label.body {
+    font-size: var(--my-font-size);
+  }
+ */

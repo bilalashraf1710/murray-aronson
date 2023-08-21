@@ -1,0 +1,23 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"
+                controller="RentScheduleListController">
+    
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+	<aura:attribute name="RentScheduleId" type="String"/>
+    <div class="rmPadding" style="border:1px solid red;--lwc-spacingMedium : 0rem !important;">
+        <lightning:layoutItem >
+            Are you sure you want to delete this contact?
+        </lightning:layoutItem>
+		 <div >    
+             <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+             <lightning:button variant="brand" label="Save" onclick="{!c.save}" />
+              </div>  
+        </div>
+    <div class="slds-modal__footer footerButtons">    
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancelButton}"/>
+                    <aura:if isTrue="{!v.IsNewTask}">
+                        <lightning:button variant="neutral" label="Save &amp; New" onclick="{!c.saveAndNew}" />
+                    </aura:if>
+                    
+                    <lightning:button variant="brand" label="Save" onclick="{!c.save}" />
+            </div>
+</aura:component>

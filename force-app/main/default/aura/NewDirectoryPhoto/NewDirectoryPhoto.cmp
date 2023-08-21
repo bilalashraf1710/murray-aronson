@@ -21,13 +21,15 @@
     
     <aura:attribute name="fileAttached" type="Boolean" default="false"/>
     <aura:attribute name="showFileAttachMessage" type="Boolean" default="false"/>
+    <aura:attribute name="showFileUploadSection" type="Boolean" default="false"/>
     
     
     <aura:attribute name="newPhoto" type="Building_Directory__c"
     default="{ 'sobjectType': 'Building_Directory__c',
                    'Building__c': '',
                    'Date_Walked__c':'',
-                   'Directory_Status__c':''}"/>
+                   'Directory_Status__c':'',
+             	   'Walked_Notes__c':''}"/>
     
     
     <div aura:id="editDialog" role="dialog" tabindex="-1" aria-labelledby="photoHeader" class="slds-modal slds-fade-in-open slds-p-around_medium">
@@ -55,7 +57,7 @@
 
                         
                         <lightning:input 
-                        required="false"
+                        required="true"
                         type="date" 
                         name="input1" 
                         label="Date Walked" 
@@ -72,33 +74,16 @@
 
                 <lightning:layout>
 
-                <lightning:layoutItem size="6">
-              <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color:white">
-                <!-- <aura:if isTrue="{! v.LeaseDocument != '' }"> -->
-                <lightning:fileUpload label="Attach file"
-                                      aria-required="true"
-                                      name="fileUploader"
-                                      multiple="true"
-                                      accept="{!v.filetype}"
-                                      
-                                      onuploadfinished="{!c.handleUploadFinished}" />
 
-                                      <!-- recordId="{!v.recordId}" -->
-                  <aura:if isTrue="{!v.showFileAttachMessage}">
-                    <div style="color: red">Attachment is required</div>
-                  </aura:if>
-
-            <!-- </aura:if> -->
-                
-              </div>
-            </lightning:layoutItem>
               <lightning:layoutItem size="6">
                 <div style="background-color:white" class="slds-p-horizontal_large slds-p-vertical_small">
-                  <lightning:select name="select1" label="Directory Status"
+                  <lightning:select name="select1" label="Directory Status" required="true"
                       value="{!v.newPhoto.Directory_Status__c}"
-                      aura:id="validFlyer">
+                      onchange="{!c.handleDirectoryStatusChange}"
+                      aura:id="validPhoto">
                       <option value="">--None--</option>
                       <option value="Fully Vacant">Fully Vacant</option>
+                      <option value="Single Tenant">Single Tenant</option>
                       <option value="Future Building">Future Building</option>
                       <option value="No Directory">No Directory</option>
                       <option value="Secured Building">Secured Building</option>
@@ -108,6 +93,42 @@
                   </lightning:select>
               </div>
               </lightning:layoutItem>
+                    
+              <lightning:layoutItem size="6">
+                <div style="background-color:white" >
+                  <lightning:textarea 
+                        required="false"
+                        name="input1" 
+                        label="Walked Notes" 
+                        style="background-color:white" 
+                        class="slds-p-horizontal_large slds-p-vertical_small slds-scrollable_none"
+                        value="{!v.newPhoto.Walked_Notes__c}"/>
+              </div>
+              </lightning:layoutItem>
+            </lightning:layout>
+                  
+            <lightning:layout>
+
+                <lightning:layoutItem size="6">
+              <div class="slds-p-horizontal_large slds-p-vertical_small" style="background-color:white">
+               <aura:if isTrue="{!v.showFileUploadSection}"> 
+                <lightning:fileUpload label="Attach Directory Photos or Videos"
+                                      aria-required="true"
+                                      name="fileUploader"
+                                      multiple="true"
+                                      accept="{!v.filetype}"
+                                      
+                                      onuploadfinished="{!c.handleUploadFinished}" />
+
+                                      <!-- recordId="{!v.recordId}" -->
+              <!--    <aura:if isTrue="{!v.showFileAttachMessage}">
+                    <div style="color: red">Attachment is required</div>
+                  </aura:if> -->
+
+         </aura:if> 
+                
+              </div>
+            </lightning:layoutItem>
             </lightning:layout>
               <aura:if isTrue="{!v.documentName}">
 

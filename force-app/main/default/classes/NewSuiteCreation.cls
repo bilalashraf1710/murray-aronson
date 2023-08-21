@@ -10,7 +10,7 @@ public class NewSuiteCreation {
         String sObjName = Id.valueOf(recordId).getSObjectType().getDescribe().getName();
         if(sObjName == 'Account'){
             list<building_account__c> lstBuildingAccount = [select Id, Building_BA__c from building_account__c where Building_Account__c =: recordId];
-            
+            system.debug('lstBuildingAccount ' + lstBuildingAccount);
             if(lstBuildingAccount.size() > 0){
                 //buildingId = lstBuildingAccount[0].Building_BA__c;
                 suWrap.buildingId = lstBuildingAccount[0].Building_BA__c;

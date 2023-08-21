@@ -10,8 +10,8 @@
     <aura:attribute name="showFooter" type="Boolean" />
     <aura:attribute name="showMaps" type="Boolean" default="false"/>
     <aura:attribute name="selectedMarkerValue" type="String" default="" />
-	 <aura:attribute name="recentClickId" type="String" default =""/>
-    
+	<aura:attribute name="recentClickId" type="String" default =""/>
+    <aura:attribute name="mapOptions" type="Object"/>
      <aura:if isTrue="{!v.showMaps}"> 
     <lightning:map
 
@@ -23,8 +23,7 @@
         markersTitle="{! v.markersTitle }"
         showFooter="{ !v.showFooter }"
         listView="hidden"
-        class="customMapTitle"
-                   
+        options="{!v.mapOptions}"
          >
     </lightning:map>
 

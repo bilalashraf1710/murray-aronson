@@ -76,21 +76,25 @@
         component.set('v.documentNames', documentNames);
 
         component.set('v.documentName', documentName);
-        component.set('v.fileAttached', true);
-        component.set('v.showFileAttachMessage', false);
+        //component.set('v.fileAttached', true);
+        //component.set('v.showFileAttachMessage', false);
 	},
     
     save: function(component, event, helper) {
-        let validPhotoObject = component.find('validPhoto').get('v.validity').valid;
-        component.find('validPhoto').showHelpMessageIfInvalid();
+        let validPhotoObject = [].concat(component.find('validPhoto')).reduce(function (validSoFar, inputCmp) {
+        // Displays error messages for invalid fields
+            inputCmp.showHelpMessageIfInvalid();
+            return validSoFar && inputCmp.get('v.validity').valid;
+        }, true);
         component.set('v.saveAndOpen',true);
-        let isFileAttached = component.get('v.fileAttached');
-        if(isFileAttached){
-            component.set('v.showFileAttachMessage', false);
-        }else{
-            component.set('v.showFileAttachMessage', true);
-        }
-        if(validPhotoObject && isFileAttached){
+        let directoryStatus = component.get('v.newPhoto.Directory_Status__c');
+        //let isFileAttached = component.get('v.fileAttached');
+        //if(isFileAttached){
+            //component.set('v.showFileAttachMessage', false);
+        //}else{
+            //component.set('v.showFileAttachMessage', true);
+        //}&& (isFileAttached || directoryStatus !='Walked')
+        if(validPhotoObject ){
             helper.savePhoto(component,event,helper);
         }
     },
@@ -121,4 +125,19 @@
             navService.navigate(pageReference);
         }
     },
+    
+    handleDirectoryStatusChange : function(component, event, helper) {
+       let directoryStatus = component.get('v.newPhoto.Directory_Status__c');
+        if(directoryStatus === 'Walked')
+        {
+            component.set('v.showFileUploadSection',true);
+            //component.set('v.showFileAttachMessage', false);
+        }
+        else
+        {
+			component.set('v.showFileUploadSection',false);
+            
+        }
+      
+     },
 })

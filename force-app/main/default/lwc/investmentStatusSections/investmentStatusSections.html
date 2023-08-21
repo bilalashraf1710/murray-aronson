@@ -1,0 +1,110 @@
+<template>
+  <!-- <lightning-card > -->
+  <div style="border: 1px solid rgba(201, 201, 201, 1); border-radius: 5px">
+    <lightning-accordion
+      allow-multiple-sections-open="true"
+      active-section-name={activeSectionCurrent}
+    >
+      <lightning-accordion-section
+        name="Current Investments"
+        label="Current Investments"
+      >
+        <template if:true={showCurrentRecords}>
+          <lightning-datatable
+            key-field="id"
+            data={currentInvestments}
+            show-row-number-column
+            hide-checkbox-column
+            columns={Currentcolumns}
+          >
+          </lightning-datatable>
+        </template>
+        <template if:false={showCurrentRecords}>
+          <span
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              width: 100%;
+              font-weight: bold;
+            "
+            >No Record exists</span
+          >
+        </template>
+      </lightning-accordion-section>
+    </lightning-accordion>
+  </div>
+  <div style="padding-top: 15px">
+    <div style="border: 1px solid rgba(201, 201, 201, 1); border-radius: 5px">
+      <lightning-accordion
+        allow-multiple-sections-open="true"
+        active-section-name={activeSectionDueDiligence}
+      >
+        <lightning-accordion-section
+          name="Due Diligence Investments"
+          label="Due Diligence Investments"
+        >
+          <template if:true={showDueDiligenceRecords}>
+            <lightning-datatable
+              key-field="id"
+              data={dueDiligenceInvestments}
+              show-row-number-column
+              hide-checkbox-column
+              columns={dueDelligenceColumns}
+            >
+            </lightning-datatable>
+          </template>
+          <template if:false={showDueDiligenceRecords}>
+            <span
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+                font-weight: bold;
+              "
+              >No Record exists</span
+            >
+          </template>
+        </lightning-accordion-section>
+      </lightning-accordion>
+    </div>
+  </div>
+  <!-- </lightning-card> -->
+  <div style="padding-top: 15px">
+    <div style="border: 1px solid rgba(201, 201, 201, 1); border-radius: 5px">
+      <lightning-accordion
+        allow-multiple-sections-open="true"
+        active-section-name={activeSectionPast}
+      >
+        <lightning-accordion-section
+          name="Past Investments"
+          label="Past Investments"
+        >
+          <template if:true={showPastRecords}>
+            <lightning-datatable
+              key-field="id"
+              data={pastInvestments}
+              show-row-number-column
+              hide-checkbox-column
+              columns={PastColumns}
+            >
+            </lightning-datatable>
+          </template>
+          <template if:false={showPastRecords}>
+            <span
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+                font-weight: bold;
+              "
+              >No Record exists</span
+            >
+          </template>
+        </lightning-accordion-section>
+      </lightning-accordion>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,63 @@
+<template>
+    <!-- <lightning-card > -->
+        <div style="border: 1px solid rgba(201, 201, 201, 1); border-radius: 5px;">
+            <lightning-accordion allow-multiple-sections-open="true"
+            active-section-name={activeSections}>
+                <lightning-accordion-section name="Current Locations" label="Current Locations">
+                    <template if:true={showCurrentRecords}>
+                    <lightning-datatable
+                    key-field="id"
+                    data={currentLocation}
+                    show-row-number-column
+                    hide-checkbox-column
+                    columns={columns}>
+            </lightning-datatable>
+        </template>
+        <template if:false={showCurrentRecords}>
+            <span style=" display: flex;  flex-direction: row; justify-content: center; width: 100%; font-weight:bold">No Child Record exists</span>
+        </template>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </div>
+        <div style="padding-top:15px">
+            <div style="border: 1px solid rgba(201, 201, 201, 1); border-radius: 5px;">
+                <lightning-accordion allow-multiple-sections-open="true" active-section-name={activeSectionsPast}>
+                    <lightning-accordion-section name="Past Locations" label="Past Locations">
+                        <template if:true={showPastRecords}>
+                        <lightning-datatable
+                        key-field="id"
+                        data={pastLocation}
+                        show-row-number-column
+                        hide-checkbox-column
+                        columns={columns}>
+                </lightning-datatable>
+            </template>
+            <template if:false={showPastRecords}>
+                <span style=" display: flex;  flex-direction: row; justify-content: center; width: 100%; font-weight:bold">No Child Record exists</span>
+            </template>
+                    </lightning-accordion-section>
+                </lightning-accordion>
+            </div>
+        </div>
+    <!-- </lightning-card> -->
+    <div style="padding-top:15px">
+        <div style="border: 1px solid rgba(201, 201, 201, 1); border-radius: 5px;">
+            <lightning-accordion allow-multiple-sections-open="true" active-section-name={activeSectionsOther}>
+                <lightning-accordion-section name="Other Locations" label="Other Locations">
+                    <template if:true={showOtherRecords}>
+                    <lightning-datatable
+                    key-field="id"
+                    data={otherLocation}
+                    show-row-number-column
+                    hide-checkbox-column
+                    columns={columnsOtherLoc}>
+            </lightning-datatable>
+        </template>
+        <template if:false={showOtherRecords}>
+            <span style=" display: flex;  flex-direction: row; justify-content: center; width: 100%; font-weight:bold">No Child Record exists</span>
+        </template>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </div>
+    </div>
+</template>
