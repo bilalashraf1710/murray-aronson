@@ -152,6 +152,39 @@ public with Sharing class BuildingSuiteLookupController {
         return details;
     }
 
+    @AuraEnabled(Cacheable=true)
+    public static Map<String, String> getFloorsListBySuiteId(Id suiteId){
+        try {
+            // find the related building from a suite id 
+            Suites__c[] suite = [ SELECT building__c, suite_floor_selected__c FROM suites__c WHERE id = :suiteId ];
+            Building__c[] relatedBuilding = [ 
+                SELECT name, floors_picklist__c 
+                FROM building__c 
+                WHERE id = :suite[0].building__c 
+            ];
+            if (relatedBuilding[0].floors_picklist__c == null) {
+                return null;
+            }
+            return new Map<String, String>{
+                'Id' => suite[0].Id,
+                'pickList' => relatedBuilding[0].floors_picklist__c,
+                'selectedFloor' => suite[0].suite_floor_selected__c
+            };
+            
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled
+    public static void updateSuiteFloor(Suites__c[] suites){
+        try {
+            update suites;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     public class objectDetails {
         @AuraEnabled
         public string iconName;

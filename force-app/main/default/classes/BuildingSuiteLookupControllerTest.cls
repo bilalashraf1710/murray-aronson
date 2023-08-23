@@ -68,6 +68,22 @@ public class BuildingSuiteLookupControllerTest {
         BuildingSuiteLookupController.SearchRecords(includedIds, excludedIdsList, ObjectName, returnFields, QueryFields, SearchText, SortColumn, SortOrder, MaxResults, Filter);
     }
 
+
+    @isTest
+    public static void getFloorsListBySuiteIdTest() {
+        Building__c b1 = new Building__c( Name = 'test building' );
+        insert b1;
+        Suites__c s1 = new Suites__c( building__c = b1.Id );
+        insert s1;
+        String pickListValues = '67;10;5;4;3;2;1';
+        System.assertEquals(null, BuildingSuiteLookupController.getFloorsListBySuiteId(s1.Id));
+        b1.floors_picklist__c = pickListValues;
+        update b1;
+        Map<String, String> floorsList = BuildingSuiteLookupController.getFloorsListBySuiteId(s1.Id);
+        System.assertEquals(s1.Id, floorsList.get('Id'));
+        System.assertEquals(pickListValues, floorsList.get('pickList'));
+
+    }
     
 
     
