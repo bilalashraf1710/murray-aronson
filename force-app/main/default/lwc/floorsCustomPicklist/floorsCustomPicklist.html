@@ -1,0 +1,39 @@
+<template>
+
+    <div class="outer">
+        <template if:true={isEdit}>
+            <lightning-combobox name="floors" label="Floors" value={selectedFloor} placeholder="Select Floor"
+                options={floorOptions} onchange={floorChange}>
+            </lightning-combobox>
+            <lightning-layout vertical-align="start" horizontal-align="center">
+                <lightning-layout-item padding="around-small">
+                    <lightning-button label="Cancel" onclick={cancel}>
+                    </lightning-button>
+                    <lightning-button label="Save" variant="brand" onclick={save} disabled={disabledSavedBtn}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+        <template if:false={isEdit}>
+            <lightning-layout>
+                <lightning-layout-item size="6" class="slds-p-vertical_xx-small slds-p-horizontal_small">
+                    <div class="label">Floors</div>
+                    <span class="slds-border_bottom fieldFlex" style="font-size:14px">
+                        <template if:true={selectedFloor}>
+                            <span>{selectedFloor}</span>
+                        </template>
+                        <template if:false={selectedFloor}>
+                            <span>&nbsp;</span>
+                        </template>
+                        <div class="slds-icon_xx-small pointer" onclick={editFloor}>
+                            <lightning-icon icon-name="utility:edit" alternative-text="Edit floor" title="Edit"
+                                class="slds-icon_xx-small" size="xx-small">
+                            </lightning-icon>
+                        </div>
+                    </span>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+    </div>
+
+</template>
